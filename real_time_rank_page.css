@@ -1,4 +1,31 @@
-@media screen and (max-width:1280px){
+section{
+    margin-right: 16px;
+    margin-left: 16px;
+    margin-top: 1%;
+    text-align: center;
+}
+
+.page_title{
+    margin-right: 16px;
+    margin-left: 16px;
+    background-color: black;
+    height: 6vh;
+    border-radius: 10px;
+    position: relative;
+}
+
+
+
+.title_text {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-55%);
+    margin-left: 2%;
+    color: white;
+    font-family: 'Hahmlet', serif;
+    font-size: 3vh;
+}
+/* @media screen and (max-width:1280px){
     .page_title{
         background-color: black;
         height: 6vh;
@@ -11,18 +38,4 @@
         font-family: 'Hahmlet', serif;
         font-size: 3vh;
     }
-}
-
-.page_title{
-    background-color: black;
-    height: 6vh;
-    border-radius: 10px;
-    z-index: -3;
-}
-
-.title_text {
-    margin-left: 5%;
-    color: white;
-    font-family: 'Hahmlet', serif;
-    font-size: 3vh;
-}
+} */

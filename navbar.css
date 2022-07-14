@@ -1,3 +1,8 @@
+body{
+    margin-left: 15%;
+    margin-right: 15%;
+}
+
 .navbar-nav>li {
     margin-left: 1vw;
     margin-right: 5vw;
