@@ -23,7 +23,7 @@
 }
 .dropdown-item:active {
     background-color: black;
-    color: aliceblue;
+    color: white;
 }
 
 .navbar-nav>li {
