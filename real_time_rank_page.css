@@ -1,6 +1,28 @@
+@media screen and (max-width:1280px){
+    .page_title{
+        background-color: black;
+        height: 6vh;
+        border-radius: 10px;
+        z-index: -3;
+    }
+    .title_text {
+        margin-left: 5%;
+        color: white;
+        font-family: 'Hahmlet', serif;
+        font-size: 3vh;
+    }
+}
+
 .page_title{
     background-color: black;
-    height: 50px;
+    height: 6vh;
     border-radius: 10px;
     z-index: -3;
+}
+
+.title_text {
+    margin-left: 5%;
+    color: white;
+    font-family: 'Hahmlet', serif;
+    font-size: 3vh;
 }

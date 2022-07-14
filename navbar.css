@@ -1,39 +1,70 @@
+.navbar-nav>li {
+    margin-left: 1vw;
+    margin-right: 5vw;
+}
 
+/*호버링*/
 .dropdown:hover .dropdown-menu{
     display: block;
     margin-left: -1vw;
-
-    /* 피그마처럼 넓은 영역으로 하고 싶으면 100vw..
-    width: 100vw !important; */
-    height: 32vh !important;
-    top: -15px;
-    background-color: #FFFFFF85;
-    z-index: 1;
+    height: 24vh;
+    margin-top: -5px;
+    background-color: #FFFFFF;
+    border-top: #FFFFFF00;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
 }
 
+/*드롭다운 요소들 마진값 및 상태변화에 따른 색 변화*/
 .dropdown-menu #first-item {
-    margin-top: 64px !important;
+    margin-top: 16px;
 }
-
 .dropdown-item {
     margin-top: 24px;
+}
+.dropdown-item:hover {
+    background-color: #FFFFFF00;
 }
 .dropdown-item:focus {
     background-color: #FFFFFF00;
 }
 .dropdown-item:active {
     background-color: black;
-    color: aliceblue;
+    color: white;
 }
 
-.navbar-nav>li {
-    margin-left: 1vw;
-    margin-right: 5vw;
+/*브라우저 크기 관련 미디어 쿼리*/
+@media screen and (max-height:880px){
+    .dropdown:hover .dropdown-menu{
+        height: auto;
+    }
+    .dropdown-item {
+        margin-top: 12px;
+        margin-bottom: 24px;
+    }
 }
-body{
-    margin-left: 15%;
-    margin-right: 15%;
+@media screen and (max-width:1280px){
+    .user-btn{
+        opacity: 0;
+    }
 }
+@media screen and (max-width:1199px){
+    .dropdown:hover .dropdown-menu{
+        height: auto;
+        margin-right: -2vw;
+        text-align: right;
+        float: right;
+        border: #FFFFFF00;
+    }
+    .dropdown-menu #first-item {
+        margin-top: 8px;
+    }
+    .dropdown-item{
+        margin-top: 8px;
+        margin-bottom: 8px;
+    }
+}
+
 
 /* collapse된 상태에서 요소들이 오른쪽으로 정렬되었으면 예쁠거같은데
 그게 어렵네... 어떻게 해야할까 ㅠ 여기서 드롭다운 메뉴를 만져버리면
