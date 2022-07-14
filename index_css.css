@@ -1,0 +1,48 @@
+
+.dropdown:hover .dropdown-menu{
+    display: block;
+    margin-left: -1vw;
+
+    /* 피그마처럼 넓은 영역으로 하고 싶으면 100vw..
+    width: 100vw !important; */
+    height: 32vh !important;
+    top: -15px;
+    background-color: #50000000;
+    z-index: 1;
+}
+
+.dropdown-menu #first-item {
+    margin-top: 64px !important;
+}
+
+.dropdown-item {
+    margin-top: 24px;
+}
+.dropdown-item:active {
+    background-color: black;
+    color: aliceblue;
+}
+
+.navbar-nav>li {
+    margin-left: 1vw;
+    margin-right: 5vw;
+}
+body{
+    margin-left: 15%;
+    margin-right: 15%;
+}
+
+/* collapse된 상태에서 요소들이 오른쪽으로 정렬되었으면 예쁠거같은데
+그게 어렵네... 어떻게 해야할까 ㅠ 여기서 드롭다운 메뉴를 만져버리면
+접히지 않은 상태에서도 바뀌어버리니 어찌 해야할지 모르겠구만 */
+.navbar-collapse {
+    text-align: right;
+}
+
+
+/* 
+더이상 필요없긴 하지만.. 클릭될 때 색 바뀌는게 별로일수도 있을 거 같아서 남겨놔
+.nav-link {
+    pointer-events: none;
+    cursor: default;
+} */
