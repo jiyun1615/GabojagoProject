@@ -7,7 +7,7 @@
     width: 100vw !important; */
     height: 32vh !important;
     top: -15px;
-    background-color: #50000000;
+    background-color: #FFFFFF85;
     z-index: 1;
 }
 
@@ -17,6 +17,9 @@
 
 .dropdown-item {
     margin-top: 24px;
+}
+.dropdown-item:focus {
+    background-color: #FFFFFF00;
 }
 .dropdown-item:active {
     background-color: black;

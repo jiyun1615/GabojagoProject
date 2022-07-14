@@ -1,0 +1,6 @@
+.page_title{
+    background-color: black;
+    height: 50px;
+    border-radius: 10px;
+    z-index: -3;
+}
