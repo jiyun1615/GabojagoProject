@@ -1,6 +1,6 @@
 body{
-    margin-left: 15%;
-    margin-right: 15%;
+    margin-left: 12%;
+    margin-right: 12%;
 }
 
 .navbar-nav>li {
@@ -37,7 +37,24 @@ body{
     background-color: black;
     color: white;
 }
+.page_title {
+    margin-right: 16px;
+    margin-left: 16px;
+    background-color: black;
+    height: 6vh;
+    border-radius: 10px;
+    position: relative;
+}
 
+.title_text {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-55%);
+    margin-left: 2%;
+    color: white;
+    font-family: 'Hahmlet', serif;
+    font-size: 3vh;
+}
 /*브라우저 크기 관련 미디어 쿼리*/
 @media screen and (max-height:880px){
     .dropdown:hover .dropdown-menu{
@@ -48,17 +65,21 @@ body{
         margin-bottom: 24px;
     }
 }
+
+/* Body의 양쪽 마진을 15로 줬었는데 그거보다 적게 주면 따로 만질 필요 없이 예쁘게 접히네!!
 @media screen and (max-width:1280px){
     .user-btn{
         opacity: 0;
     }
-}
+} */
+
 @media screen and (max-width:1199px){
     .dropdown:hover .dropdown-menu{
-        height: auto;
-        margin-right: -2vw;
         text-align: right;
         float: right;
+        height: auto;
+        margin-right: -2vw;
+        
         border: #FFFFFF00;
     }
     .dropdown-menu #first-item {
@@ -68,20 +89,15 @@ body{
         margin-top: 8px;
         margin-bottom: 8px;
     }
+    .navbar-collapse {
+        text-align: right;
+    }
+    .navbar-collapse .user-btn{
+        margin-right: 5vw;
+        margin-top: 2vh;
+        margin-bottom: 1vh;
+    }
 }
 
 
-/* collapse된 상태에서 요소들이 오른쪽으로 정렬되었으면 예쁠거같은데
-그게 어렵네... 어떻게 해야할까 ㅠ 여기서 드롭다운 메뉴를 만져버리면
-접히지 않은 상태에서도 바뀌어버리니 어찌 해야할지 모르겠구만 */
-.navbar-collapse {
-    text-align: right;
-}
 
-
-/* 
-더이상 필요없긴 하지만.. 클릭될 때 색 바뀌는게 별로일수도 있을 거 같아서 남겨놔
-.nav-link {
-    pointer-events: none;
-    cursor: default;
-} */
