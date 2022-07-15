@@ -1,11 +1,10 @@
-section{
+.page_contents {
     margin-right: 16px;
     margin-left: 16px;
-    margin-top: 1%;
-    text-align: center;
+    height: 75vh;
 }
 
-.page_title{
+.page_title {
     margin-right: 16px;
     margin-left: 16px;
     background-color: black;
@@ -13,8 +12,6 @@ section{
     border-radius: 10px;
     position: relative;
 }
-
-
 
 .title_text {
     position: absolute;
@@ -25,6 +22,70 @@ section{
     font-family: 'Hahmlet', serif;
     font-size: 3vh;
 }
+
+.swiper {
+    width: 100%;
+    height: 100%;
+}
+
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+
+    /* Center slide text vertically */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
+
+.swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.swiper-button-next {
+    background: url(icons/chevron-right.svg) no-repeat;
+    background-size: 250% auto;
+    background-position: center;
+}
+
+.swiper-button-prev {
+    background: url(icons/chevron-left.svg) no-repeat;
+    background-size: 250% auto;
+    background-position: center;
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+    display: none;
+}
+.swiper-pagination-bullet { 
+    width: 12px; 
+    height: 12px; 
+    background: transparent; 
+    border: 1px solid black; 
+    opacity: 1; 
+}
+.swiper-pagination-bullet-active { 
+    width: 24px; 
+    transition: width .5s; 
+    border-radius: 5px; 
+    background: black; 
+    border: 1px solid transparent; 
+}
+
 /* @media screen and (max-width:1280px){
     .page_title{
         background-color: black;
