@@ -1,38 +1,17 @@
-.page_contents {
-    margin-right: 16px;
+.page_contents{
+    margin-top: 1vh;
     margin-left: 16px;
-    height: 75vh;
-}
-
-.page_title {
     margin-right: 16px;
-    margin-left: 16px;
-    background-color: black;
-    height: 6vh;
-    border-radius: 10px;
-    position: relative;
-}
-
-.title_text {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-55%);
-    margin-left: 2%;
-    color: white;
-    font-family: 'Hahmlet', serif;
-    font-size: 3vh;
-}
-
-.swiper {
-    width: 100%;
-    height: 100%;
 }
 
 .swiper-slide {
+    /* 슬라이드의 높이는 내용에 따라서 가변적으로 변하지만, 기본적으로 이정도의 높이를 유지하도록 하면 됨.
+    주석 상태로 두면 아래 높이를 초과하는 내용물을 가졌으면 스크롤이 생성되고, 주석을 풀면 높이 고정되고 넘어가는 부분들은 잘린채로 디스플레이됨.
+    height: 85vh; */
     text-align: center;
     font-size: 18px;
     background: #fff;
-    flex-direction: column;
+
     /* Center slide text vertically */
     display: -webkit-box;
     display: -ms-flexbox;
@@ -46,13 +25,7 @@
     -ms-flex-align: center;
     -webkit-align-items: center;
     align-items: center;
-}
-
-.swiper-slide img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    background-color: cadetblue;
 }
 
 .swiper-button-next {
@@ -88,36 +61,25 @@
     border: 1px solid transparent;
 }
 
-
-.silde_top_area {
-    padding: 5%;
-    background-color: aquamarine;
-}
-
-.silde_bottom_area {
-    padding: 5%;
-    background-color: cadetblue;
-}
-
-.img_container {
+/* .img_container {
     width: 100px;
     height: 100px;
     background-position: center center;
     background-repeat: no-repeat;
     overflow: hidden;
-}
+} */
 
-/* Set the image to fill its parent and make transparent */
+/* Set the image to fill its parent and make transparent 
 .img_container img {
     min-height: 100%;
     min-width: 100%;
-    /* IE 8 */
+    /* IE 8 
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
-    /* IE 5-7 */
+    /* IE 5-7 
     filter: alpha(opacity=0);
-    /* modern browsers */
+    /* modern browsers 
     opacity: 0;
-}
+}*/
 
 /* @media screen and (max-width:1280px){
     .page_title{
