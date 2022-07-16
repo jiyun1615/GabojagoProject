@@ -1,4 +1,8 @@
+html {
+    height: 100%;
+}
 body{
+    min-height: 100%;
     margin-left: 12%;
     margin-right: 12%;
 }
