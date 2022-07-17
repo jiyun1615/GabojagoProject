@@ -59,6 +59,12 @@ body{
     font-family: 'Hahmlet', serif;
     font-size: 3vh;
 }
+
+.page_contents{
+    margin-top: 1vh;
+    margin-left: 16px;
+    margin-right: 16px;
+}
 /*브라우저 크기 관련 미디어 쿼리*/
 @media screen and (max-height:880px){
     .dropdown:hover .dropdown-menu{
