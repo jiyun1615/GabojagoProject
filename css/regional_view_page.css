@@ -1,7 +1,12 @@
 .title_text{
     width: 73vw;
     display: flex;
+    padding-top: 0.5%;
     padding-right: 2%;
+}
+
+.back_btn:hover{
+   cursor: pointer;
 }
 
 .icons{
@@ -42,7 +47,7 @@
         display:none
     }
     #down_icon{
-        content:url("icons\\caret-right-fill.svg");
+        content:url("..\\icons\\caret-right-fill.svg");
         filter: invert(50%) sepia(92%) saturate(438%) hue-rotate(88deg) brightness(96%) contrast(85%);
     }
     .icon_btn{

@@ -1,7 +1,9 @@
 // 지도 아이콘들이 로드되면 실행될 코드들...
 document.getElementById('obj_regions').onload = e => {
+  const region_list = document.getElementsByClassName('region_list')
+  console.log(region_list);
 
-    // html에서 만들었던 object를 JS로 불러옴.
+  // html에서 만들었던 object를 JS로 불러옴.
     const query = document.querySelector('#obj_regions');
     console.log(query);
 
@@ -19,6 +21,7 @@ document.getElementById('obj_regions').onload = e => {
     //일단 임시로, 노드리스트의 모든 원소에 클릭이벤트로써 alert를 추가해놓았음..
     for (var i = 0; i < lands.length; i++) {
         lands[i].addEventListener('click', e => {
+            region_list[0].style.display = "block";
             alert("yeah!");
           });
     
