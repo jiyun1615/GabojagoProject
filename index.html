@@ -1,93 +1,85 @@
 <!doctype html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<html lang="ko">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-    <link rel="stylesheet" href="dropdown.css">
-    <style>
-        body{
-            margin-left: 15%;
-            margin-right: 15%;
-        }
-    </style>
-    
-  </head>
-  <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-white">
-        <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">#가보자고</a>
-        <!-- <a class="navbar-brand" href="#">Navbar</a> -->
-        
-      
-        <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-            <ul class="navbar-nav ml-auto">
-            <!-- <li class="nav-item active">
-              <a class="nav-link" href="#">Hot Place<span class="sr-only">(current)</span></a>
-            </li> -->
-            <!-- <li class="nav-item">
-              <a class="nav-link" href="#">Map</a>
-            </li> -->
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown" href="#" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Hot Place
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">실시간</a>
-                <a class="dropdown-item" href="#">지역별</a>
-                <a class="dropdown-item" href="#">컨셉별</a>
-              </div>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown" href="#" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Map
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="#">내 주변</a>
-                </div>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown" href="#" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Community
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="#">좋아요 Top 3</a>
-                  <a class="dropdown-item" href="#">커뮤니티</a>
-                </div>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown" href="#" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  My Page
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="#">내 정보</a>
-                  <a class="dropdown-item" href="#">내 활동</a>
-                </div>
-              </li>
-            <!-- <li class="nav-item">
-              <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-            </li> -->
-          </ul>
-          
-        </div>
-        <div>
-            <button type="button" class="btn btn-outline-dark">Login</button>
-            <button type="button" class="btn btn-outline-dark">Sign-up</button>
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+    integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+  <link rel="stylesheet" href="navbar.css">
+  <link rel="stylesheet" href="index.css">
+  <title>#가보자고</title>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-xl navbar-light bg-white">
+    <a class="navbar-brand" href="#">#가보자고</a>
+    <!-- <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">#가보자고</a> -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto" id="menu">
+        <li class="nav-item dropdown">
+          <!--요소를 호버링하여 드롭다운 메뉴를 펼치는 것은 좋은데, 그 요소가 클릭이 되었을 경우에 드롭다운 메뉴가 펼쳐지고 호버링이 끝나도 사라지지 않음.
+          이를 해결하기 위해 a태그의 data-toggle="dropdown"을 지웠더니 해결된것으로 보이긴 하지만, 더 좋은 방법이 있지 않을까 싶음....(지현)-->
+          <a class="nav-link dropdown" href="#" id="navbarDropdown" data-toggle="collapse" aria-haspopup="true"
+            aria-expanded="false">HotPlace</a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" id="first-item" href="real_time_rank_page.html">실시간</a>
+            <a class="dropdown-item" href="#">지역별</a>
+            <a class="dropdown-item" href="#">컨셉별</a>
           </div>
-      </nav>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown" href="#" id="navbarDropdown" data-toggle="collapse" aria-haspopup="true"
+            aria-expanded="false">Map</a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" id="first-item" href="#">내 주변</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown" href="#" id="navbarDropdown" data-toggle="collapse" aria-haspopup="true"
+            aria-expanded="false">Community</a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" id="first-item" href="#">좋아요 Top 3</a>
+            <a class="dropdown-item" href="#">커뮤니티</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown" href="#" id="navbarDropdown" data-toggle="collapse" aria-haspopup="true"
+            aria-expanded="false">MyPage</a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" id="first-item" href="#">내 정보</a>
+            <a class="dropdown-item" href="#">내 활동</a>
+          </div>
+        </li>
+      </ul>
+      <div class="user-btn">
+        <button type="button" class="btn btn-outline-dark">Login</button>
+        <button type="button" class="btn btn-outline-dark">Sign-up</button>
+      </div>
+    </div>
+  </nav>
 
-    <!-- Optional JavaScript; choose one of the two! -->
+  <!-- Optional JavaScript; choose one of the two! -->
+  <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+    crossorigin="anonymous"></script>
 
-    <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
-
-    <!-- Option 2: jQuery, Popper.js, and Bootstrap JS
+  <!-- Option 2: jQuery, Popper.js, and Bootstrap JS
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
     -->
-  </body>
+</body>
+
 </html>

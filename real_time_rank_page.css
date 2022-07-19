@@ -1,0 +1,110 @@
+.page_contents{
+    margin-top: 1vh;
+    margin-left: 16px;
+    margin-right: 16px;
+}
+
+.swiper-slide {
+    /* 슬라이드의 높이는 내용에 따라서 가변적으로 변하지만, 기본적으로 이정도의 높이를 유지하도록 하면 됨.
+    주석 상태로 두면 아래 높이를 초과하는 내용물을 가졌으면 스크롤이 생성되고, 주석을 풀면 높이 고정되고 넘어가는 부분(내용)들은 잘린채로 디스플레이됨.*/
+    height: 85vh; 
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+
+    /*페이지네이션(하단 점들)과의 간격을 주기 위해 주는 마진*/
+    margin-bottom: 1vh;
+
+    /* Center slide text vertically */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+    background-color: cadetblue;
+}
+
+.swiper-button-next {
+    background: url(icons/chevron-right.svg) no-repeat;
+    background-size: 250% auto;
+    background-position: center;
+}
+
+.swiper-button-prev {
+    background: url(icons/chevron-left.svg) no-repeat;
+    background-size: 250% auto;
+    background-position: center;
+}
+
+/*이 부분들이 있어야 기본 디자인과 겹쳐서 보이지 않음.*/
+.swiper-button-next::after,
+.swiper-button-prev::after {
+    display: none;
+}
+
+
+.swiper-pagination-bullet {
+    width: 12px;
+    height: 12px;
+    background: transparent;
+    border: 1px solid black;
+    opacity: 1;
+}
+
+.swiper-pagination-bullet-active {
+    width: 24px;
+    transition: width .5s;
+    border-radius: 5px;
+    background: black;
+    border: 1px solid transparent;
+}
+
+/* 
+필요해서 만들어놓은 부분이였는데 이젠 사용할 지 잘 모르겠음..
+
+1. 내용에 들어가는 핫플레이스 사진 사이즈 조절하는 코드들
+
+.img_container {
+    width: 100px;
+    height: 100px;
+    background-position: center center;
+    background-repeat: no-repeat;
+    overflow: hidden;
+} */
+
+/* Set the image to fill its parent and make transparent 
+.img_container img {
+    min-height: 100%;
+    min-width: 100%;
+    /* IE 8 
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    /* IE 5-7 
+    filter: alpha(opacity=0);
+    /* modern browsers 
+    opacity: 0;
+}
+
+
+2. 반응형 디자인을 위한 코드들
+
+/* @media screen and (max-width:1280px){
+    .page_title{
+        background-color: black;
+        height: 6vh;
+        border-radius: 10px;
+        z-index: -3;
+    }
+    .title_text {
+        margin-left: 5%;
+        color: white;
+        font-family: 'Hahmlet', serif;
+        font-size: 3vh;
+    }
+} */
