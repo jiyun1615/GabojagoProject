@@ -1,0 +1,107 @@
+html {
+    height: 100%;
+}
+body{
+    min-height: 100%;
+    margin-left: 12%;
+    margin-right: 12%;
+}
+
+.navbar-nav>li {
+    margin-left: 1vw;
+    margin-right: 5vw;
+}
+
+/*호버링*/
+.dropdown:hover .dropdown-menu{
+    display: block;
+    margin-left: -1vw;
+    height: 24vh;
+    margin-top: -5px;
+    background-color: #FFFFFF;
+    border-top: #FFFFFF00;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+/*드롭다운 요소들 마진값 및 상태변화에 따른 색 변화*/
+.dropdown-menu #first-item {
+    margin-top: 16px;
+}
+.dropdown-item {
+    margin-top: 24px;
+}
+.dropdown-item:hover {
+    background-color: #FFFFFF00;
+}
+.dropdown-item:focus {
+    background-color: #FFFFFF00;
+}
+.dropdown-item:active {
+    background-color: black;
+    color: white;
+}
+.page_title {
+    margin-right: 16px;
+    margin-left: 16px;
+    background-color: black;
+    height: 6vh;
+    border-radius: 10px;
+    position: relative;
+}
+
+.title_text {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-55%);
+    margin-left: 2%;
+    color: white;
+    font-family: 'Hahmlet', serif;
+    font-size: 3vh;
+}
+/*브라우저 크기 관련 미디어 쿼리*/
+@media screen and (max-height:880px){
+    .dropdown:hover .dropdown-menu{
+        height: auto;
+    }
+    .dropdown-item {
+        margin-top: 12px;
+        margin-bottom: 24px;
+    }
+}
+
+/* Body의 양쪽 마진을 15로 줬었는데 그거보다 적게 주면 따로 만질 필요 없이 예쁘게 접히네!!
+@media screen and (max-width:1280px){
+    .user-btn{
+        opacity: 0;
+    }
+} */
+
+@media screen and (max-width:1199px){
+    .dropdown:hover .dropdown-menu{
+        text-align: right;
+        float: right;
+        height: auto;
+        margin-right: -2vw;
+        
+        border: #FFFFFF00;
+    }
+    .dropdown-menu #first-item {
+        margin-top: 8px;
+    }
+    .dropdown-item{
+        margin-top: 8px;
+        margin-bottom: 8px;
+    }
+    .navbar-collapse {
+        text-align: right;
+    }
+    .navbar-collapse .user-btn{
+        margin-right: 5vw;
+        margin-top: 2vh;
+        margin-bottom: 1vh;
+    }
+}
+
+
+
