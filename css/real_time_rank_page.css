@@ -32,13 +32,13 @@
 }
 
 .swiper-button-next {
-    background: url(icons/chevron-right.svg) no-repeat;
+    background: url(../icons/chevron-right.svg) no-repeat;
     background-size: 250% auto;
     background-position: center;
 }
 
 .swiper-button-prev {
-    background: url(icons/chevron-left.svg) no-repeat;
+    background: url(../icons/chevron-left.svg) no-repeat;
     background-size: 250% auto;
     background-position: center;
 }

@@ -17,8 +17,8 @@
   <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
 
   <!--css 리스트-->
-  <link rel="stylesheet" href="navbar.css">
-  <link rel="stylesheet" href="real_time_rank_page.css">
+  <link rel="stylesheet" href="..\css\navbar.css">
+  <link rel="stylesheet" href="..\css\real_time_rank_page.css">
 
   <title>#가보자고</title>
 
@@ -30,7 +30,7 @@
 
 <body>
   <nav class="navbar navbar-expand-xl navbar-light bg-white">
-    <a class="navbar-brand" href="index.html">#가보자고</a>
+    <a class="navbar-brand" href="navbar.html">#가보자고</a>
     <!-- <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">#가보자고</a> -->
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -45,7 +45,7 @@
             aria-expanded="false">HotPlace</a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" id="first-item" href="#">실시간</a>
-            <a class="dropdown-item" href="#">지역별</a>
+            <a class="dropdown-item" href="regional_rank_page.html">지역별</a>
             <a class="dropdown-item" href="#">컨셉별</a>
           </div>
         </li>
@@ -53,7 +53,7 @@
           <a class="nav-link dropdown" href="#" id="navbarDropdown" data-toggle="collapse" aria-haspopup="true"
             aria-expanded="false">Map</a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" id="first-item" href="#">내 주변</a>
+            <a class="dropdown-item" id="first-item" href="location_based_page.html">내 주변</a>
           </div>
         </li>
         <li class="nav-item dropdown">
@@ -80,7 +80,7 @@
     </div>
   </nav>
   <div class="page_title">
-    <p class="title_text">실시간 순위 조회</p>
+    <p class="title_text">실시간 순위</p>
   </div>
   <div class="page_contents">
 
@@ -570,7 +570,7 @@
     -->
 
   <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
-  <script src="real_time_rank_page.js"></script>
+  <script src="..\js\real_time_rank_page.js"></script>
 </body>
 
 </html>
