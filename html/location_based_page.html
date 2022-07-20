@@ -17,7 +17,6 @@
   <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
 
   <!--css 리스트-->
-  <link rel="stylesheet" href="..\css\navbar.css">
   <link rel="stylesheet" href="..\css\location_based_page.css">
   
   <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=m9ps8xpuo8&callback=CALLBACK_FUNCTION"></script>
@@ -31,70 +30,47 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-xl navbar-light bg-white">
-    <a class="navbar-brand" href="navbar.html">#가보자고</a>
-    <!-- <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">#가보자고</a> -->
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto" id="menu">
-        <li class="nav-item dropdown">
-          <!--요소를 호버링하여 드롭다운 메뉴를 펼치는 것은 좋은데, 그 요소가 클릭이 되었을 경우에 드롭다운 메뉴가 펼쳐지고 호버링이 끝나도 사라지지 않음.
-          이를 해결하기 위해 a태그의 data-toggle="dropdown"을 지웠더니 해결된것으로 보이긴 하지만, 더 좋은 방법이 있지 않을까 싶음....(지현)-->
-          <a class="nav-link dropdown" href="#" id="navbarDropdown" data-toggle="collapse" aria-haspopup="true"
-            aria-expanded="false">HotPlace</a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" id="first-item" href="real_time_rank_page.html">실시간</a>
-            <a class="dropdown-item" href="regional_rank_page.html">지역별</a>
-            <a class="dropdown-item" href="#">컨셉별</a>
-          </div>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown" href="#" id="navbarDropdown" data-toggle="collapse" aria-haspopup="true"
-            aria-expanded="false">Map</a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" id="first-item" href="#">내 주변</a>
-          </div>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown" href="#" id="navbarDropdown" data-toggle="collapse" aria-haspopup="true"
-            aria-expanded="false">Community</a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" id="first-item" href="#">좋아요 Top 3</a>
-            <a class="dropdown-item" href="#">커뮤니티</a>
-          </div>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown" href="#" id="navbarDropdown" data-toggle="collapse" aria-haspopup="true"
-            aria-expanded="false">MyPage</a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" id="first-item" href="#">내 정보</a>
-            <a class="dropdown-item" href="#">내 활동</a>
-          </div>
-        </li>
-      </ul>
-      <div class="user-btn">
-        <button type="button" class="btn btn-outline-dark">Login</button>
-        <button type="button" class="btn btn-outline-dark">Sign-up</button>
-      </div>
-    </div>
-  </nav>
+  <div data-include-path="navbar.html"></div>
   <div class="page_title">
       <p class="title_text">
         내 주변
       </p>
   </div>
   <div class="page_contents">
-    <div class="container">
-      <div id="map" style="width: 100%; height:480px;"></div>
-      <div>
-        여기에 리스트들이 나올 예정
+      <div id="map" style="width: 100%; height:85vh;">
+        <div>
+          안녕하세요~~
+        </div>
       </div>
-    </div>
+        
   </div>
-  <!-- 이 부분을 자바스크립트로 빼놓을 수 없을까? -->
+
+  <script>
+
+    window.addEventListener('load', function () {
+        var allElements = document.getElementsByTagName('*');
+        Array.prototype.forEach.call(allElements, function (el) {
+            var includePath = el.dataset.includePath;
+            if (includePath) {
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        el.outerHTML = this.responseText;
+                    }
+                };
+                xhttp.open('GET', includePath, true);
+                xhttp.send();
+            }
+        });
+    });
+
+</script>
+  <!-- 해야 할 일.
+  1. 검색창을 지도 위에 띄우는 것은 불가능해보임. 지도의 상단과 우측부분을 줄여서 검색창과 결과 리스트가 나오도록 해야함.
+  https://velog.io/@silverbeen/Naver-Map-%EC%9E%90%EC%9C%A0%EB%A1%AD%EA%B2%8C-%ED%99%9C%EC%9A%A9%ED%95%98%EA%B8%B0
+  이분의 블로그를 참조하여 지도와 연관이 없는 새로운 리스트를 만들고, 리스트를 누르면 마커를 클릭한 것 처럼 만드는 편이 좋아보인..다
+  위에 오버레이처럼 나올 수 있으면 참 좋을 것 같지만 아직 초심자인 나로써는 이게 한계인듯.. 
+  2. 초반 시작위치를 설정할 수 있어야 한다.-->
   <script>
     var mapOptions = {
       center: new naver.maps.LatLng(37.3595704, 127.105399),
