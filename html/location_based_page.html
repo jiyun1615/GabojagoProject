@@ -19,6 +19,8 @@
   <!--css 리스트-->
   <link rel="stylesheet" href="..\css\navbar.css">
   <link rel="stylesheet" href="..\css\location_based_page.css">
+  
+  <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=m9ps8xpuo8&callback=CALLBACK_FUNCTION"></script>
 
   <title>#가보자고</title>
 
@@ -86,13 +88,21 @@
   </div>
   <div class="page_contents">
     <div class="container">
+      <div id="map" style="width: 100%; height:480px;"></div>
       <div>
         여기에 리스트들이 나올 예정
       </div>
     </div>
   </div>
+  <!-- 이 부분을 자바스크립트로 빼놓을 수 없을까? -->
+  <script>
+    var mapOptions = {
+      center: new naver.maps.LatLng(37.3595704, 127.105399),
+      zoom: 10
+    };
 
-
+    var map = new naver.maps.Map('map', mapOptions);
+  </script>
   <!-- Optional JavaScript; choose one of the two! -->
   <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
