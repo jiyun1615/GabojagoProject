@@ -4,6 +4,10 @@
     padding-top: 0.5%;
     padding-right: 2%;
 }
+.page_contents {
+    padding-top: 1vh;
+    padding-bottom: 3vh;
+}
 
 .back_btn:hover{
    cursor: pointer;
