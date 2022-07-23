@@ -1,1 +1,16 @@
+.search{
+    display: flex;
+    justify-content: flex-end;
+    padding: 0.75%;
+    color: white;
+    font-family: 'Hahmlet', serif;
+    font-size: 2vh;
+}
 
+.input_area{
+    padding-left: 25px;
+    border: 0px;
+    outline: none;
+    border-radius: 35px;
+    
+}
