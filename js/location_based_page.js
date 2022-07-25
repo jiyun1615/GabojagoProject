@@ -15,11 +15,25 @@ window.addEventListener('load', function() {
   });
 });
 
+const bookBtn = document.querySelector('.bookmark-btn');
+const close = document.querySelector('.close-btn');
 
-function result(){
-    const my_map = document.getElementById("map");
-    my_map.style.cssText = 'width: 50% height:50%;';
-}
+const area = document.querySelector('.side-bar')
+const section = document.querySelector('section');
+console.log(section);
+const label = document.querySelector('label');
+
+bookBtn.addEventListener('click', function(){
+    area.style.display='block';
+    section.style.left=0;
+    label.style.opacity=0;
+})
+
+close.addEventListener('click', function(){
+    area.style.display='none';
+    section.style.left='-1000px';
+    label.style.opacity=1;
+})
 
 
 

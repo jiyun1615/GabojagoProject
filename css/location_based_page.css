@@ -14,3 +14,49 @@
     border-radius: 35px;
     
 }
+
+.side-bar{
+    font-family: 'Hahmlet', serif;
+    display: none;
+}
+
+label{
+    display: flex;
+    align-items: center;
+    position: relative;
+    top: 30px;
+    left: 30px;
+    transition: .5s;
+}
+
+.material-icons{
+    font-size: 3rem;
+    margin-right: 10px;
+}
+
+
+section{
+    border: 1px solid black;
+    width: 36.5vw;
+    padding-top: 30px;
+    padding-left: 30px;
+    position: absolute;
+    top: 0;
+    left: -1000px;
+    bottom: 0;
+    transition: 1s ease;
+}
+
+.bookmark-lists{
+    padding-left: 45px;
+}
+
+.bookmark{
+    margin: 30px 0;
+}
+
+.bookmark:nth-child(1) {
+    margin-top:50px;
+}
+
+

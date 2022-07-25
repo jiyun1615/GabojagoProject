@@ -33,24 +33,40 @@
 
 <body>
   <div data-include-path="navbar.html"></div>
+
   <div class="page_title">
-      <div class="title_text">
-        내 주변
-      </div>
-      <div class="search">
-        <input class="input_area" type="text" placeholder="검색어를 입력하세요">
-        <button id="search_btn" onclick="result()">찾기</button>
-      </div>
+    <div class="title_text">
+      내 주변
+    </div>
+    <div class="search">
+      <input class="input_area" type="text" placeholder="검색어를 입력하세요">
+      <button class="bookmark-btn" id="search_btn">찾기</button>
     </div>
   </div>
-  <div class="page_contents">
-    <div id="map" style="width: 100%; height:85vh;">
+
+  <div class="row page_contents">
+    <div class="col side-bar">
+      <section>
+        <h1>"나나의 커피"에 대한 검색 결과입니다.</h1>
+        <ul class="bookmark-lists">
+          <li class="bookmark"><a href="hotPlaceDetail.html">나나의 커피</a></li>
+          <li class="bookmark">나나의 정원</li>
+          <li class="bookmark">나나의 음식점</li>
+          <li class="bookmark">나나나</li>
+          <li class="bookmark">나나가</li>
+          <li class="bookmark">나나</li>
+        </ul>
+        <button class="close-btn" id="search_btn">접기</button>
+      </section>
+    </div>
+    <div class="col" id="map" style="width: 100%; height:85vh;">
     </div>
 
   </div>
 
   <!-- 해야 할 일.
   1. 우측부분을 줄여서 결과 리스트가 나오도록 해야함.
+  https://data05.tistory.com/32?category=1003140
   https://velog.io/@silverbeen/Naver-Map-%EC%9E%90%EC%9C%A0%EB%A1%AD%EA%B2%8C-%ED%99%9C%EC%9A%A9%ED%95%98%EA%B8%B0
   이분의 블로그를 참조하여 지도와 연관이 없는 새로운 리스트를 만들고, 리스트를 누르면 마커를 클릭한 것 처럼 만드는 편이 좋아보인..다
   위에 오버레이처럼 나올 수 있으면 참 좋을 것 같지만 아직 초심자인 나로써는 이게 한계인듯.. 
@@ -58,7 +74,7 @@
   <script>
     var mapOptions = {
       center: new naver.maps.LatLng(37.3595704, 127.105399),
-      zoom: 10
+      zoom: 15
     };
 
     var map = new naver.maps.Map('map', mapOptions);
