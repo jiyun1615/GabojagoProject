@@ -7,6 +7,11 @@
     margin-left: 20px;
 }
 
+.hotplaceImg {
+    max-height: 35vh;
+    max-width: 60vw;
+}
+
 .details {
     margin-right: 30px;
     margin-left: 20px;
