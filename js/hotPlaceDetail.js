@@ -29,6 +29,15 @@ function callApiInfo(){
                 $("#viewCnt").empty();
                 $("#viewCnt").append("조회수 : " + viewCnt);  
                   
+
+                for(var i=0; i<data[0].spotTags.length; i++)
+                {
+                    for(var j=0; j<11; j++)
+                    if ($($(".tags")[j]).html() == ("#" + data[0].spotTags[i].value)) {
+                        $($(".tags")[j]).css("font-weight", "bold")
+                            .css("color", "black");
+                    }
+                }
                   
             },
             error: (log) => { alert("실패" + log) }

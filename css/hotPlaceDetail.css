@@ -12,12 +12,29 @@
     max-width: 60vw;
 }
 
+.spotTitle{
+    font-family : 'Hahmlet', serif;
+    font-size : 3vh;
+    font-weight: bold;
+}
+
+.cardText{
+    margin-top: 1vh;
+}
+
+.tagGroup{
+    color: silver;
+    font-family : 'Hahmlet', serif;
+    font-size : 2vh;
+}
+
 .details {
     margin-right: 30px;
     margin-left: 20px;
 }
 
-.detailsTitle-1 {
+.detailsTitle {
+    font-family : 'Hahmlet', serif;
     margin-top : 25px;
     margin-bottom: 15px;
 }
