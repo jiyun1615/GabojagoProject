@@ -1,3 +1,4 @@
 {
-    "breadcrumbs.symbolSortOrder": "position"
+    "breadcrumbs.symbolSortOrder": "position",
+    "liveServer.settings.port": 5501
 }
