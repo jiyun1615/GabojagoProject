@@ -15,4 +15,8 @@ window.addEventListener('load', function() {
   });
 });
 
- 
+const receivedData = location.href.split('?')[1];
+// 전달받은 데이터가 한글일 경우 디코딩 하여야 정상적으로 데이터 사용이 가능함.
+console.log(decodeURI(receivedData));
+const region_name = document.getElementsByClassName('region_name');
+region_name[0].innerText = decodeURI(receivedData);

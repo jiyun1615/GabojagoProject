@@ -1,0 +1,54 @@
+.page_title{
+    margin-bottom: 0px;
+}
+
+.page_contents {
+    padding-top: 0.5vh;
+    padding-bottom: 3vh;
+}
+
+.details {
+    margin-right: 30px;
+    margin-left: 20px;
+}
+
+.detailsTitle-1 {
+    margin-top : 25px;
+    margin-bottom: 15px;
+}
+
+.bd-placeholder-img {
+    margin-bottom: 6px;
+}
+
+.tagButton {
+    margin-bottom: 10px;
+    margin-left : 2vw;
+    margin-right : 8vw;
+}
+
+.btn {
+    margin-bottom: 5px;
+}
+
+.card {
+    margin-bottom : 5px;
+}
+
+.card-body{
+    height : 200px;
+}
+.card-title{
+    font-weight :bold;
+}
+
+.card-text {
+    height : 70px;
+    overflow : hidden;
+    text-overflow : ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* 라인수 */
+    -webkit-box-orient: vertical;
+    word-wrap:break-word; 
+}
+

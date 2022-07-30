@@ -20,7 +20,7 @@ var swiper = new Swiper(".mySwiper", {
     spaceBetween: 80,
     centeredSlides: true,
     autoplay: {
-        delay: 2500,
+        delay: 5500,
         disableOnInteraction: false,
     },
     pagination: {
@@ -39,3 +39,4 @@ var swiper = new Swiper(".mySwiper", {
     },
     
 });
+
