@@ -1,4 +1,3 @@
-
 window.addEventListener('load', function() {
     var allElements = document.getElementsByTagName('*');
     Array.prototype.forEach.call(allElements, function(el) {
@@ -15,6 +14,9 @@ window.addEventListener('load', function() {
         }
     });
 });
+
+
+
 
 var swiper = new Swiper(".mySwiper", {
     spaceBetween: 80,

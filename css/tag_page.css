@@ -21,6 +21,15 @@
     margin-bottom: 6px;
 }
 
+.card-title {
+    color: black;
+    font-family: 'Hahmlet', serif;
+    font-size: 2vh;
+    overflow : hidden;  /* 길이 넘어가면 숨김 */
+    text-overflow : ellipsis;  /* 말줄임표 설정 */
+    white-space: nowrap;
+}
+
 .tagButton {
     margin-bottom: 10px;
     margin-left : 2vw;
@@ -38,14 +47,17 @@
 .card-body{
     height : 200px;
 }
-.card-title{
-    font-weight :bold;
+
+.card_image{
+    height : 200;
+    width : 100%;
 }
 
 .card-text {
-    height : 70px;
-    overflow : hidden;
-    text-overflow : ellipsis;
+    height : 70px;  /* 길이 설정 */
+    font-family: 'Hahmlet', serif;
+    overflow : hidden;  /* 길이 넘어가면 숨김 */
+    text-overflow : ellipsis;  /* 말줄임표 설정 */
     display: -webkit-box;
     -webkit-line-clamp: 3; /* 라인수 */
     -webkit-box-orient: vertical;

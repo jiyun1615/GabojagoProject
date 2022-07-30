@@ -9,6 +9,24 @@
     padding-bottom: 3vh;
 }
 
+.card-title{
+    font-weight :bold;
+    overflow : hidden;  /* 길이 넘어가면 숨김 */
+    text-overflow : ellipsis;  /* 말줄임표 설정 */
+    white-space: nowrap;
+}
+
+.card-text {
+    height : 70px;
+    overflow : hidden;
+    text-overflow : ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* 라인수 */
+    -webkit-box-orient: vertical;
+    word-wrap:
+    break-word;
+}
+
 .back_btn:hover{
    cursor: pointer;
 }
