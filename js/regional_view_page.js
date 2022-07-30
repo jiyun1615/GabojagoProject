@@ -57,3 +57,7 @@ for (var i = 1; i < 11; i++) {
   })
 }
 
+function detailPage(num) {
+  console.log("성공!");
+  window.location.href = 'hotPlaceDetail.html?spotID=' + num;
+}
