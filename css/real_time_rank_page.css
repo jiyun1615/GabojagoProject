@@ -31,6 +31,10 @@
 
 }
 
+.tags{
+    color: silver;
+}
+
 .rank{
     font-size: 3vw;
     font-weight: bold;
