@@ -17,7 +17,6 @@
 .region_list {
     box-sizing: border-box;
     display: none;
-    border-color: black;
     border: 1px solid black;
     font-family: 'Hahmlet', serif;
     padding-top: 8%;

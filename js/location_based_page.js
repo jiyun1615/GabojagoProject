@@ -16,71 +16,87 @@ window.addEventListener('load', function () {
 });
 
 
-// var infowindow = new naver.maps.InfoWindow();
+var search_loc = 0;
+console.log(search_loc);
+var locationBtnHtml = document.getElementById('my_location_btn');
+function Make_map(lat, lon, zoom) {
+    var mapOptions = {
+        //여기서 시작 위치를 조정함. 이 이전에 사용자가 설정한 위치를 api로 받아야함.
+        center: new naver.maps.LatLng(lat, lon),
+        zoom: zoom,
+        //줌 컨트롤
+        scaleControl: false,
+        logoControl: false,
+        mapDataControl: false,
+        zoomControl: true,
+        minZoom: 6,
+        zoomControlOptions: {
+            style: naver.maps.ZoomControlStyle.LARGE,
+            position: naver.maps.Position.TOP_LEFT
+        }
 
-// function onSuccessGeolocation(position) { //실행할 함수
-//     var location = new naver.maps.LatLng(position.coords.latitude,
-//                                          position.coords.longitude);
+    };
 
-//     map.setCenter(location); // 지도의 중심을 어디로 잡을것인지 설정하는 코드
-//     map.setZoom(15); // 지도가 얼만큼 줌 되어있는지 설정하는 코드
+    var map = new naver.maps.Map('map', mapOptions);
+    locationBtnHtml[0].addEventListener("click", function() {
+        if (navigator.geolocation) {
+            // GeoLocation을 이용해서 접속 위치를 얻어옵니다
+            navigator.geolocation.getCurrentPosition(function (position) {
+                var lat = position.coords.latitude, // 위도
+                    lon = position.coords.longitude; // 경도
+                map.setCenter(new naver.maps.LatLng(lat, lon));
+            });
 
-//     infowindow.setContent('&lt;div style="padding:20px;"&gt;' + 'geolocation.getCurrentPosition() 위치' + '&lt;/div&gt;');
-// 	// 마커에 안내해줄 문구
-//     infowindow.open(map, location); 
-//     console.log('Coordinates: ' + location.toString());
-// }
+        } else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
+            alert("지오로케이션 시스템 사용이 불가능합니다.");
+        }
+    });
 
-// function onErrorGeolocation() { // 오류 시 발생될 예외처리용 함수
-//     var center = map.getCenter();
+    // naver.maps.Event.once(map, 'init', function () {
+    //     search_loc = map.getCenter();
+    //     console.log("1" + search_loc);
+    //     customControl.setMap(map);
 
-//     infowindow.setContent('&lt;div style="padding:20px;"&gt;' +
-//         '&lt;h5 style="margin-bottom:5px;color:#f00;"&gt;Geolocation failed!&lt;/h5&gt;'+ "latitude: "+ center.lat() +"&lt;br /&gt;longitude: "+ center.lng() +'&lt;/div&gt;');
+    //     console.log('올바른 참조 시점', map.getOptions('minZoom') === 10);
+    // });
+    // naver.maps.Event.addListener(this.map, 'tilesloaded', () => {
+    //     console.log(search_loc);
+    //     console.log(map.getCenter());
+    //     if (search_loc != map.getCenter()) {
+    //         console.log("현재 위치에서 재검색 하시겠습니까?");
+    //     }
+    // });
+    // naver.maps.Event.addListener(map, 'bounds_changed', function (bounds) {
+    //     GetCenter(map.getCenter());
+    //     GetLatLngBounds(bounds.toString(), map.zoom);
+    // });
+    // naver.maps.Event.addListener(map, 'dragend', function () {
+    //     if (search_loc != map.getCenter()) {
+    //         console.log(map.getCenter());
 
-//     infowindow.open(map, center);
-// }
+    //     }
+    //     // GetDragEndBounds(map.getBounds().toString(), map.zoom);
+    // });
 
-// $(window).on("load", function() { // 창이 실행되면 현 위치 값 구하는 함수 실행되는 제이쿼리
-//     if (navigator.geolocation) {
-       
-//         navigator.geolocation.getCurrentPosition(onSuccessGeolocation, onErrorGeolocation);
-//     } else {
-//         var center = map.getCenter();
-//         infowindow.setContent('&lt;div style="padding:20px;"&gt;&lt;h5 style="margin-bottom:5px;color:#f00;"&gt;Geolocation not supported&lt;/h5&gt;&lt;/div&gt;');
-//         infowindow.open(map, center);
-//     }
-// });
-
-// var mapOptions = {
-//     //여기서 시작 위치를 조정함. 이 이전에 사용자가 설정한 위치를 api로 받아야함.
-//     center: new naver.maps.LatLng(37.3595704, 127.105399),
-//     zoom: 15
-// };
-
-
-
-// var map = new naver.maps.Map('map', mapOptions);
+}
 
 
-const bookBtn = document.querySelector('.bookmark-btn');
-const close = document.querySelector('.close-btn');
+if (navigator.geolocation) {
+    // GeoLocation을 이용해서 접속 위치를 얻어옵니다
+    navigator.geolocation.getCurrentPosition(function (position) {
 
-const area = document.querySelector('.side-bar')
-const section = document.querySelector('section');
-console.log(section);
-const label = document.querySelector('label');
+        var lat = position.coords.latitude, // 위도
+            lon = position.coords.longitude; // 경도
+        Make_map(lat, lon, 16);
 
-bookBtn.addEventListener('click', function () {
-    area.style.display = 'block';
-    section.style.left = 0;
-    label.style.opacity = 0;
-})
+    });
 
-close.addEventListener('click', function () {
-    area.style.display = 'none';
-    section.style.left = '-1000px';
-    label.style.opacity = 1;
-})
+} else { // HTML5의 GeoLocation을 사용할 수 없을때
+    Make_map(37.5666805, 126.9784147, 5);
+    alert("지오로케이션 시스템 사용이 불가능합니다.");
+}
+
+
 
 
 

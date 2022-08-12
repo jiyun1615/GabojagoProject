@@ -1,0 +1,39 @@
+.page_contents {
+    padding-top: 1vh;
+    padding-bottom: 3vh;
+}
+
+.buttons {
+    display: flex;
+    justify-content: flex-end;
+    padding: 0.75%;
+    color: white;
+    font-family: 'Hahmlet', serif;
+    font-size: 2vh;
+    padding-top: 9px;
+    padding-right: 28px;
+}
+
+
+
+.card-title {
+    font-weight: bold;
+    overflow: hidden;
+    /* 길이 넘어가면 숨김 */
+    text-overflow: ellipsis;
+    /* 말줄임표 설정 */
+    white-space: nowrap;
+}
+
+.card-text {
+    word-break: keep-all;
+    height: 70px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    /* 라인수 */
+    -webkit-box-orient: vertical;
+    word-wrap:
+        break-word;
+}

@@ -3,19 +3,36 @@
     margin-left: 16px;
     margin-right: 16px;
 }
+.swiper {
+    width: 100%;
+    padding-bottom: 3vh;
+  }
 
-.swiper-slide {
-    /* 슬라이드의 높이는 내용에 따라서 가변적으로 변하지만, 기본적으로 이정도의 높이를 유지하도록 하면 됨.
-    주석 상태로 두면 아래 높이를 초과하는 내용물을 가졌으면 스크롤이 생성되고, 주석을 풀면 높이 고정되고 넘어가는 부분(내용)들은 잘린채로 디스플레이됨.*/
+  .swiper-slide {
+    background-position: center;
+    background-size: cover;
+    width: 50vw;
+    height: 68vh;
+    margin-bottom: 1vh;
+  }
+
+  .swiper-slide img {
+    display: block;
+    width: 100%;
+  }
+
+/* .swiper-slide {
+    슬라이드의 높이는 내용에 따라서 가변적으로 변하지만, 기본적으로 이정도의 높이를 유지하도록 하면 됨.
+    주석 상태로 두면 아래 높이를 초과하는 내용물을 가졌으면 스크롤이 생성되고, 주석을 풀면 높이 고정되고 넘어가는 부분(내용)들은 잘린채로 디스플레이됨.
     height: 85vh; 
 
     text-align: left;
     font-size: 18px;
     font-family: 'Hahmlet', serif;
-    /*페이지네이션(하단 점들)과의 간격을 주기 위해 주는 마진*/
+    페이지네이션(하단 점들)과의 간격을 주기 위해 주는 마진
     margin-bottom: 1vh;
-    word-break: keep-all;
-    /* Center slide text vertically */
+
+    Center slide text vertically 
     display: -webkit-box;
     display: -ms-flexbox;
     display: -webkit-flex;
@@ -29,7 +46,7 @@
     -webkit-align-items: center;
     align-items: center;
 
-}
+} */
 
 .tags{
     color: silver;

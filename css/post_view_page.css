@@ -1,0 +1,13 @@
+.page_contents{
+    margin-top: 4% !important;
+    margin-left: 15% !important; 
+    margin-right: 15% !important;
+}
+
+.post_info{
+    margin-top: 2%;
+}
+
+.input_area::-webkit-scrollbar {
+    display: none;
+  }

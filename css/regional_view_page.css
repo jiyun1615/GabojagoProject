@@ -17,6 +17,7 @@
 }
 
 .card-text {
+    word-break: keep-all;
     height : 70px;
     overflow : hidden;
     text-overflow : ellipsis;
