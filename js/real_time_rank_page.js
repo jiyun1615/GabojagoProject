@@ -83,11 +83,8 @@ $.ajax({
       $($(".location")[i]).html(response[i].address + "<br>Tel : " + response[i].tel);
       $($(".detail")[i]).text(response[i].detail);
 
-<<<<<<< HEAD
       //i번째 요소의 j개의 태그들을 i번 슬라이드의 k개의 태그리스트와 비교 
-=======
-      //i번째 요소의 j개의 태그들을 k개의 태그리스트와 비교 
->>>>>>> 0ff512e30786469c918d0df72cfbd7acafdcb95a
+
       for (var j = 0; j < response[i].spotTags.length; j++) {
         for (var k = 0; k < $(".num_" + [i] + "_tag_detail").length; k++) {
           if ($($(".num_" + [i] + "_tag_detail")[k]).html() == ("#" + response[i].spotTags[j].value)) {
