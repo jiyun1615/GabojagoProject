@@ -97,3 +97,7 @@ for (var i = 1; i < total_page; i++) {
   })
 }
 
+function detailPage(num) {
+  console.log("성공!");
+  window.location.href = 'hotPlaceDetail.html?spotID=' + num;
+}
