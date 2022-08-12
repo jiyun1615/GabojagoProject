@@ -1,21 +1,4 @@
 
-
-window.addEventListener('load', function () {
-  var allElements = document.getElementsByTagName('*');
-  Array.prototype.forEach.call(allElements, function (el) {
-    var includePath = el.dataset.includePath;
-    if (includePath) {
-      var xhttp = new XMLHttpRequest();
-      xhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-          el.outerHTML = this.responseText;
-        }
-      };
-      xhttp.open('GET', includePath, true);
-      xhttp.send();
-    }
-  });
-});
 // 지도 아이콘들이 로드되면 실행될 코드들...
 document.getElementById('obj_regions').onload = e => {
   const region_list = document.getElementsByClassName('region_list')
