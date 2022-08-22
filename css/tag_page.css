@@ -36,8 +36,22 @@
     margin-right : 8vw;
 }
 
-.btn {
+/* .tagButton .btn1[type="radio"]:checked {
+    background: black;
+    color: #fff;
+  } */
+
+.btn1 {
+    all:unset;
+    background-color: white;
+    color : gray;
+    border: 1px gray solid;
     margin-bottom: 5px;
+}
+
+.btn1:focus {
+    border : none;
+    outline : none;
 }
 
 .card {
@@ -64,3 +78,16 @@
     word-wrap:break-word; 
 }
 
+.pageBtn {
+    border : 0;
+    color : gray;
+    background-color: white;
+    margin-right : 10px;
+    margin-bottom : 5px;
+}
+
+.pageBtn:focus {
+    border : 0;
+    border-bottom : 1px solid gray;
+    outline : none;
+}

@@ -24,6 +24,9 @@
 </head>
 
 <body>
+  <script type="text/javascript">
+      $(document).ready(btn_onclick(1));
+  </script>
 
   <div data-include-path="navbar.html"></div>
 
@@ -33,28 +36,28 @@
 
   <div class="page_contents">
     <div class="tagButton">
-      <button type="button" class="btn btn-sm btn-outline-secondary" id="btn1"
-        onclick="javascript:callApiInfo(1);">#야경</button>
-      <button type="button" class="btn btn-sm btn-outline-secondary" id="btn2"
-        onclick="javascript:callApiInfo(2);">#이색체험</button>
-      <button type="button" class="btn btn-sm btn-outline-secondary" id="btn3"
-        onclick="javascript:callApiInfo(3);">#피크닉</button>
-      <button type="button" class="btn btn-sm btn-outline-secondary" id="btn4"
-      onclick="javascript:callApiInfo(4);">#데이트</button>
-      <button type="button" class="btn btn-sm btn-outline-secondary" id="btn5"
-      onclick="javascript:callApiInfo(5);">#커피맛집</button>
-      <button type="button" class="btn btn-sm btn-outline-secondary" id="btn6"
-      onclick="javascript:callApiInfo(6);">#디저트맛집</button>
-      <button type="button" class="btn btn-sm btn-outline-secondary" id="btn7"
-      onclick="javascript:callApiInfo(7);">#분위기 있는</button>
-      <button type="button" class="btn btn-sm btn-outline-secondary" id="btn8"
-      onclick="javascript:callApiInfo(8);">#든든한</button>
-      <button type="button" class="btn btn-sm btn-outline-secondary" id="btn9"
-      onclick="javascript:callApiInfo(9);">#신나는</button>
-      <button type="button" class="btn btn-sm btn-outline-secondary" id="btn10"
-      onclick="javascript:callApiInfo(10);">#파릇파릇한</button>
-      <button type="button" class="btn btn-sm btn-outline-secondary" id="btn11"
-      onclick="javascript:callApiInfo(11);">#기분전환</button>
+      <button type="radio" class="btn1 btn-sm" id="btn1"
+        onclick="javascript:btn_onclick(1);">#야경</button>
+      <button type="radio" class="btn1 btn-sm" id="btn2"
+        onclick="javascript:btn_onclick(2);">#이색체험</button>
+      <button type="radio" class="btn1 btn-sm" id="btn3"
+        onclick="javascript:btn_onclick(3);">#피크닉</button>
+      <button type="radio" class="btn1 btn-sm" id="btn4"
+      onclick="javascript:btn_onclick(4);">#데이트</button>
+      <button type="radio" class="btn1 btn-sm" id="btn5"
+      onclick="javascript:btn_onclick(5);">#커피맛집</button>
+      <button type="radio" class="btn1 btn-sm" id="btn6"
+      onclick="javascript:btn_onclick(6);">#디저트맛집</button>
+      <button type="radio" class="btn1 btn-sm" id="btn7"
+      onclick="javascript:btn_onclick(7);">#분위기 있는</button>
+      <button type="radio" class="btn1 btn-sm" id="btn8"
+      onclick="javascript:btn_onclick(8);">#든든한</button>
+      <button type="radio" class="btn1 btn-sm" id="btn9"
+      onclick="javascript:btn_onclick(9);">#신나는</button>
+      <button type="radio" class="btn1 btn-sm" id="btn10"
+      onclick="javascript:btn_onclick(10);">#파릇파릇한</button>
+      <button type="radio" class="btn1 btn-sm" id="btn11"
+      onclick="javascript:btn_onclick(11);">#기분전환</button>
     </div>
 
 
@@ -65,6 +68,9 @@
         
       </div>
     </span>
+
+    <div class="pageNum" id="pageNum">
+    </div>
 
   </div>
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
