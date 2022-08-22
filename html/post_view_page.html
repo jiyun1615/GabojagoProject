@@ -42,58 +42,42 @@
     <div class="post_info">
       <div class="row" style="margin-bottom: 2.5%;">
         <div class="col author">
-          <span style="margin-right: 5%;">작성자</span>|&nbsp;<span>전지현</span>
+          <span style="margin-right: 5%;">작성자</span>|&nbsp;<span id="Author">전지현</span>
         </div>
         <div class="col date" style="text-align: right;">
-          <span style="margin-right: 5%;">작성일</span>|&nbsp;<span>2022.05.27</span>
+          <span style="margin-right: 5%;">작성일</span>|&nbsp;<span id="createdAt">2022.08.03</span>
         </div>
       </div>
       <div class="row" style="margin-bottom: 2.5%;">
         <div class="col title">
-          <span style="margin-right: 8.2%;">제목</span>|&nbsp;<span>정렬 안된상태입니다</span>
+          <span style="margin-right: 8.2%;">제목</span>|&nbsp;<span id="title">정말 예뻐요</span>
         </div>
         <div class="col view_count" style="text-align: right;">
-          <span style="margin-right: 5%;">조회수</span>|&nbsp;<span style="padding-right: 12%;">13</span>
+          <span style="margin-right: 5%;">조회수</span>|&nbsp;&nbsp;<span id="viewcnt" style="padding-right: 12%;">13</span>
         </div>
       </div>
     </div>
 
     <div class="post_contents">
+
       <div class="img_area">
-        <img src="..\sampleimages\chagyeong.png" style="max-width: 100%; max-height: 100%;">
-        <img src="..\sampleimages\orange.jpg" style="max-width: 100%; max-height: 100%;">
       </div>
-      <div class="text_area"
-        style=" min-height:30vh; height: auto; overflow: auto; margin-bottom: 3vh; margin-top: 3vh;">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent suscipit nibh eu odio pharetra, eget hendrerit
-        magna convallis. Integer dignissim ligula ac suscipit pellentesque. Duis finibus imperdiet odio, placerat
-        feugiat nisl lacinia non. Praesent efficitur lorem quis ornare rutrum. Ut dapibus urna arcu, sed venenatis ex
-        fermentum sed. Vestibulum vitae sodales turpis. Class aptent taciti sociosqu ad litora torquent per conubia
-        nostra, per inceptos himenaeos. In condimentum velit at eros faucibus eleifend. Nullam tempus convallis odio, id
-        vehicula enim scelerisque sit amet. Nulla eget bibendum tortor. Praesent nec lorem nec ante tincidunt tempus eu
-        eget ex. Aenean molestie varius tristique. Nam cursus auctor velit vel scelerisque.
-        <br><br>
-        In fermentum risus in nisl sollicitudin, ut blandit dolor iaculis. Sed justo magna, fermentum non eros non,
-        rhoncus mattis purus. Sed hendrerit tellus mauris, et efficitur neque ornare et. Phasellus varius ipsum non
-        laoreet viverra. Nullam nec ante pellentesque sem fermentum mattis. Etiam tincidunt maximus tincidunt. Integer
-        blandit, erat sit amet tincidunt rhoncus, justo nisl tempor sem, at fermentum nisl elit non leo. Sed viverra
-        posuere libero, ut dictum justo malesuada vel. Nam feugiat molestie mi sit amet maximus.
-        <br><br>
-        Fusce eget malesuada enim. Vestibulum aliquam vehicula risus, eu tristique mi lacinia eget. Praesent vel lorem
-        turpis. Ut arcu nunc, semper non ante eu, blandit ullamcorper eros. Sed mattis sapien eget nibh rutrum, sed
-        fermentum ante mollis. Integer gravida, leo elementum suscipit facilisis, velit nunc lacinia leo, sit amet
-        consequat ante ante id dolor. Vestibulum eu viverra est, quis gravida erat. Donec lorem urna, pretium eget magna
-        a, mollis porttitor mi. Mauris placerat maximus enim a condimentum.
+
+      <div class="text_area">
       </div>
+
       <div class="tag_area">
         Tag :
         <div style="margin-bottom: 2vh; margin-top: 2vh;">
           #태그가 들어갈 공간입니다.
         </div>
       </div>
+
       <div class="like_area">
-        <img src="..\icons\like_heart.svg">&nbsp;<span>+ 6</span>
+        <object data="..\icons\like_heart_blank.svg"></object> &nbsp;<span id="likecnt"></span>
       </div>
+
+
       <div class="row comment_input_area"
         style="display: flex; align-items: center; height: 8vh; margin-bottom: 2vh; margin-top: 1vh; margin-left: 0; margin-right: 0;">
         <div class="col-1" style="text-align: center;">
@@ -109,101 +93,9 @@
         </div>
       </div>
       <div class="comment_area" style="padding-bottom: 2vh;">
-        <div class="list-group">
-          <a class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
-            <img src="https://github.com/twbs.png" alt="twbs" width="32" height="32"
-              class="rounded-circle flex-shrink-0">
-            <div class="d-flex gap-2 w-100 justify-content-between">
-              <div>
-                <h6 class="mb-0">List group item heading</h6>
-                <p class="mb-0 opacity-75">Some placeholder content in a paragraph.</p>
-              </div>
-              <small class="opacity-50 text-nowrap">now</small>
-            </div>
-          </a>
-          <a class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
-            <img src="https://github.com/twbs.png" alt="twbs" width="32" height="32"
-              class="rounded-circle flex-shrink-0">
-            <div class="d-flex gap-2 w-100 justify-content-between">
-              <div>
-                <h6 class="mb-0">Another title here</h6>
-                <p class="mb-0 opacity-75">Some placeholder content in a paragraph that goes a little longer so it wraps
-                  to a new line.</p>
-              </div>
-              <small class="opacity-50 text-nowrap">3d</small>
-            </div>
-          </a>
-          <a class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
-            <img src="https://github.com/twbs.png" alt="twbs" width="32" height="32"
-              class="rounded-circle flex-shrink-0">
-            <div class="d-flex gap-2 w-100 justify-content-between">
-              <div>
-                <h6 class="mb-0">Third heading</h6>
-                <p class="mb-0 opacity-75">Some placeholder content in a paragraph.</p>
-              </div>
-              <small class="opacity-50 text-nowrap">1w</small>
-            </div>
-          </a>
-          <a class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
-            <img src="https://github.com/twbs.png" alt="twbs" width="32" height="32"
-              class="rounded-circle flex-shrink-0">
-            <div class="d-flex gap-2 w-100 justify-content-between">
-              <div>
-                <h6 class="mb-0">Third heading</h6>
-                <p class="mb-0 opacity-75">Some placeholder content in a paragraph.</p>
-              </div>
-              <small class="opacity-50 text-nowrap">1w</small>
-            </div>
-          </a>
-          <a class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
-            <img src="https://github.com/twbs.png" alt="twbs" width="32" height="32"
-              class="rounded-circle flex-shrink-0">
-            <div class="d-flex gap-2 w-100 justify-content-between">
-              <div>
-                <h6 class="mb-0">Third heading</h6>
-                <p class="mb-0 opacity-75">Some placeholder content in a paragraph.</p>
-              </div>
-              <small class="opacity-50 text-nowrap">1w</small>
-            </div>
-          </a>
-          <a class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
-            <img src="https://github.com/twbs.png" alt="twbs" width="32" height="32"
-              class="rounded-circle flex-shrink-0">
-            <div class="d-flex gap-2 w-100 justify-content-between">
-              <div>
-                <h6 class="mb-0">Third heading</h6>
-                <p class="mb-0 opacity-75">Some placeholder content in a paragraph.</p>
-              </div>
-              <small class="opacity-50 text-nowrap">1w</small>
-            </div>
-          </a>
-          <a class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
-            <img src="https://github.com/twbs.png" alt="twbs" width="32" height="32"
-              class="rounded-circle flex-shrink-0">
-            <div class="d-flex gap-2 w-100 justify-content-between">
-              <div>
-                <h6 class="mb-0">Third heading</h6>
-                <p class="mb-0 opacity-75">Some placeholder content in a paragraph.</p>
-              </div>
-              <small class="opacity-50 text-nowrap">1w</small>
-            </div>
-          </a>
+        <div class="list-group" id="comment_area">
 
         </div>
-        <!-- <div class="row comment">
-          <div class="col image">
-
-          </div>
-          <div class="col content">
-            <div class="text">
-
-            </div>
-            <div class="date">
-
-            </div>
-          </div>
-
-        </div> -->
       </div>
     </div>
   </div>

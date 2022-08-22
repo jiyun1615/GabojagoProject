@@ -1,5 +1,4 @@
-var search_loc = 0;
-console.log(search_loc);
+
 var locationBtnHtml = document.getElementById('my_location_btn');
 function Make_map(lat, lon, zoom) {
     var mapOptions = {

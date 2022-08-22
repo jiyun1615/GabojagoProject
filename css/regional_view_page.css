@@ -5,8 +5,13 @@
     padding-right: 2%;
 }
 .page_contents {
+    z-index: -1;
     padding-top: 1vh;
     padding-bottom: 3vh;
+}
+
+.page_title {
+    z-index: 100;
 }
 
 .card-title{
@@ -42,39 +47,79 @@
     width: 3vh;
 }
 
-.sort_by{
+.dropdown.rg{
     margin-left: auto;
 }
 
+/*드롭다운 요소들 마진값 및 상태변화에 따른 색 변화*/
+
+.dropdown-item.rg {
+    color: #FFFFFF;
+    margin-top: 24px;
+}
+.dropdown-item.rg:hover {
+    background-color: #FFFFFF;
+    color: black;
+}
+.dropdown-item.rg:focus {
+    background-color: #FFFFFF;
+    color: black;
+}
+
+
+/*호버링*/
+.dropdown.rg:hover .dropdown-menu.rg{
+    color: #FFFFFF;
+    display: block;
+    margin-left: -28.5%;
+    height: 24vh;
+    margin-top: -5px;
+    background-color: #000000;
+    border-top: #FFFFFF00;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
 /*브라우저 크기 관련 미디어 쿼리*/
+@media screen and (max-width:1919px){
+    .dropdown.rg:hover .dropdown-menu.rg{
+        margin-left: -32%;
+    }
+}
 @media screen and (max-width:1799px){
     .title_text{
         padding-right: 2.5%;
+    }
+    .dropdown.rg:hover .dropdown-menu.rg{
+        margin-left: -33%;
     }
 }
 @media screen and (max-width:1499px){
     .title_text{
         padding-right: 3%;
     }
+    .dropdown.rg:hover .dropdown-menu.rg{
+        margin-left: -34%;
+    }
 }
 @media screen and (max-width:1399px){
     .title_text{
         padding-right: 3.5%;
+    }
+    .dropdown.rg:hover .dropdown-menu.rg{
+        margin-left: -33%;
     }
 }
 @media screen and (max-width:1199px){
     .title_text{
         padding-right: 4%;
     }
-    .sort_by{
+    .dropdown.rg{
+        margin-left: 0;
+    }
+    #sort_by{
         display:none
     }
     #down_icon{
-        content:url("..\\icons\\caret-right-fill.svg");
         filter: invert(50%) sepia(92%) saturate(438%) hue-rotate(88deg) brightness(96%) contrast(85%);
-    }
-    .icon_btn{
-        position:relative;
-        top: -5px;
     }
 }

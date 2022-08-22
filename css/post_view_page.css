@@ -11,3 +11,38 @@
 .input_area::-webkit-scrollbar {
     display: none;
   }
+
+  .img_area img{
+    max-width: 100%; 
+    max-height: 100%;
+    margin-bottom: 2vh;
+  }
+
+  .text_area{
+    min-height:30vh; 
+    height: auto; 
+    overflow: auto; 
+    margin-bottom: 1vh; 
+    margin-top: 1vh;
+  }
+  textarea{
+    resize: none; 
+    width: 42.5vw; 
+    margin-right: 1.5vw; 
+    border-radius: 10px; 
+    outline: none;
+  }
+
+  .send-btn{
+    border: 0; 
+    outline: none; 
+    background: black; 
+    color: white; 
+    cursor: pointer; 
+    padding: 1.5%; 
+    border-radius: 15px;
+  }
+
+  .like_area:hover{
+    cursor: pointer; 
+  }
