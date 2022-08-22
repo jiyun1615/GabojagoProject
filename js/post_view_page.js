@@ -3,9 +3,12 @@ console.log(decodeURI(receivedData));
 var img_area = document.getElementsByClassName('img_area');
 var time_post = 0;
 var time_comment = 0;
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> a13e4e0ecf7fb28e974412cbd9a87abbcaa72051
 //비회원일때... - 헤더에 토큰 필요 없음
 $.ajax({
     type: "GET",
@@ -22,7 +25,11 @@ $.ajax({
         $("#title").text(response.title);
         $("#viewcnt").text(response.viewCnt);
         $(".text_area").text(response.context);
+<<<<<<< HEAD
         $("#likecnt").text("+ " + response.greatCnt);
+=======
+        $("#likecnt").text("+ "+response.greatCnt);
+>>>>>>> a13e4e0ecf7fb28e974412cbd9a87abbcaa72051
 
         if (response.files.length == 0) img_area[0].style.display = "none";
         else {
@@ -49,9 +56,15 @@ $.ajax({
             time_comment = response.comments[i].createdAt;
 
             //글 시간하고 계산하면 잘 나올거같은데...
+<<<<<<< HEAD
             var createdAt_index = time_comment.indexOf('T');
             var createdAt_index_end = time_comment.indexOf('.');
             var createdAt = time_comment.substr(createdAt_index + 1, createdAt_index_end);
+=======
+            var createdAt_index = str.indexOf('T');
+            var createdAt_index_end = str.indexOf('.');
+            var createdAt = str.substr(createdAt_index+1,createdAt_index_end);
+>>>>>>> a13e4e0ecf7fb28e974412cbd9a87abbcaa72051
 
             var tmpHtml = `<a class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
             <img src="${response.comments[i].profilePhoto}" width="32" height="32"
@@ -72,6 +85,7 @@ $.ajax({
 
 })
 
+<<<<<<< HEAD
 const query = document.querySelector('#heart_obj');
 console.log(query);
 
@@ -83,3 +97,5 @@ const lands = querydoc.querySelectorAll(".heart_blank")
         element.addEventListener("click", function () {
             console.log("클릭은 잘 됩니다");
         }));
+=======
+>>>>>>> a13e4e0ecf7fb28e974412cbd9a87abbcaa72051
