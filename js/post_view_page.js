@@ -10,7 +10,7 @@ $.ajax({
     data: {},
     success: function (response) {
         $("#Author").text(response.user.name);
-
+        console.log("게시글 시간 : "+response.createdAt);
         time_post = response.createdAt;
         var createdAt_index = time_post.indexOf('T');
         var createdAt = time_post.substr(0, createdAt_index);
@@ -45,6 +45,8 @@ $.ajax({
 
         for (var i = 0; i < response.comments.length; i++) {
             time_comment = response.comments[i].createdAt;
+
+            console.log("댓글 시간 : "+response.comments[i].createdAt);
 
             //글 시간하고 계산하면 잘 나올거같은데...
             var createdAt_index = time_comment.indexOf('T');

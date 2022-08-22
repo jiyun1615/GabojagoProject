@@ -33,32 +33,6 @@ function Make_map(lat, lon, zoom) {
         }
     });
 
-    // naver.maps.Event.once(map, 'init', function () {
-    //     search_loc = map.getCenter();
-    //     console.log("1" + search_loc);
-    //     customControl.setMap(map);
-
-    //     console.log('올바른 참조 시점', map.getOptions('minZoom') === 10);
-    // });
-    // naver.maps.Event.addListener(this.map, 'tilesloaded', () => {
-    //     console.log(search_loc);
-    //     console.log(map.getCenter());
-    //     if (search_loc != map.getCenter()) {
-    //         console.log("현재 위치에서 재검색 하시겠습니까?");
-    //     }
-    // });
-    // naver.maps.Event.addListener(map, 'bounds_changed', function (bounds) {
-    //     GetCenter(map.getCenter());
-    //     GetLatLngBounds(bounds.toString(), map.zoom);
-    // });
-    // naver.maps.Event.addListener(map, 'dragend', function () {
-    //     if (search_loc != map.getCenter()) {
-    //         console.log(map.getCenter());
-
-    //     }
-    //     // GetDragEndBounds(map.getBounds().toString(), map.zoom);
-    // });
-
 }
 
 

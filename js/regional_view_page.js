@@ -30,8 +30,8 @@ function default_filter() {
         var name = response.spotResponses[j].spotName;
         if (response.spotResponses[j].detail == "None") var details = "상세 정보 페이지를 확인해 주세요.";
         else var details = response.spotResponses[j].detail;
-        //여기!!!!!!!! 사진이 없는 경우 어떻게 할지 바꿀것!!!!!!!!!!!
-        if (response.spotResponses[j].spotImage == "None") var img1 = "..\\sampleimages\\jjal.jpg"
+        //여기!!!!!!!! 사진이 없는 경우 어떻게 할지 바꿀것!!!!!!!!!!! None, null
+        if (response.spotResponses[j].spotImage == "None ") var img1 = "..\\sampleimages\\jjal.jpg"
         else var img1 = response.spotResponses[j].spotImage;
         var viewCnt = response.spotResponses[j].viewCnt;
         var tmpHtml = `<div class="col">

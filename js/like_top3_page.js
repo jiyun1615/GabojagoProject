@@ -9,21 +9,11 @@ var swiper = new Swiper(".mySwiper", {
     depth: 100,
     modifier: 1,
     slideShadows: true,
-  },    
-  autoplay: {
-    delay: 5500,
-    disableOnInteraction: false,
-    },
+  },
   pagination: {
     el: ".swiper-pagination",
-    clickable: true,
-  },    
-  navigation: {
-    nextEl: ".swiper-button-next",
-    prevEl: ".swiper-button-prev",
-    },
+  },
 });
-
 // $.ajax({
 //   type: "GET",
 //   url: "http://52.78.10.7:8080/hotplaces/realtime",
