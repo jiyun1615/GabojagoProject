@@ -5,8 +5,8 @@ function getImageFiles(e) {
     const docFrag = new DocumentFragment();
     
 
-    if ([...files].length >= 7) {
-        alert('이미지는 최대 6개 까지 업로드가 가능합니다.');
+    if ([...files].length >= 4) {
+        alert('이미지는 최대 3개 까지 업로드가 가능합니다.');
         return;
     }
 
@@ -18,7 +18,7 @@ function getImageFiles(e) {
         }
 
         // 파일 갯수 검사
-        if ([...files].length < 7) {
+        if ([...files].length < 4) {
             uploadFiles.push(file);
             const reader = new FileReader();
             reader.onload = (e) => {
@@ -39,3 +39,18 @@ function createElement(e, file) {
 
     return li;
 }
+
+
+
+//태그 선택시 색 변경
+
+// function btn_tag(num){
+//     const btnElement = document.getElementById("btn"+num);
+//     if(btnElement.style.color=="white") {
+//         btnElement.style.backgroundColor = "white";
+//         btnElement.style.color="black";
+//     }else {
+//         btnElement.style.backgroundColor = "black";
+//         btnElement.style.color="white";
+//     }
+// }
