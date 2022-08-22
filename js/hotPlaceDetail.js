@@ -1,20 +1,22 @@
 function callApiInfo(){
     const urlParams = (window.location.search);
     const num = urlParams.split('=')[1];
-        console.log(urlParams);
+        console.log(num);
     
     $.ajax({
         url: "http://52.78.10.7:8080/hotplaces/id/" + num,
             type: "GET",
             data: "json", 
             success: function (data) {
-                var spotName = data[0].spotName;
-                var address = data[0].address;
-                var detail = data[0].detail;
-                var tel = data[0].tel;
-                var spotImage = data[0].spotImage;
-                var viewCnt = data[0].viewCnt;
-                //spotTags는 여러갠데 어떻게 가져오지
+                var spotName = data.spotName;
+                var address = data.address;
+                address = noneCheck(address);
+                var detail = data.detail;
+                detail = noneCheck(detail);
+                var tel = data.tel;
+                tel = noneCheck(tel);
+                var spotImage = data.spotImage;
+                var viewCnt = data.viewCnt;
                 
                 $("#hotPlaceTitle").empty();
                 $("#hotPlaceTitle").append(spotName);
@@ -30,10 +32,10 @@ function callApiInfo(){
                 $("#viewCnt").append("조회수 : " + viewCnt);  
                   
 
-                for(var i=0; i<data[0].spotTags.length; i++)
+                for(var i=0; i<data.spotTags.length; i++)
                 {
                     for(var j=0; j<11; j++)
-                    if ($($(".tags")[j]).html() == ("#" + data[0].spotTags[i].value)) {
+                    if ($($(".tags")[j]).html() == ("#" + data.spotTags[i].value)) {
                         $($(".tags")[j]).css("font-weight", "bold")
                             .css("color", "black");
                     }
@@ -43,4 +45,13 @@ function callApiInfo(){
             error: (log) => { alert("실패" + log) }
     })
     
+}
+
+function noneCheck(str) {
+    if (str == "None")
+    {
+        str = "상세정보가 없습니다.";
+    }
+    return str;
+
 }

@@ -1,136 +1,142 @@
 <!doctype html>
 <html lang="ko">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="stylesheet" href="..\css\hotPlaceDetail.css">
 
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script language="javascript" src="..\js\hotPlaceDetail.js"></script>
-    <script language="javascript" src="..\js\navbar.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+    integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Hahmlet:wght@500&display=swap');
-        
-    </style>
-    
-  </head>
-  <body>
-    <script>
-    
-      callApiInfo();
-    </script>
-    <div data-include-path="navbar.html"></div>
-    <div class="page_title">
-      <p class="title_text">상세 정보 조회</p>
-    </div>
-    
-    <div class="img-card">
-        <div class="row g-0 h-md-250 position-relative">
-          <div class="col-auto d-none d-lg-block">
-            <img class="hotplaceImg" id="spotImg" src="">  
-            
-          </div>
-          <div class="col p-4 d-flex flex-column position-static">
-            <h3 class="spotTitle" id="hotPlaceTitle">나나의 커피</h3>
-            <div class="mb-1 text-muted" id="address">주소 : 전라북도 전주시 완산구 풍남동3가 88-8번지</div>
-            <div class="mb-1 text-muted" id="number">010 - 1111 - 2222</div>
-            <div>
-            <p class="cardText mb-auto" id="detail">카페에 대한 설명글/카페에 대한 설명글/카페에 대한 설명글/카페에 대한 설명글</p>
-            <hr>
-            <div>
-              <p class="tagGroup">
+  <link rel="stylesheet" href="..\css\hotPlaceDetail.css">
+
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script language="javascript" src="..\js\hotPlaceDetail.js"></script>
+  <script language="javascript" src="..\js\navbar.js"></script>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Hahmlet:wght@500&display=swap');
+  </style>
+
+</head>
+
+<body>
+  <script>
+
+    callApiInfo();
+  </script>
+  <div data-include-path="navbar.html"></div>
+  <div class="page_title">
+    <p class="title_text">핫플레이스</p>
+  </div>
+
+  <div class="img-card">
+    <div class="row g-0 h-md-250 position-relative">
+      <div class="col-auto d-none d-lg-block">
+        <img class="hotplaceImg" id="spotImg" src="">
+
+      </div>
+      <div class="col p-4 d-flex flex-column position-static">
+        <h3 class="spotTitle" id="hotPlaceTitle">나나의 커피</h3>
+        <div class="mb-1 text-muted" id="address">주소 : 전라북도 전주시 완산구 풍남동3가 88-8번지</div>
+        <div class="mb-1 text-muted" id="number">010 - 1111 - 2222</div>
+        <div>
+          <p class="cardText mb-auto" id="detail">카페에 대한 설명글/카페에 대한 설명글/카페에 대한 설명글/카페에 대한 설명글</p>
+          <hr>
+          <div>
+            <p class="tagGroup">
               <span class="tags">#야경</span>&nbsp;&nbsp;<span class="tags">#이색체험</span>&nbsp;&nbsp;<span
-                class="tags">#피크닉</span>&nbsp;&nbsp;<span class="tags">#데이트</span>&nbsp;&nbsp;<span
-                class="tags">#커피 맛집</span>&nbsp;&nbsp;<span class="tags">#디저트 맛집</span>&nbsp;&nbsp;<br><span
-                class="tags">#분위기 있는</span>&nbsp;&nbsp;<span class="tags">#든든한</span>&nbsp;&nbsp;<span
-                class="tags">#신나는</span>&nbsp;&nbsp;<span class="tags">#파릇파릇한</span>&nbsp;&nbsp;<span
-                class="tags">#기분 전환</span>&nbsp;&nbsp;
+                class="tags">#피크닉</span>&nbsp;&nbsp;<span class="tags">#데이트</span>&nbsp;&nbsp;<span class="tags">#커피 맛집</span>&nbsp;&nbsp;<span class="tags">#디저트 맛집</span>&nbsp;&nbsp;<br><span class="tags">#분위기 있는</span>&nbsp;&nbsp;<span class="tags">#든든한</span>&nbsp;&nbsp;<span
+                class="tags">#신나는</span>&nbsp;&nbsp;<span class="tags">#파릇파릇한</span>&nbsp;&nbsp;<span class="tags">#기분 전환</span>
             </p>
           </div>
-          </div>
-          </div>
-          <div>
-            <p id="viewCnt"></p>
-          </div>
-          </div>
-          </div>
-    
-
-    <div class="details">
-      <h3 class="detailsTitle">
-        Community Review
-      </h3>
-      <div class="row">
-        <div class="col-lg-4">
-          <svg class="bd-placeholder-img" width="140" height="140" xmlns="http://www.w3.org/2000/svg"
-            role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false">
-            <title>Placeholder</title>
-            <rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text>
-          </svg>
-          <h4 class="fw-normal">Post title1</h4>
-          <p>Some representative placeholder content for the three columns of text below the carousel. This is the first
-            column.</p>
-            <div class="postLink_btn"><a class="btn btn-secondary" href="#">View details »</a></div>
-        </div>
-
-        <div class="col-lg-4">
-          <svg class="bd-placeholder-img" width="140" height="140" xmlns="http://www.w3.org/2000/svg"
-            role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false">
-            <title>Placeholder</title>
-            <rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text>
-        </svg>
-          <h4 class="fw-normal">Post title2</h4>
-          <p>Some representative placeholder content for the three columns of text below the carousel. This is the first
-            column.</p>
-            <div class="postLink_btn"><a class="btn btn-secondary" href="#">View details »</a></div>
-        </div>
-
-        <div class="col-lg-4">
-          <svg class="bd-placeholder-img" width="140" height="140" xmlns="http://www.w3.org/2000/svg"
-            role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false">
-            <title>Placeholder</title>
-            <rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text>
-          </svg>
-          <h4 class="fw-normal">Post title3</h4>
-          <p>Post writing blah blah blah 카페가 마음에 들었다던지 어쩌구</p>
-          <div class="postLink_btn"><a class="btn btn-secondary" href="#">View details »</a></div>
         </div>
       </div>
-      
+      <div>
+        <p id="viewCnt"></p>
+        <p id="BookMark">BookMark : 0</p>
+        <button type="button">북마크하기</button>
+      </div>
+    </div>
+  </div>
 
-      
-      
 
-    </div>  
+  <div class="details">
+    <h3 class="detailsTitle">
+      Community Review
+    </h3>
+    <div class="row">
+      <div class="col-lg-4">
+        <svg class="bd-placeholder-img" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img"
+          aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false">
+          <title>Placeholder</title>
+          <rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text>
+        </svg>
+        <h4 class="fw-normal">Post title1</h4>
+        <p>Some representative placeholder content for the three columns of text below the carousel. This is the first
+          column.</p>
+        <div class="postLink_btn"><a class="btn btn-secondary" href="#">View details »</a></div>
+      </div>
 
-    <script>
+      <div class="col-lg-4">
+        <svg class="bd-placeholder-img" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img"
+          aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false">
+          <title>Placeholder</title>
+          <rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text>
+        </svg>
+        <h4 class="fw-normal">Post title2</h4>
+        <p>Some representative placeholder content for the three columns of text below the carousel. This is the first
+          column.</p>
+        <div class="postLink_btn"><a class="btn btn-secondary" href="#">View details »</a></div>
+      </div>
 
-      window.addEventListener('load', function () {
-          var allElements = document.getElementsByTagName('*');
-          Array.prototype.forEach.call(allElements, function (el) {
-              var includePath = el.dataset.includePath;
-              if (includePath) {
-                  var xhttp = new XMLHttpRequest();
-                  xhttp.onreadystatechange = function () {
-                      if (this.readyState == 4 && this.status == 200) {
-                          el.outerHTML = this.responseText;
-                      }
-                  };
-                  xhttp.open('GET', includePath, true);
-                  xhttp.send();
-              }
-          });
+      <div class="col-lg-4">
+        <svg class="bd-placeholder-img" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img"
+          aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false">
+          <title>Placeholder</title>
+          <rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text>
+        </svg>
+        <h4 class="fw-normal">Post title3</h4>
+        <p>Post writing blah blah blah 카페가 마음에 들었다던지 어쩌구</p>
+        <div class="postLink_btn"><a class="btn btn-secondary" href="#">View details »</a></div>
+      </div>
+    </div>
+
+
+
+
+
+  </div>
+
+  <script>
+
+    window.addEventListener('load', function () {
+      var allElements = document.getElementsByTagName('*');
+      Array.prototype.forEach.call(allElements, function (el) {
+        var includePath = el.dataset.includePath;
+        if (includePath) {
+          var xhttp = new XMLHttpRequest();
+          xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+              el.outerHTML = this.responseText;
+            }
+          };
+          xhttp.open('GET', includePath, true);
+          xhttp.send();
+        }
       });
+    });
 
   </script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
-    
-  </body>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+    crossorigin="anonymous"></script>
+
+</body>
+
 </html>
