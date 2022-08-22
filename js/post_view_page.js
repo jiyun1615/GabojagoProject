@@ -1,81 +1,85 @@
-var swiper = new Swiper(".mySwiper", {
-    spaceBetween: 80,
-    centeredSlides: true,
-    autoplay: {
-        delay: 5500,
-        disableOnInteraction: false,
-    },
-    pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
-    },
-    navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
-    },
-    breakpoints: {
-        // 600px 이하가 되면 슬라이드 간 간격을 0으로
-        600: {
-            spaceBetween: 0
-        },
-    },
-    
-});
+const receivedData = location.href.split('?')[1];
+console.log(decodeURI(receivedData));
+var img_area = document.getElementsByClassName('img_area');
+var time_post = 0;
+var time_comment = 0;
 
+
+
+//비회원일때... - 헤더에 토큰 필요 없음
 $.ajax({
-  type: "GET",
-  url: "http://52.78.10.7:8080/hotplaces/realtime",
-  data: {},
-  success: function (response) {
-    console.log(response)
-    for (var i = 0; i < response.length; i++) {
-      var tmpHtml =
-      `<div class="swiper-slide">
-      <div class="container-xxl">
-        <div class="row">
-          <div class="col-4">
-            <img class="item_img" src="" width="100%" height="100%">
-          </div>
-          <div class="col-8">
-            <p><span class="rank">${i+1}위&nbsp;</span><span class="HP_name">디폴트</span></p>
-            <p class="location">위치요</p>
-            <p class="detail">내용이요</p>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col">
-            <p><br>이 핫플레이스와 연관된 태그</p>
-            <p class="tags">
-              <span class="num_${i}_tag_detail">#야경</span>&nbsp;&nbsp;<span class="num_${i}_tag_detail">#이색체험</span>&nbsp;&nbsp;<span
-                class="num_${i}_tag_detail">#피크닉</span>&nbsp;&nbsp;<span class="num_${i}_tag_detail">#데이트</span>&nbsp;&nbsp;<span
-                class="num_${i}_tag_detail">#커피 맛집</span>&nbsp;&nbsp;<span class="num_${i}_tag_detail">#디저트 맛집</span>&nbsp;&nbsp;<br><span
-                class="num_${i}_tag_detail">#분위기 있는</span>&nbsp;&nbsp;<span class="num_${i}_tag_detail">#든든한</span>&nbsp;&nbsp;<span
-                class="num_${i}_tag_detail">#신나는</span>&nbsp;&nbsp;<span class="num_${i}_tag_detail">#파릇파릇한</span>&nbsp;&nbsp;<span
-                class="num_${i}_tag_detail">#기분 전환</span>&nbsp;&nbsp;
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>`
-    $("#exampleArr").append(tmpHtml);
-    }
-    
-    for (var i = 0; i < $(".swiper-slide").length; i++) {
-      $($(".item_img")[i]).attr("src", response[i].spotImage);
-      $($(".HP_name")[i]).text(response[i].spotName);
-      $($(".location")[i]).html(response[i].address + "<br>Tel : " + response[i].tel);
-      $($(".detail")[i]).text(response[i].detail);
+    type: "GET",
+    url: "http://52.78.10.7:8080/posts/" + decodeURI(receivedData),
+    data: {},
+    success: function (response) {
+        $("#Author").text(response.user.name);
 
-      //i번째 요소의 j개의 태그들을 i번 슬라이드의 k개의 태그리스트와 비교 
-      for (var j = 0; j < response[i].spotTags.length; j++) {
-        for (var k = 0; k < $(".num_" + [i] + "_tag_detail").length; k++) {
-          if ($($(".num_" + [i] + "_tag_detail")[k]).html() == ("#" + response[i].spotTags[j].value)) {
-            $($(".num_" + [i] + "_tag_detail")[k]).css("font-weight", "bold")
-              .css("color", "black");
-          }
+        time_post = response.createdAt;
+        var createdAt_index = time_post.indexOf('T');
+        var createdAt = time_post.substr(0, createdAt_index);
+
+        $("#createdAt").text(createdAt);
+        $("#title").text(response.title);
+        $("#viewcnt").text(response.viewCnt);
+        $(".text_area").text(response.context);
+        $("#likecnt").text("+ " + response.greatCnt);
+
+        if (response.files.length == 0) img_area[0].style.display = "none";
+        else {
+            for (var i = 0; i < response.files.length; i++) {
+                var tmpHtml = `<img src="${response.files[i].filePath}">`
+                $(".img_area").append(tmpHtml);
+            }
         }
-      }
+
 
     }
-  }
 })
+
+
+//비회원일때... - 헤더에 토큰 필요 없음
+$.ajax({
+    type: "GET",
+    url: "http://52.78.10.7:8080/comments/post/" + decodeURI(receivedData) + "?page=1&size=10",
+    data: {},
+    success: function (response) {
+        console.log(response)
+
+        for (var i = 0; i < response.comments.length; i++) {
+            time_comment = response.comments[i].createdAt;
+
+            //글 시간하고 계산하면 잘 나올거같은데...
+            var createdAt_index = time_comment.indexOf('T');
+            var createdAt_index_end = time_comment.indexOf('.');
+            var createdAt = time_comment.substr(createdAt_index + 1, createdAt_index_end);
+
+            var tmpHtml = `<a class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
+            <img src="${response.comments[i].profilePhoto}" width="32" height="32"
+              class="rounded-circle flex-shrink-0">
+            <div class="d-flex gap-2 w-100 justify-content-between">
+              <div>
+                <h6 class="mb-0">${response.comments[i].userName}</h6>
+                <p class="mb-0 opacity-75">${response.comments[i].context}</p>
+              </div>
+              <small class="opacity-50 text-nowrap">${createdAt}</small>
+            </div>
+          </a>`
+            $("#comment_area").append(tmpHtml);
+        }
+    }
+
+
+
+})
+
+const query = document.querySelector('#heart_obj');
+console.log(query);
+
+const querydoc = query.contentDocument;
+console.log(querydoc);
+
+const lands = querydoc.querySelectorAll(".heart_blank")
+    .forEach((element) =>
+        element.addEventListener("click", function () {
+            console.log("클릭은 잘 됩니다");
+        }));

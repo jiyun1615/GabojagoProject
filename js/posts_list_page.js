@@ -1,41 +1,40 @@
-// for (var i = 1; i < total_page; i++) {
-//   $.ajax({
-//     type: "GET",
-//     url: "http://52.78.10.7:8080/hotplaces/region/" + decodeURI(receivedData) + "?page=" + i + "&size=20",
-//     data: {},
-//     success: function (response) {
-//       console.log(response)
-//       for (var j = 0; j < response.spotResponses.length; j++) {
-//         var spotID = response.spotResponses[j].spotId;
-//         var name = response.spotResponses[j].spotName;
-//         if (response.spotResponses[j].detail == "None") var details = "상세 정보 페이지를 확인해 주세요.";
-//         else var details = response.spotResponses[j].detail;
-        
-//         if (response.spotResponses[j].spotImage=="None") var img1 = "..\\sampleimages\\jjal.jpg"
-//         else var img1 = response.spotResponses[j].spotImage;
-//         var viewCnt = response.spotResponses[j].viewCnt;
-//         var tmpHtml = `<div class="col">
-//                           <div class="card shadow-sm">
-//                               <img class="card_image" id="img2" src="${img1}" height="200">  
-//                               <div class="card-body">  
-//                                   <p class="card-title" id="spotName2">${name}</p> 
-//                                   <p class="card-text" id="detail2">${details}</p> 
-//                                       <div class="d-flex justify-content-between align-items-center">  
-//                                           <button type="button" class="btn btn-sm btn-outline-secondary" id="detailBtn1" onclick="detailPage(${spotID})">이동하기</button> 
-//                                           <small class="text-muted">조회수 : ${viewCnt}</small>
-//                                       </div> 
-                                  
-//                                   </div>
-//                               </div>
-//                           </div>
-//                       </div>`
-//         $("#exampleArr").append(tmpHtml);
-//       }
-//     },
-//     error: (log) => { alert("실패" + log) }
-//   })
-// }
+$.ajax({
+    type: "GET",
+    url: "http://52.78.10.7:8080/posts",
+    data: {},
+    success: function (response) {
+        console.log(response)
+        for (var j = 0; j < response.postResponses.length; j++) {
+            var title = response.postResponses[j].title;
+            post_id = response.postResponses[j].postId;
+            if (response.postResponses[j].context == "None") var context = "";
+            else var context = response.postResponses[j].context;
 
+            //여기!!!!!!!! 사진이 없는 경우 어떻게 할지 바꿀것!!!!!!!!!!!
+            if (response.postResponses[j].files == "None");
+            else var src = response.postResponses[j].files[0].filePath;
+            var str = response.postResponses[j].createdAt;
+            var createdAt_index = str.indexOf('T');
+            var createdAt = str.substr(0, createdAt_index);
+            var tmpHtml = `<div class="col">
+                            <div class="card shadow-sm">
+                                <img class="card_image" id="img2" src="${src}" height="480"
+                                    style="object-fit:cover;">
+                                <div class="card-body">
+                                    <p class="card-title" id="spotName2">${title}</p>
+                                    <p class="card-text" id="detail2">${context}</p>
+                                    <div class="d-flex justify-content-between align-items-center" style="padding-top: 3vh;">
+                                        <button type="button" class="btn btn-sm btn-outline-secondary" id="detailBtn1" onclick="location.href = \`post_view_page.html?${post_id}\`">이동하기</button>
+                                        <small class="text-muted">${createdAt}</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>`
+            $("#exampleArr").append(tmpHtml);
+        }
+    },
+    error: (log) => { alert("실패" + log) }
+})
 
 function pageChange() {
     window.location.href = 'new_post_page.html';

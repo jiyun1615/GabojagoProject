@@ -75,21 +75,12 @@ body{
         margin-bottom: 24px;
     }
 }
-
-/* Body의 양쪽 마진을 15로 줬었는데 그거보다 적게 주면 따로 만질 필요 없이 예쁘게 접히네!!
-@media screen and (max-width:1280px){
-    .user-btn{
-        opacity: 0;
-    }
-} */
-
 @media screen and (max-width:1199px){
     .dropdown:hover .dropdown-menu{
         text-align: right;
         float: right;
         height: auto;
         margin-right: -2vw;
-        
         border: #FFFFFF00;
     }
     .dropdown-menu #first-item {
