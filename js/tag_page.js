@@ -3,6 +3,12 @@ function btn_onclick(num) {
     tagChange(num);
 }
 
+function dropdown_onclick(num) {
+    callApiInfo(num,"1");
+    noneTag(num);
+
+}
+
 var totalPage = 0;
 var tagNum=0;
 
@@ -14,12 +20,31 @@ function pageBtn_onclick(num) {
 function callApiInfo(num, pageNumber) {
     tagNum = num;
     console.log("callApiInfo : ");
+    if(num==20) {
+        //num=20 조회순 페이지
+        console.log("callAPI20");
+        url1="http://13.209.87.88:8080/hotplaces?page=" + pageNumber + "&size=12";
+    } else if (num==21) {
+        //num=20 북마크순 페이지
+        url1="http://13.209.87.88:8080/hotplaces/bookmark?page=" + pageNumber + "&size=5";
+    } else {
+        //num=1~11 태그별 페이지
+        url1="http://13.209.87.88:8080/hotplaces/tag/" + num + "?page=" + pageNumber + "&size=12";
+    }
     $.ajax({
-        url: "http://52.78.10.7:8080/hotplaces/tag/" + num + "?page=" + pageNumber + "&size=12",
+        url: url1,
         type: "GET",
         data: "json",
         success: function (data) {
-            var response = data.spotResponses;
+            var response;
+            if(num<12) {
+                response = data.spotResponses;
+            } else if(num== 20) {
+                response = data.spotBookmarkResponses;
+            } else //num==21 조회순 페이지
+            {
+                response = data.spotResponses;
+            }
             var dataCnt = response.length;
 
             $("#exampleArr").empty();
@@ -34,6 +59,7 @@ function callApiInfo(num, pageNumber) {
                 var img1 = response[i].spotImage;
                 var viewCnt = response[i].viewCnt;
                 var tmpHtml = `<div class="col">
+                                <div class = "card1">
                                 <div class="card shadow-sm">
                                     <img class="card_image" id="img2" src="${img1}" height="200">  
                                     <div class="card-body">  
@@ -46,6 +72,7 @@ function callApiInfo(num, pageNumber) {
                                         
                                         </div>
                                     </div>
+                                </div>
                                 </div>
                             </div>`
                 $("#exampleArr").append(tmpHtml);
@@ -61,7 +88,6 @@ function callApiInfo(num, pageNumber) {
     })
 
 }
-
 
 function detailPage(num) {
     console.log("성공!");
@@ -95,4 +121,14 @@ function pageBtnChange(num) {
     const btnElement1 = document.getElementById("pageBtn" + num);
     btnElement1.style.borderBottom="1px solid gray";
 
+}
+
+function noneTag(num) {
+    if(num>12)
+    {
+        document.getElementById("tagButton").style.display="none";
+    }
+    else {
+        document.getElementById("tagButton").style.display="";
+    }
 }
