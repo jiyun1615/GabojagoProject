@@ -4,7 +4,7 @@ function callApiInfo(){
         console.log(num);
     
     $.ajax({
-        url: "http://52.78.10.7:8080/hotplaces/id/" + num,
+        url: "http://13.209.87.88:8080/hotplaces/id/" + num,
             type: "GET",
             data: "json", 
             success: function (data) {
@@ -54,4 +54,16 @@ function noneCheck(str) {
     }
     return str;
 
+}
+
+
+function bookmarkBtn_onclick() {
+    if ($("#bookmarkBtn").css("color") == "rgb(0, 0, 0)") {
+        $("#bookmarkBtn").removeClass("bookmark_btn");
+        $("#bookmarkBtn").addClass("bookmark_btn_checked");
+    } else {
+        $("#bookmarkBtn").removeClass("bookmark_btn_checked");
+        $("#bookmarkBtn").addClass("bookmark_btn");
+    }
+    
 }
