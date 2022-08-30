@@ -4,6 +4,35 @@ function callApiInfo(num) {
   switch (num) {
     case 0:
       $("#exampleArr").html("");
+      $.ajax({
+        type: "GET",
+        url: "http://13.209.87.88:8080/users/posts",
+        headers: { Authorization: window.sessionStorage.getItem("JWT") },
+        data: {},
+        success: function (response) {
+          console.log(response);
+          // $("#Author").text(response.user.name);
+          // console.log("게시글 시간 : " + response.createdAt);
+          // time_post = response.createdAt;
+          // var createdAt_index = time_post.indexOf('T');
+          // var createdAt = time_post.substr(0, createdAt_index);
+    
+          // $("#createdAt").text(createdAt);
+          // $("#title").text(response.title);
+          // $("#viewcnt").text(response.viewCnt);
+          // $(".text_area").text(response.context);
+          // $("#likecnt").text("+ " + response.greatCnt);
+    
+    
+          // if (response.files.length == 0) img_area[0].style.display = "none";
+          // else {
+          //   for (var i = 0; i < response.files.length; i++) {
+          //     var tmpHtml = `<img src="${response.files[i].filePath}">`
+          //     $(".img_area").append(tmpHtml);
+          //   }
+          // }
+        }
+      })
       var tmpHtml = `<div class="col">
 
       <div class="row g-0 ml-0 mr-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
@@ -68,6 +97,35 @@ function callApiInfo(num) {
 
     case 1:
       $("#exampleArr").html("");
+      $.ajax({
+        type: "GET",
+        url: "http://13.209.87.88:8080/users/comments",
+        headers: { Authorization: window.sessionStorage.getItem("JWT") },
+        data: {},
+        success: function (response) {
+          console.log(response);
+          // $("#Author").text(response.user.name);
+          // console.log("게시글 시간 : " + response.createdAt);
+          // time_post = response.createdAt;
+          // var createdAt_index = time_post.indexOf('T');
+          // var createdAt = time_post.substr(0, createdAt_index);
+    
+          // $("#createdAt").text(createdAt);
+          // $("#title").text(response.title);
+          // $("#viewcnt").text(response.viewCnt);
+          // $(".text_area").text(response.context);
+          // $("#likecnt").text("+ " + response.greatCnt);
+    
+    
+          // if (response.files.length == 0) img_area[0].style.display = "none";
+          // else {
+          //   for (var i = 0; i < response.files.length; i++) {
+          //     var tmpHtml = `<img src="${response.files[i].filePath}">`
+          //     $(".img_area").append(tmpHtml);
+          //   }
+          // }
+        }
+      })
       var tmpHtml = `<div class="col">
 
       <div class="row g-0 ml-0 mr-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
@@ -129,6 +187,35 @@ function callApiInfo(num) {
 
     case 2:
       $("#exampleArr").html("");
+      $.ajax({
+        type: "GET",
+        url: "http://13.209.87.88:8080/users/bookmark",
+        headers: { Authorization: window.sessionStorage.getItem("JWT") },
+        data: {},
+        success: function (response) {
+          console.log(response);
+          // $("#Author").text(response.user.name);
+          // console.log("게시글 시간 : " + response.createdAt);
+          // time_post = response.createdAt;
+          // var createdAt_index = time_post.indexOf('T');
+          // var createdAt = time_post.substr(0, createdAt_index);
+    
+          // $("#createdAt").text(createdAt);
+          // $("#title").text(response.title);
+          // $("#viewcnt").text(response.viewCnt);
+          // $(".text_area").text(response.context);
+          // $("#likecnt").text("+ " + response.greatCnt);
+    
+    
+          // if (response.files.length == 0) img_area[0].style.display = "none";
+          // else {
+          //   for (var i = 0; i < response.files.length; i++) {
+          //     var tmpHtml = `<img src="${response.files[i].filePath}">`
+          //     $(".img_area").append(tmpHtml);
+          //   }
+          // }
+        }
+      })
       var tmpHtml = `<div class="col">
 
       <div class="row g-0 ml-0 mr-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">

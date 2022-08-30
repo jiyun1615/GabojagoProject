@@ -39,10 +39,24 @@ $.ajax({
 function pageChange(num) {
     switch (num) {
         case 0:
-            window.location.href = 'new_post_page.html';
+            if (window.sessionStorage.getItem("JWT") != null) {
+                window.location.href = 'new_post_page.html';
+            }
+            else if (window.sessionStorage.getItem("JWT") == null) {
+                swal("로그인이 필요한 서비스입니다.", "로그인 페이지로 이동합니다.", "error").then(function() {
+                    window.location.href = 'login_page.html';
+                });
+            }
             break;
         case 1:
-            window.location.href = 'personal_activity_page.html';
+            if (window.sessionStorage.getItem("JWT") != null) {
+                window.location.href = 'personal_activity_page.html';
+            }
+            else if (window.sessionStorage.getItem("JWT") == null) {
+                swal("로그인이 필요한 서비스입니다.", "로그인 페이지로 이동합니다.", "error").then(function() {
+                    window.location.href = 'login_page.html';
+                });
+            }
             break;
     }
 

@@ -5,11 +5,11 @@ var time_post = 0;
 var time_comment = 0;
 
 
-console.log(window.localStorage.getItem("JWT"));
-if (window.localStorage.getItem("JWT") != null) {
+console.log(window.sessionStorage.getItem("JWT"));
+if (window.sessionStorage.getItem("JWT") != null) {
   user_view();
 }
-else if (window.localStorage.getItem("JWT") == null) {
+else if (window.sessionStorage.getItem("JWT") == null) {
   not_user_view();
 }
 
@@ -17,7 +17,7 @@ function user_view() {
   $.ajax({
     type: "GET",
     url: "http://13.209.87.88:8080/posts/" + decodeURI(receivedData),
-    headers: { Authorization: window.localStorage.getItem("JWT") },
+    headers: { Authorization: window.sessionStorage.getItem("JWT") },
     data: {},
     success: function (response) {
       $("#Author").text(response.user.name);

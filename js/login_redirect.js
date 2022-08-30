@@ -17,7 +17,7 @@ var test = new Object();
 test.code = code;
 console.log(test);
 var jwt ="";
-window.localStorage.setItem("JWT", jwt);
+window.sessionStorage.setItem("JWT", jwt);
 
 $.ajax({
   type: "POST",
@@ -28,7 +28,7 @@ $.ajax({
     console.log(response);
     console.log(xhr.getResponseHeader("Access-Token"));
     jwt = xhr.getResponseHeader("Access-Token");
-    window.localStorage.setItem("JWT", jwt);
+    window.sessionStorage.setItem("JWT", jwt);
     window.location.replace("../html/index.html");
   },
   error: (log) => { alert("실패" + log) }
