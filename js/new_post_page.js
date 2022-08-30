@@ -3,6 +3,7 @@ function getImageFiles(e) {
     const files = e.currentTarget.files;
     const imagePreview = document.querySelector('.image-preview');
     const docFrag = new DocumentFragment();
+    $(".image-preview").html("");
     
 
     if ([...files].length >= 4) {

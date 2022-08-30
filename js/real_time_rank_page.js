@@ -61,10 +61,16 @@ $.ajax({
     }
 
     for (var i = 0; i < $(".swiper-slide").length; i++) {
-      $($(".item_img")[i]).attr("src", response[i].spotImage);
+      console.log(response[i].spotImage);
+
+      if(response[i].spotImage=="None"||response[i].spotImage=="none"||response[i].spotImage==null) {
+        $($(".item_img")[i]).attr("src", "..\\sampleimages\\sample_img.png");
+      }
+      else $($(".item_img")[i]).attr("src", response[i].spotImage);
+
       $($(".HP_name")[i]).text(response[i].spotName);
       $($(".location")[i]).html(response[i].address + "<br>Tel : " + response[i].tel);
-      if(response[i].detail=="None" || response[i].detail=="null") {$($(".detail")[i]).text("상세정보 페이지를 확인해 주세요");}
+      if(response[i].spotImage=="None"||response[i].spotImage=="none"||response[i].spotImage==null) {$($(".detail")[i]).text("상세정보 페이지를 확인해 주세요");}
       else {$($(".detail")[i]).text(response[i].detail);}
 
       //i번째 요소의 j개의 태그들을 i번 슬라이드의 k개의 태그리스트와 비교 
