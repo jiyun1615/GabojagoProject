@@ -19,8 +19,8 @@ window.addEventListener('load', function () {
 
 function Change() {
     if (window.sessionStorage.getItem("JWT") != null) {
-        console.log("if");
-        $(this).html('Logout');
+        // console.log("if");
+        // $(this).html('Logout');
     }
     else if (window.sessionStorage.getItem("JWT") == null) {
         console.log("elif");

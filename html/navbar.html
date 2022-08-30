@@ -62,7 +62,7 @@
       </ul>
       <div class="user-btn">
         <button type="button" class="btn btn-outline-dark" id="log_in_out_btn"
-        onclick="Change(0)">Login & Sign-up</button>
+        onclick="Change()">Login & Sign-up</button>
       </div>
     </div>
   </nav>
@@ -76,6 +76,15 @@
   <script src="..\js\navbar.js"></script>
   <!-- <script type="text/javascript">
     $(document).ready(function(){
+      if (window.sessionStorage.getItem("JWT") != null) {
+        console.log("if");
+        $(this).html('Logout');
+    }
+    else if (window.sessionStorage.getItem("JWT") == null) {
+        console.log("elif");
+        $(this).html('Login & Sign-up');
+        window.location.href = 'login_page.html';
+    }
       $("#log_in_out_btn").trigger('click');
   });
   </script> -->
