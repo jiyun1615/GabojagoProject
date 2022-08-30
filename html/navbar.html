@@ -15,7 +15,7 @@
 
 </head>
 
-<body>
+<body>  
   <nav class="navbar navbar-expand-xl navbar-light bg-white">
     <a class="navbar-brand" href="index.html">#가보자고</a>
     <!-- <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">#가보자고</a> -->
@@ -61,8 +61,8 @@
         </li>
       </ul>
       <div class="user-btn">
-        <button type="button" class="btn btn-outline-dark" id="log_in_out_btn"
-        onclick="Change()">Login & Sign-up</button>
+        <button type="button" class="btn btn-outline-dark" id="log_in_out_btn" onclick="Change(1)">Login &
+          Sign-up</button>
       </div>
     </div>
   </nav>
@@ -74,20 +74,7 @@
     crossorigin="anonymous"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <script src="..\js\navbar.js"></script>
-  <!-- <script type="text/javascript">
-    $(document).ready(function(){
-      if (window.sessionStorage.getItem("JWT") != null) {
-        console.log("if");
-        $(this).html('Logout');
-    }
-    else if (window.sessionStorage.getItem("JWT") == null) {
-        console.log("elif");
-        $(this).html('Login & Sign-up');
-        window.location.href = 'login_page.html';
-    }
-      $("#log_in_out_btn").trigger('click');
-  });
-  </script> -->
+
   <!-- Option 2: jQuery, Popper.js, and Bootstrap JS
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>

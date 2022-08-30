@@ -7,26 +7,41 @@ window.addEventListener('load', function () {
             xhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
                     el.outerHTML = this.responseText;
+                    Change(0);
                 }
             };
-            xhttp.open('GET', includePath, true);
+            xhttp.open('GET', includePath+'?_='+new Date().getTime(), true);
             xhttp.send();
         }
     });
 
 });
 
+function Change(num) {
+    switch (num) {
+        case 0:
+            if (window.sessionStorage.getItem("JWT") != null) {
+                console.log("if");
+                $("#log_in_out_btn").html('Logout');
+            }
+            else if (window.sessionStorage.getItem("JWT") == null) {
+                console.log("elif");
+                $("#log_in_out_btn").html('Login & Sign-up');
+            }
+            break;
 
-function Change() {
-    if (window.sessionStorage.getItem("JWT") != null) {
-        // console.log("if");
-        // $(this).html('Logout');
+        case 1:
+            if ($("#log_in_out_btn").text() == "Logout") {
+                console.log("로그아웃 하세요!");
+            }
+            else if ($("#log_in_out_btn").text() == "Login & Sign-up") {
+                console.log("로그인합니다");
+                window.location.href = 'login_page.html';
+            }
+            break;
     }
-    else if (window.sessionStorage.getItem("JWT") == null) {
-        console.log("elif");
-        $(this).html('Login & Sign-up');
-        window.location.href = 'login_page.html';
-    }
+
+    console.log("클릭");
 }
 
 function pageChange() {
