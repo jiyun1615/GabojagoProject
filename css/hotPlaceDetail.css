@@ -42,3 +42,28 @@
 .bd-placeholder-img {
     margin-bottom: 6px;
 }
+
+
+.bookmark_btn {
+    border : 1px solid lightgray;
+    border-radius: 3px;
+    background-color: white;
+    color : black;
+    font-family : 'Hahmlet', serif;
+    transition: 0.5s;
+    display: grid;
+}
+
+.bookmark_btn:focus {
+    outline :0;
+}
+
+.bookmark_btn_checked {
+    background: black;
+    color: #fff;
+    border : 1px solid lightgray;
+    border-radius: 3px;
+    font-family : 'Hahmlet', serif;
+    transition: 0.5s;
+    display: grid
+}
