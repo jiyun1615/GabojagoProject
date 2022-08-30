@@ -3,10 +3,25 @@ console.log(decodeURI(receivedData));
 var img_area = document.getElementsByClassName('img_area');
 var time_post = 0;
 var time_comment = 0;
+
+console.log(window.localStorage.getItem("JWT"));
+
+$.ajax({
+  type: "GET",
+  url: "http://13.209.87.88:8080/test",
+  headers : { Authorization : window.localStorage.getItem("JWT") },
+
+  success: function(response, status, xhr){
+    console.log(response);
+  },
+  error: (log) => { alert("실패" + log) }
+})
+
+
 //비회원일때... - 헤더에 토큰 필요 없음
 $.ajax({
     type: "GET",
-    url: "http://52.78.10.7:8080/posts/" + decodeURI(receivedData),
+    url: "http://13.209.87.88:8080/posts/" + decodeURI(receivedData),
     data: {},
     success: function (response) {
         $("#Author").text(response.user.name);
@@ -38,7 +53,7 @@ $.ajax({
 //비회원일때... - 헤더에 토큰 필요 없음
 $.ajax({
     type: "GET",
-    url: "http://52.78.10.7:8080/comments/post/" + decodeURI(receivedData) + "?page=1&size=10",
+    url: "http://13.209.87.88:8080/comments/post/" + decodeURI(receivedData) + "?page=1&size=10",
     data: {},
     success: function (response) {
         console.log(response)

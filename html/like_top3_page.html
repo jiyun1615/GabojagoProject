@@ -26,7 +26,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
     integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script language="javascript" src="..\js\navbar.js"></script>
+
 
 </head>
 
@@ -36,26 +36,66 @@
     <p class="title_text">이달의 커뮤니티 TOP 3 게시글</p>
   </div>
   <div class="page_contents">
-    <div style="text-align: center; margin-top: 3vh; margin-bottom: 3vh;">
-      이번달 가장 인기가 많았던 게시글이에요!<br><br>
-      <span>2022년 8월</span>
-    </div>
     <div class="swiper mySwiper">
       <div class="swiper-wrapper" id="exampleArr">
         <!--스크립트 참조-->
         <div class="swiper-slide">
-          <img src="..\sampleimages\jjal.jpg"/>
+
+          <div class="img_area">
+            <img src="..\sampleimages\jjal.jpg" />
+          </div>
+
+          <div class="text_area">
+            <div class="row">
+              <span class="col name">왜용</span><span class="col date ml-auto">22.08.28</span>
+            </div>
+            <br><span class="title">커피맛집을 발견했어요</span>
+          </div>
+          <div class="rank">
+            <p class="box">1</p>
+          </div>
+
         </div>
+
         <div class="swiper-slide">
-          <img src="https://swiperjs.com/demos/images/nature-2.jpg"/>
+          <div class="img_area">
+            <img src="https://swiperjs.com/demos/images/nature-2.jpg" />
+          </div>
+
+
+          <div class="text_area">
+            <div class="row">
+              <span class="col name">왜용</span><span class="col date ml-auto">22.08.28</span>
+            </div>
+            <br><span class="title">풍경맛집을 발견했어요</span>
+          </div>
+          <div class="rank">
+            <p class="box">2</p>
+          </div>
+
         </div>
+
         <div class="swiper-slide">
-          <img src="https://swiperjs.com/demos/images/nature-3.jpg"/>
+          <div class="img_area">
+            <img src="https://swiperjs.com/demos/images/nature-3.jpg" />
+          </div>
+
+          <div class="text_area">
+            <div class="row">
+              <span class="col name">왜용</span><span class="col date ml-auto">22.08.28</span>
+            </div>
+            <br><span class="title">아주 이쁜 곳을 발견했어요</span>
+          </div>
+          <div class="rank">
+            <p class="box">3</p>
+          </div>
+
         </div>
 
       </div>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
       <div class="swiper-pagination"></div>
-
     </div>
   </div>
   <!-- Optional JavaScript; choose one of the two! -->
@@ -72,6 +112,7 @@
 
   <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
   <script src="..\js\like_top3_page.js"></script>
+  <script language="javascript" src="..\js\navbar.js"></script>
 </body>
 
 </html>

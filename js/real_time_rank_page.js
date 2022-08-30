@@ -24,7 +24,7 @@ var swiper = new Swiper(".mySwiper", {
 
 $.ajax({
   type: "GET",
-  url: "http://52.78.10.7:8080/hotplaces/realtime",
+  url: "http://13.209.87.88:8080/hotplaces/realtime",
   data: {},
   success: function (response) {
     console.log(response)
@@ -64,7 +64,9 @@ $.ajax({
       $($(".item_img")[i]).attr("src", response[i].spotImage);
       $($(".HP_name")[i]).text(response[i].spotName);
       $($(".location")[i]).html(response[i].address + "<br>Tel : " + response[i].tel);
-      $($(".detail")[i]).text(response[i].detail);
+      if(response[i].detail=="None" || response[i].detail=="null") {$($(".detail")[i]).text("상세정보 페이지를 확인해 주세요");}
+      else {$($(".detail")[i]).text(response[i].detail);}
+
       //i번째 요소의 j개의 태그들을 i번 슬라이드의 k개의 태그리스트와 비교 
       for (var j = 0; j < response[i].spotTags.length; j++) {
         for (var k = 0; k < $(".num_" + [i] + "_tag_detail").length; k++) {

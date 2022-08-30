@@ -7,6 +7,10 @@ body{
     margin-right: 12%;
 }
 
+nav{
+    position: sticky;
+}
+
 .navbar-nav>li {
     margin-left: 1vw;
     margin-right: 5vw;

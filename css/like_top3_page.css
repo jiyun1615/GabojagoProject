@@ -1,22 +1,106 @@
 .page_contents{
     margin-top: 1vh;
+    padding-top: 1vh;
     margin-left: 16px;
     margin-right: 16px;
 }
 .swiper {
     width: 100%;
-    padding-top: 50px;
     padding-bottom: 50px;
   }
 
   .swiper-slide {
     background-position: center;
     background-size: cover;
-    width: 300px;
-    height: 300px;
+    width: 32vw;
+    height: 79vh;
+    box-shadow: 20px 20px 20px grey;
+    position: relative;
   }
 
   .swiper-slide img {
+    padding: 4%;
     display: block;
+    overflow: hidden;
     width: 100%;
+    height: 100%;
+    object-fit: scale-down;
   }
+  .swiper-button-next {
+    background: url(../icons/chevron-right.svg) no-repeat;
+    background-size: 250% auto;
+    background-position: center;
+}
+
+.swiper-button-prev {
+    background: url(../icons/chevron-left.svg) no-repeat;
+    background-size: 250% auto;
+    background-position: center;
+}
+/*이 부분들이 있어야 기본 디자인과 겹쳐서 보이지 않음.*/
+.swiper-button-next::after,
+.swiper-button-prev::after {
+    display: none;
+}
+
+
+.swiper-pagination-bullet {
+    width: 12px;
+    height: 12px;
+    background: transparent;
+    border: 1px solid black;
+    opacity: 1;
+}
+
+.swiper-pagination-bullet-active {
+    width: 24px;
+    transition: width .5s;
+    border-radius: 5px;
+    background: black;
+    border: 1px solid transparent;
+}
+
+.img_area{
+  height: 80%;
+}
+
+.text_area{
+  padding-left: 6%;
+  padding-right: 6%;
+}
+.date{
+text-align: right;
+}
+
+.rank{
+  position: absolute;
+  right: 0px; 
+  bottom: 0px;
+  width: 100%;
+  height: 100%;
+  display: table;
+}
+
+.box{
+  position: absolute;
+  right: 0px; 
+  bottom: 0px;
+  background-color: black;
+  color: white;
+  width: 4%;
+  height: 4%;
+  text-align: center;
+
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}

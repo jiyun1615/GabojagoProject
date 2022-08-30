@@ -1,6 +1,7 @@
 var swiper = new Swiper(".mySwiper", {
   effect: "coverflow",
   grabCursor: true,
+  spaceBetween: 100,
   centeredSlides: true,
   slidesPerView: "auto",
   coverflowEffect: {
@@ -12,6 +13,11 @@ var swiper = new Swiper(".mySwiper", {
   },
   pagination: {
     el: ".swiper-pagination",
+    clickable: true,
+  },
+  navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev",
   },
 });
 // $.ajax({

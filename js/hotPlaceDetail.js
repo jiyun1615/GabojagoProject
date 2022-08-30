@@ -4,7 +4,7 @@ function callApiInfo(){
         console.log(num);
     
     $.ajax({
-        url: "http://52.78.10.7:8080/hotplaces/id/" + num,
+        url: "http://13.209.87.88:8080/hotplaces/id/" + num,
             type: "GET",
             data: "json", 
             success: function (data) {

@@ -1,6 +1,6 @@
 $.ajax({
     type: "GET",
-    url: "http://52.78.10.7:8080/posts",
+    url: "http://13.209.87.88:8080/posts",
     data: {},
     success: function (response) {
         console.log(response)
@@ -36,6 +36,14 @@ $.ajax({
     error: (log) => { alert("실패" + log) }
 })
 
-function pageChange() {
-    window.location.href = 'new_post_page.html';
+function pageChange(num) {
+    switch (num) {
+        case 0:
+            window.location.href = 'new_post_page.html';
+            break;
+        case 1:
+            window.location.href = 'personal_activity_page.html';
+            break;
+    }
+
 }

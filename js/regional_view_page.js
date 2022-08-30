@@ -22,7 +22,7 @@ function default_filter() {
   $("#exampleArr").html("");
   $.ajax({
     type: "GET",
-    url: "http://52.78.10.7:8080/hotplaces/region/" + decodeURI(receivedData) + "?page=" + 1 + "&size=20",
+    url: "http://13.209.87.88:8080/hotplaces/region/" + decodeURI(receivedData) + "?page=" + 1 + "&size=20",
     data: {},
     success: function (response) {
       for (var j = 0; j < response.spotResponses.length; j++) {

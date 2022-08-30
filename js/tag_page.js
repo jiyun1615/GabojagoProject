@@ -15,7 +15,7 @@ function callApiInfo(num, pageNumber) {
     tagNum = num;
     console.log("callApiInfo : ");
     $.ajax({
-        url: "http://52.78.10.7:8080/hotplaces/tag/" + num + "?page=" + pageNumber + "&size=12",
+        url: "http://13.209.87.88:8080/hotplaces/tag/" + num + "?page=" + pageNumber + "&size=12",
         type: "GET",
         data: "json",
         success: function (data) {
