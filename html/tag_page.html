@@ -25,47 +25,49 @@
 
 <body>
   <script type="text/javascript">
-      $(document).ready(btn_onclick(1));
+    $(document).ready(btn_onclick(1));
   </script>
 
   <div data-include-path="navbar.html"></div>
 
   <div class="page_title">
-    <p class="title_text">태그별 핫플레이스</p>
+    <div class="title_text">태그별 핫플레이스
+
+      <div class="dropdown rg">
+        <span class="dropdown_name" id="sort_by">태그별</span>
+      
+        <button type="button" class="icon_btn" id="navbarDarkDropdownMenuLink" data-bs-toggle="dropdown"
+          aria-expanded="false"><img class="icons" id="down_icon" src="..\icons\caret-down-fill.svg" alt="아이콘"></button>
+        <ul class="dropdown-menu dropdown-menu-start rg" aria-labelledby="dropdownMenuButton2">
+          <li><a class="dropdown-item rg" href="#" onclick="javascript:dropdown_onclick(1);">태그별</a></li>
+          <li><a class="dropdown-item rg" href="#" onclick="javascript:dropdown_onclick(20);">조회순</a></li>
+          <li><a class="dropdown-item rg" href="#" onclick="javascript:dropdown_onclick(21);">북마크순</a></li>
+        </ul>
+      </div>
+    </div>
   </div>
 
   <div class="page_contents">
-    <div class="tagButton">
-      <button type="radio" class="btn1 btn-sm" id="btn1"
-        onclick="javascript:btn_onclick(1);">#야경</button>
-      <button type="radio" class="btn1 btn-sm" id="btn2"
-        onclick="javascript:btn_onclick(2);">#이색체험</button>
-      <button type="radio" class="btn1 btn-sm" id="btn3"
-        onclick="javascript:btn_onclick(3);">#피크닉</button>
-      <button type="radio" class="btn1 btn-sm" id="btn4"
-      onclick="javascript:btn_onclick(4);">#데이트</button>
-      <button type="radio" class="btn1 btn-sm" id="btn5"
-      onclick="javascript:btn_onclick(5);">#커피맛집</button>
-      <button type="radio" class="btn1 btn-sm" id="btn6"
-      onclick="javascript:btn_onclick(6);">#디저트맛집</button>
-      <button type="radio" class="btn1 btn-sm" id="btn7"
-      onclick="javascript:btn_onclick(7);">#분위기 있는</button>
-      <button type="radio" class="btn1 btn-sm" id="btn8"
-      onclick="javascript:btn_onclick(8);">#든든한</button>
-      <button type="radio" class="btn1 btn-sm" id="btn9"
-      onclick="javascript:btn_onclick(9);">#신나는</button>
-      <button type="radio" class="btn1 btn-sm" id="btn10"
-      onclick="javascript:btn_onclick(10);">#파릇파릇한</button>
-      <button type="radio" class="btn1 btn-sm" id="btn11"
-      onclick="javascript:btn_onclick(11);">#기분전환</button>
+    <div class="tagButton" id="tagButton">
+      <button type="radio" class="btn1 btn-sm" id="btn1" onclick="javascript:btn_onclick(1);">#야경</button>
+      <button type="radio" class="btn1 btn-sm" id="btn2" onclick="javascript:btn_onclick(2);">#이색체험</button>
+      <button type="radio" class="btn1 btn-sm" id="btn3" onclick="javascript:btn_onclick(3);">#피크닉</button>
+      <button type="radio" class="btn1 btn-sm" id="btn4" onclick="javascript:btn_onclick(4);">#데이트</button>
+      <button type="radio" class="btn1 btn-sm" id="btn5" onclick="javascript:btn_onclick(5);">#커피맛집</button>
+      <button type="radio" class="btn1 btn-sm" id="btn6" onclick="javascript:btn_onclick(6);">#디저트맛집</button>
+      <button type="radio" class="btn1 btn-sm" id="btn7" onclick="javascript:btn_onclick(7);">#분위기 있는</button>
+      <button type="radio" class="btn1 btn-sm" id="btn8" onclick="javascript:btn_onclick(8);">#든든한</button>
+      <button type="radio" class="btn1 btn-sm" id="btn9" onclick="javascript:btn_onclick(9);">#신나는</button>
+      <button type="radio" class="btn1 btn-sm" id="btn10" onclick="javascript:btn_onclick(10);">#파릇파릇한</button>
+      <button type="radio" class="btn1 btn-sm" id="btn11" onclick="javascript:btn_onclick(11);">#기분전환</button>
     </div>
 
 
-    
+
     <span id="tagContent">
-      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-md-4 g-4" id = "exampleArr">
-<!--tag_page.js callApiInfo-->
-        
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-md-4 g-4" id="exampleArr">
+        <!--tag_page.js callApiInfo-->
+
       </div>
     </span>
 

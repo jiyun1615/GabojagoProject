@@ -4,7 +4,6 @@ function getImageFiles(e) {
     const imagePreview = document.querySelector('.image-preview');
     const docFrag = new DocumentFragment();
     $(".image-preview").html("");
-    
 
     if ([...files].length >= 4) {
         alert('이미지는 최대 3개 까지 업로드가 가능합니다.');
@@ -15,7 +14,7 @@ function getImageFiles(e) {
     [...files].forEach(file => {
         if (!file.type.match("image/.*")) {
             alert('이미지 파일만 업로드가 가능합니다.');
-            return
+            return;
         }
 
         // 파일 갯수 검사

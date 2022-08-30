@@ -55,3 +55,15 @@ function noneCheck(str) {
     return str;
 
 }
+
+
+function bookmarkBtn_onclick() {
+    if ($("#bookmarkBtn").css("color") == "rgb(0, 0, 0)") {
+        $("#bookmarkBtn").removeClass("bookmark_btn");
+        $("#bookmarkBtn").addClass("bookmark_btn_checked");
+    } else {
+        $("#bookmarkBtn").removeClass("bookmark_btn_checked");
+        $("#bookmarkBtn").addClass("bookmark_btn");
+    }
+    
+}

@@ -1,5 +1,6 @@
 .page_title{
     margin-bottom: 0px;
+    z-index: 100;
 }
 
 .page_contents {
@@ -56,15 +57,21 @@
 
 .card {
     margin-bottom : 5px;
+    z-index : 99;
+}
+.card1 {
+    z-index : 99;
 }
 
 .card-body{
     height : 200px;
+    z-index : 99;
 }
 
 .card_image{
     height : 200;
     width : 100%;
+    z-index : 99;
 }
 
 .card-text {
@@ -91,3 +98,67 @@
     border-bottom : 1px solid gray;
     outline : none;
 }
+
+
+.icons{
+    width: 3vh;
+}
+
+.icon_btn{
+    background-color: #00000000; 
+    border-color: #00000000; 
+    width: 3vh;
+}
+
+.title_text{
+    width: 73vw;
+    display: flex;
+    padding-top: 0.5%;
+    padding-right: 2%;
+}
+
+.dropdown {
+    z-index : 101;
+}
+
+.col {
+    z-index : 99;
+}
+
+.dropdown.rg{
+    display: flex;
+    margin-left : auto;
+}
+
+
+.dropdown-item.rg {
+    color: #FFFFFF;
+    margin-top: 24px;
+    z-index : 100;
+}
+.dropdown-item.rg:hover {
+    background-color: #FFFFFF;
+    color: black;
+    z-index : 100;
+}
+.dropdown-item.rg:focus {
+    background-color: #FFFFFF;
+    color: black;
+    z-index : 100;
+}
+
+
+/*호버링*/
+.dropdown.rg:hover .dropdown-menu.rg{
+    color: #FFFFFF;
+    display: block;
+    margin-left: -28.5%;
+    height: 24vh;
+    margin-top: -5px;
+    background-color: #000000;
+    border-top: #FFFFFF00;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    z-index : 100;
+}
+
