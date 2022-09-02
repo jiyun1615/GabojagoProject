@@ -4,7 +4,7 @@ var img_area = document.getElementsByClassName('img_area');
 var time_post = 0;
 var time_comment = 0;
 //글 작성자와 댓글 작성자, 이 둘은 본인확인이 필요함. => 수정 혹은 삭제시에!
-
+var like_state = false;
 console.log(window.sessionStorage.getItem("JWT"));
 if (window.sessionStorage.getItem("JWT") != null) {
   user_view();
@@ -16,8 +16,9 @@ if (window.sessionStorage.getItem("JWT") != null) {
     const querydoc = query.contentDocument;
     console.log(querydoc);
 
-    if (obj.getAttribute('data') == "..\\icons\\like_heart_blank.svg") {
+    if (like_state==false) {
       //좋아요 api
+      obj.setAttribute('data', "..\\icons\\like_heart_blank.svg");
       const lands = querydoc.querySelectorAll(".heart_blank")
         .forEach((element) =>
           element.addEventListener("click", function () {
@@ -34,12 +35,13 @@ if (window.sessionStorage.getItem("JWT") != null) {
                 location.reload();
               }
             })
-
+            location.reload();
           }));
     }
 
-    else if (obj.getAttribute('data') == "..\\icons\\like_heart.svg") {
+    else if (like_state==true) {
       //좋아요 삭제 api
+      obj.setAttribute('data', "..\\icons\\like_heart.svg");
       const lands = querydoc.querySelectorAll(".heart_fill")
         .forEach((element) =>
           element.addEventListener("click", function () {
@@ -56,7 +58,7 @@ if (window.sessionStorage.getItem("JWT") != null) {
                 location.reload();
               }
             })
-
+            location.reload();
           }));
     }
 
@@ -107,6 +109,7 @@ function user_view() {
     data: {},
     success: function (response) {
       console.log(response);
+      like_state = response.greatState;
       $("#Author").text(response.user.name);
       console.log("게시글 시간 : " + response.createdAt);
       time_post = response.createdAt;
