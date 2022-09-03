@@ -24,21 +24,16 @@
 </head>
 
 <body>
-  <script type="text/javascript">
-    $(document).ready(btn_onclick(1));
-  </script>
-
   <div data-include-path="navbar.html"></div>
 
   <div class="page_title">
-    <div class="title_text">태그별 핫플레이스
+    <div class="title_text">전국 핫플레이스
 
       <div class="dropdown rg">
         <span class="dropdown_name" id="sort_by">태그별</span>
-      
         <button type="button" class="icon_btn" id="navbarDarkDropdownMenuLink" data-bs-toggle="dropdown"
           aria-expanded="false"><img class="icons" id="down_icon" src="..\icons\caret-down-fill.svg" alt="아이콘"></button>
-        <ul class="dropdown-menu dropdown-menu-start rg" aria-labelledby="dropdownMenuButton2">
+        <ul class="dropdown-menu dropdown-menu-end rg" aria-labelledby="dropdownMenuButton2">
           <li><a class="dropdown-item rg" href="#" onclick="javascript:dropdown_onclick(1);">태그별</a></li>
           <li><a class="dropdown-item rg" href="#" onclick="javascript:dropdown_onclick(20);">조회순</a></li>
           <li><a class="dropdown-item rg" href="#" onclick="javascript:dropdown_onclick(21);">북마크순</a></li>
@@ -74,7 +69,10 @@
     <div class="pageNum" id="pageNum">
     </div>
 
-  </div>
+  </div>    
+  <script type="text/javascript">
+    $(document).ready(btn_onclick(1));
+  </script>
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
     integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
     crossorigin="anonymous"></script>
