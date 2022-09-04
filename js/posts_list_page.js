@@ -33,8 +33,9 @@ $.ajax({
             $("#exampleArr").append(tmpHtml);
         }
     },
-    error: (log) => { alert("실패" + log) }
-})
+    error: (xhr) => { 
+      alert("서버 요청 상태코드 : " + xhr.status) }
+});
 
 function pageChange(num) {
     switch (num) {

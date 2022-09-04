@@ -31,8 +31,9 @@ function user_view() {
       console.log(response);
       userID = response.id;
     },
-    error: (log) => { alert(log) }
-  })
+    error: (xhr) => { 
+      alert("서버 요청 상태코드 : " + xhr.status) }
+  });
 
   $.ajax({
     type: "GET",
@@ -80,7 +81,8 @@ function user_view() {
 
 
     },
-    error: (log) => { alert(log) }
+    error: (xhr) => { 
+      alert("서버 요청 상태코드 : " + xhr.status) }
 
   })
 
@@ -138,11 +140,12 @@ function user_view() {
         $("#comment_area").append(tmpHtml);
       }
     },
-    error: (log) => { alert(log) }
+    error: (xhr) => { 
+      alert("서버 요청 상태코드 : " + xhr.status) }
 
 
 
-  })
+  });
 }
 
 function not_user_view() {
@@ -181,8 +184,9 @@ function not_user_view() {
 
 
     },
-    error: (log) => { alert(log) }
-  })
+    error: (xhr) => { 
+      alert("서버 요청 상태코드 : " + xhr.status) }
+  });
 
   $(".post_revise").addClass('disabled');
   $(".post_delete").addClass('disabled');
@@ -233,11 +237,12 @@ function not_user_view() {
         $("#comment_area").append(tmpHtml);
       }
     },
-    error: (log) => { alert(log) }
+    error: (xhr) => { 
+      alert("서버 요청 상태코드 : " + xhr.status); }
 
 
 
-  })
+  });
 }
 
 function user_like() {
@@ -266,8 +271,9 @@ function user_like() {
                 console.log(response);
                 location.reload();
               },
-              error: (log) => { alert(log) }
-            })
+              error: (xhr) => { 
+                alert("서버 요청 상태코드 : " + xhr.status) }
+            });
             location.reload();
           }));
     }
@@ -293,8 +299,9 @@ function user_like() {
                 console.log(response);
                 location.reload();
               },
-              error: (log) => { alert(log) }
-            })
+              error: (xhr) => { 
+                alert("서버 요청 상태코드 : " + xhr.status) }
+            });
             location.reload();
           }));
     }
@@ -346,8 +353,9 @@ function user_make_comment() {
         success: function (response) {
           console.log(response);
         },
-        error: (log) => { alert(log) }
-      })
+        error: (xhr) => { 
+          alert("서버 요청 상태코드 : " + xhr.status) }
+      });
     }
 
 
@@ -397,7 +405,8 @@ function dropdown_delete() {
             });
 
           },
-          error: (log) => { alert(log) }
+          error: (xhr) => { 
+            alert("서버 요청 상태코드 : " + xhr.status) }
         });
       }
       else {
@@ -446,7 +455,8 @@ function dropdown_revise_comment() {
           });
 
         },
-        error: (log) => { alert(log) }
+        error: (xhr) => { 
+          alert("서버 요청 상태코드 : " + xhr.status) }
       });
 
 
@@ -478,7 +488,8 @@ function dropdown_delete_comment() {
             });
 
           },
-          error: (log) => { alert(log) }
+          error: (xhr) => { 
+            alert("서버 요청 상태코드 : " + xhr.status) }
         });
       }
       else {

@@ -31,7 +31,8 @@ $.ajax({
     window.sessionStorage.setItem("JWT", jwt);
     window.location.replace("../html/index.html");
   },
-  error: (log) => { alert("실패" + log) }
-})
+  error: (xhr) => { 
+    alert("서버 요청 상태코드 : " + xhr.status) }
+});
 
 

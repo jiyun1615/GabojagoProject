@@ -97,7 +97,8 @@ function callApiInfo(num, pageNumber) {
             }
 
         },
-        error: (log) => { alert("url: " + url) }
+        error: (xhr) => { 
+          alert("서버 요청 상태코드 : " + xhr.status) }
     })
 
 }
