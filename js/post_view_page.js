@@ -3,105 +3,37 @@ console.log(decodeURI(receivedData));
 var img_area = document.getElementsByClassName('img_area');
 var time_post = 0;
 var time_comment = 0;
-//글 작성자와 댓글 작성자, 이 둘은 본인확인이 필요함. => 수정 혹은 삭제시에!
+//글 작성자와 댓글 작성자, 이 둘은 본인확인이 필요, 이것은 백엔드에서 해준다고함!
+
 var like_state = false;
+var userID = "";
 console.log(window.sessionStorage.getItem("JWT"));
 if (window.sessionStorage.getItem("JWT") != null) {
+  //회원일경우
   user_view();
-  document.getElementById('heart_obj').onload = e => {
-    const obj = document.getElementById('heart_obj');
-    const query = document.querySelector('#heart_obj');
-    console.log(query);
-
-    const querydoc = query.contentDocument;
-    console.log(querydoc);
-
-    if (like_state==false) {
-      //좋아요 api
-      obj.setAttribute('data', "..\\icons\\like_heart_blank.svg");
-      const lands = querydoc.querySelectorAll(".heart_blank")
-        .forEach((element) =>
-          element.addEventListener("click", function () {
-            console.log("클릭은 잘 됩니다");
-            obj.setAttribute('data', "..\\icons\\like_heart.svg")
-
-            $.ajax({
-              type: "POST",
-              url: "http://13.209.87.88:8080/posts/great/" + decodeURI(receivedData),
-              headers: { Authorization: window.sessionStorage.getItem("JWT") },
-              data: {},
-              success: function (response) {
-                console.log(response);
-                location.reload();
-              }
-            })
-            location.reload();
-          }));
-    }
-
-    else if (like_state==true) {
-      //좋아요 삭제 api
-      obj.setAttribute('data', "..\\icons\\like_heart.svg");
-      const lands = querydoc.querySelectorAll(".heart_fill")
-        .forEach((element) =>
-          element.addEventListener("click", function () {
-            console.log("클릭은 잘 됩니다");
-            obj.setAttribute('data', "..\\icons\\like_heart_blank.svg");
-
-            $.ajax({
-              type: "DELETE",
-              url: "http://13.209.87.88:8080/posts/great/" + decodeURI(receivedData),
-              headers: { Authorization: window.sessionStorage.getItem("JWT") },
-              data: {},
-              success: function (response) {
-                console.log(response);
-                location.reload();
-              }
-            })
-            location.reload();
-          }));
-    }
-
-    $("textarea").attr('readonly', 'true');
-    $(".send-btn").click(function () {
-      swal("로그인이 필요한 서비스입니다.", "로그인 페이지로 이동합니다.", "error").then(function () {
-        window.location.href = 'login_page.html';
-      });
-    });
-
-  };
-
+  user_like();
+  user_make_comment();
 }
 else if (window.sessionStorage.getItem("JWT") == null) {
   not_user_view();
-  document.getElementById('heart_obj').onload = e => {
-    const obj = document.getElementById('heart_obj');
-    const query = document.querySelector('#heart_obj');
-    console.log(query);
-
-    const querydoc = query.contentDocument;
-    console.log(querydoc);
-
-    const lands = querydoc.querySelectorAll(".heart_blank")
-      .forEach((element) =>
-        element.addEventListener("click", function () {
-          swal("로그인이 필요한 서비스입니다.", "로그인 페이지로 이동합니다.", "error").then(function () {
-            window.location.href = 'login_page.html';
-          });
-        }));
-  };
-  $("textarea").attr('readonly', 'true');
-  $("textarea").click(function () {
-    swal("로그인이 필요한 서비스입니다.", "로그인 페이지로 이동합니다.", "error").then(function () {
-      window.location.href = 'login_page.html';
-    });
-  });
+  not_user_like();
+  not_user_make_comment();
 }
 
 
-
-
 function user_view() {
+  $.ajax({
+    type: "GET",
+    url: "http://13.209.87.88:8080/users",
+    headers: { Authorization: window.sessionStorage.getItem("JWT") },
+    data: {},
+    success: function (response) {
+      console.log(response);
+      userID = response.id;
+    },
+    error: (log) => { alert(log) }
+  })
+
   $.ajax({
     type: "GET",
     url: "http://13.209.87.88:8080/posts/" + decodeURI(receivedData),
@@ -135,12 +67,27 @@ function user_view() {
         }
       }
 
+      if (userID == response.user.userId) {
+        $(".post_report").addClass('disabled');
+        $(".post_revise").removeClass('disabled');
+        $(".post_delete").removeClass('disabled');
+      }
+      else {
+        $(".post_revise").addClass('disabled');
+        $(".post_delete").addClass('disabled');
+        $(".post_report").removeClass('disabled');
+      }
 
-    }
+
+    },
+    error: (log) => { alert(log) }
+
   })
 
 
-  //비회원일때... - 헤더에 토큰 필요 없음
+
+
+  //댓글. 헤더에 토큰 필요 없음
   $.ajax({
     type: "GET",
     url: "http://13.209.87.88:8080/comments/post/" + decodeURI(receivedData) + "?page=1&size=10",
@@ -159,7 +106,8 @@ function user_view() {
         var createdAt = time_comment.substr(createdAt_index + 1, createdAt_index_end);
 
 
-        var tmpHtml = `<a class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
+        var tmpHtml = 
+        `<li class="list-group-item d-flex gap-3 py-3" aria-current="true">
             <img src="${response.comments[i].profilePhoto}" width="32" height="32"
               class="rounded-circle flex-shrink-0">
             <div class="d-flex gap-2 w-100 justify-content-between">
@@ -167,12 +115,21 @@ function user_view() {
                 <h6 class="mb-0">${response.comments[i].userName}</h6>
                 <p class="mb-0 opacity-75">${response.comments[i].context}</p>
               </div>
+              <div class="dropdown comment">
               <small class="opacity-50 text-nowrap">${createdAt}</small>
+              <a class="toggles" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"><img class="icons" id="dots" src="..\\icons\\three-dots-vertical.svg" alt="아이콘"></a>
+              <ul class="dropdown-menu dropdown-menu-end comment" id="dropdown_menu"aria-labelledby="dropdownMenuButton2">
+                <li><a class="dropdown-item comment_revise" href="#" onclick="javascript:dropdown_revise_comment();">수정하기</a></li>
+                <li><a class="dropdown-item comment_delete" href="#" onclick="javascript:dropdown_delete_comment();">삭제하기</a></li>
+              </ul>
             </div>
-          </a>`
+            </div>
+
+          </li>`
         $("#comment_area").append(tmpHtml);
       }
-    }
+    },
+    error: (log) => { alert(log) }
 
 
 
@@ -214,11 +171,17 @@ function not_user_view() {
       }
 
 
-    }
+    },
+    error: (log) => { alert(log) }
   })
 
+  $(".post_revise").addClass('disabled');
+  $(".post_delete").addClass('disabled');
+  $(".post_report").addClass('disabled');
+  var tmpHtml = `<li><a class="dropdown-item post_login" href="..\\html\\login_page.html">로그인이 필요합니다.</a></li>`
+  $("#dropdown_menu").append(tmpHtml);
 
-  //비회원일때... - 헤더에 토큰 필요 없음
+  //댓글. 헤더에 토큰 필요 없음
   $.ajax({
     type: "GET",
     url: "http://13.209.87.88:8080/comments/post/" + decodeURI(receivedData) + "?page=1&size=10",
@@ -237,7 +200,8 @@ function not_user_view() {
         var createdAt = time_comment.substr(createdAt_index + 1, createdAt_index_end);
 
 
-        var tmpHtml = `<a class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
+        var tmpHtml = 
+        `<li class="list-group-item d-flex gap-3 py-3" aria-current="true">
             <img src="${response.comments[i].profilePhoto}" width="32" height="32"
               class="rounded-circle flex-shrink-0">
             <div class="d-flex gap-2 w-100 justify-content-between">
@@ -245,14 +209,209 @@ function not_user_view() {
                 <h6 class="mb-0">${response.comments[i].userName}</h6>
                 <p class="mb-0 opacity-75">${response.comments[i].context}</p>
               </div>
+              <div class="dropdown comment">
               <small class="opacity-50 text-nowrap">${createdAt}</small>
+              <a class="toggles" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"><img class="icons" id="dots" src="..\\icons\\three-dots-vertical.svg" alt="아이콘"></a>
+              <ul class="dropdown-menu dropdown-menu-end comment" id="dropdown_menu"aria-labelledby="dropdownMenuButton2">
+                <li><a class="dropdown-item comment_revise disabled" href="#">로그인이 필요합니다.</a></li>
+              </ul>
             </div>
-          </a>`
+            </div>
+
+          </li>`
+
         $("#comment_area").append(tmpHtml);
       }
-    }
+    },
+    error: (log) => { alert(log) }
 
 
 
   })
 }
+
+function user_like() {
+  document.getElementById('heart_obj').onload = e => {
+    const obj = document.getElementById('heart_obj');
+    const query = document.querySelector('#heart_obj');
+    const querydoc = query.contentDocument;
+
+    if (like_state == false) {
+      //좋아요 api
+      console.log(like_state);
+      //false일테니까 하트는 비어있어야함.
+      obj.setAttribute('data', "..\\icons\\like_heart_blank.svg");
+      const lands = querydoc.querySelectorAll(".heart_blank")
+        .forEach((element) =>
+          element.addEventListener("click", function () {
+            console.log("클릭했습니다 - heart_blank");
+            //채워준다.
+            obj.setAttribute('data', "..\\icons\\like_heart.svg")
+            $.ajax({
+              type: "POST",
+              url: "http://13.209.87.88:8080/posts/great/" + decodeURI(receivedData),
+              headers: { Authorization: window.sessionStorage.getItem("JWT") },
+              data: {},
+              success: function (response) {
+                console.log(response);
+                location.reload();
+              },
+              error: (log) => { alert(log) }
+            })
+            location.reload();
+          }));
+    }
+
+    else if (like_state == true) {
+      //좋아요 삭제 api
+      console.log(like_state);
+      //true일테니까 하트는 비어있어야함.
+      obj.setAttribute('data', "..\\icons\\like_heart.svg");
+      const lands = querydoc.querySelectorAll(".heart_fill")
+        .forEach((element) =>
+          element.addEventListener("click", function () {
+            console.log("클릭했습니다 - heart_fill");
+            //비운다
+            obj.setAttribute('data', "..\\icons\\like_heart_blank.svg");
+
+            $.ajax({
+              type: "DELETE",
+              url: "http://13.209.87.88:8080/posts/great/" + decodeURI(receivedData),
+              headers: { Authorization: window.sessionStorage.getItem("JWT") },
+              data: {},
+              success: function (response) {
+                console.log(response);
+                location.reload();
+              },
+              error: (log) => { alert(log) }
+            })
+            location.reload();
+          }));
+    }
+
+
+  };
+}
+
+function not_user_like() {
+  document.getElementById('heart_obj').onload = e => {
+    const obj = document.getElementById('heart_obj');
+    const query = document.querySelector('#heart_obj');
+    console.log(query);
+
+    const querydoc = query.contentDocument;
+    console.log(querydoc);
+    //비회원이면 당연히 blank
+    const lands = querydoc.querySelectorAll(".heart_blank")
+      .forEach((element) =>
+        element.addEventListener("click", function () {
+          swal("로그인이 필요한 서비스입니다.", "로그인 페이지로 이동합니다.", "error").then(function () {
+            window.location.href = 'login_page.html';
+          });
+        }));
+  };
+}
+
+function user_make_comment() {
+  $(".input_area").attr('readonly', 'false');
+
+  $(".send-btn").click(function () {
+
+    var text = $(".input_area").val();
+
+    if (text == null || text.replaxe(/\s|/gi, "").length == 0) {
+      swal("내용이 없어요!", "내용을 입력해주세요.", "error");
+      $(".input_area").focus();
+    }
+
+    else {
+      var obj = { "context": text };
+      console.log(obj);
+      $.ajax({
+        type: "POST",
+        url: "http://13.209.87.88:8080/comments/post/" + decodeURI(receivedData),
+        headers: { Authorization: window.sessionStorage.getItem("JWT") },
+        contentType: "application/json",
+        data: JSON.stringify(obj),
+        success: function (response) {
+          console.log(response);
+        },
+        error: (log) => { alert(log) }
+      })
+    }
+
+
+  });
+}
+
+function not_user_make_comment() {
+  $(".input_area").attr('readonly', 'true');
+  $(".input_area").click(function () {
+    swal("로그인이 필요한 서비스입니다.", "로그인 페이지로 이동합니다.", "error").then(function () {
+      window.location.href = 'login_page.html';
+    });
+  });
+  $(".send-btn").click(function () {
+    swal("로그인이 필요한 서비스입니다.", "로그인 페이지로 이동합니다.", "error").then(function () {
+      window.location.href = 'login_page.html';
+    });
+  });
+}
+
+function dropdown_revise() {
+  var data = decodeURI(receivedData);
+  window.location.href = `post_revise_page.html?${data}`;
+}
+
+function dropdown_delete() {
+  swal({
+    title: "삭제하시겠습니까?",
+    text: "삭제된 글은 복구되지 않습니다!",
+    icon: "warning",
+    buttons: true,
+    dangerMode: true,
+  })
+    .then((willDelete) => {
+      if (willDelete) {
+        $.ajax({
+          type: "DELETE",
+          url: "http://13.209.87.88:8080/posts/" + decodeURI(receivedData),
+          headers: { Authorization: window.sessionStorage.getItem("JWT") },
+          data: {},
+          success: function (response) {
+            console.log(response);
+            swal("삭제 완료되었습니다.", {
+              icon: "success",
+            }).then(function () {
+              window.location.href = 'posts_list_page.html';
+          });
+
+          },
+          error: (log) => { alert(log) }
+        });
+      }
+      else {
+        swal("취소하였습니다.");
+      }
+    });
+}
+
+function dropdown_report() {
+  swal({
+    title: "신고하시겠습니까?",
+    text: "신고시, 관리자에게 접수되며 누적 신고수가 많을시 검토 후 조치됩니다.",
+    icon: "warning",
+    buttons: true,
+    dangerMode: true,
+  })
+    .then((willDelete) => {
+      if (willDelete) {
+        swal("신고 완료되었습니다. (미구현 - 0904)", {
+          icon: "success",
+        });
+      } else {
+        swal("취소되었습니다.");
+      }
+    });
+}
+
