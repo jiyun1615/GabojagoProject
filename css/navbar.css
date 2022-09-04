@@ -17,7 +17,7 @@ nav{
 }
 
 /*호버링*/
-.dropdown:hover .dropdown-menu{
+.dropdown.nav-class:hover .dropdown-menu.nav-class{
     display: block;
     margin-left: -1vw;
     height: 24vh;
@@ -29,19 +29,19 @@ nav{
 }
 
 /*드롭다운 요소들 마진값 및 상태변화에 따른 색 변화*/
-.dropdown-menu #first-item {
+.dropdown-menu.nav-class #first-item {
     margin-top: 16px;
 }
-.dropdown-item {
+.dropdown-item.nav-class {
     margin-top: 24px;
 }
-.dropdown-item:hover {
+.dropdown-item.nav-class:hover {
     background-color: #FFFFFF00;
 }
-.dropdown-item:focus {
+.dropdown-item.nav-class:focus {
     background-color: #FFFFFF00;
 }
-.dropdown-item:active {
+.dropdown-item.nav-class:active {
     background-color: black;
     color: white;
 }
@@ -72,26 +72,26 @@ nav{
 }
 /*브라우저 크기 관련 미디어 쿼리*/
 @media screen and (max-height:880px){
-    .dropdown:hover .dropdown-menu{
+    .dropdown.nav-class:hover .dropdown-menu.nav-class{
         height: auto;
     }
-    .dropdown-item {
+    .dropdown-item.nav-class {
         margin-top: 12px;
         margin-bottom: 24px;
     }
 }
 @media screen and (max-width:1199px){
-    .dropdown:hover .dropdown-menu{
+    .dropdown.nav-class:hover .dropdown-menu.nav-class{
         text-align: right;
         float: right;
         height: auto;
         margin-right: -2vw;
         border: #FFFFFF00;
     }
-    .dropdown-menu #first-item {
+    .dropdown-menu.nav-class #first-item {
         margin-top: 8px;
     }
-    .dropdown-item{
+    .dropdown-item.nav-class{
         margin-top: 8px;
         margin-bottom: 8px;
     }

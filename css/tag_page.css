@@ -100,13 +100,14 @@
 
 
 .icons{
-    width: 3vh;
+    width: 29px;
+    
 }
 
 .icon_btn{
-    background-color: #00000000; 
-    border-color: #00000000; 
-    width: 3vh;
+    background-color: #00000000;
+    border-color: #00000000;
+
 }
 
 .title_text{
@@ -126,6 +127,7 @@
 
 .dropdown.rg{
     margin-left : auto;
+    /* margin-right : 1%; */
 }
 
 
@@ -150,8 +152,8 @@
 .dropdown.rg:hover .dropdown-menu.rg{
     color: #FFFFFF;
     display: block;
-    margin-left: -28.5%;
-    height: 24vh;
+    
+    height: 220px;
     margin-top: -5px;
     background-color: #000000;
     border-top: #FFFFFF00;
@@ -161,41 +163,14 @@
 }
 
 /*브라우저 크기 관련 미디어 쿼리*/
-@media screen and (max-width:1919px){
-    .dropdown.rg:hover .dropdown-menu.rg{
-        margin-left: -32%;
-    }
-}
-@media screen and (max-width:1799px){
-    .title_text{
-        padding-right: 2.5%;
-    }
-    .dropdown.rg:hover .dropdown-menu.rg{
-        margin-left: -33%;
-    }
-}
-@media screen and (max-width:1499px){
-    .title_text{
-        padding-right: 3%;
-    }
-    .dropdown.rg:hover .dropdown-menu.rg{
-        margin-left: -34%;
-    }
-}
-@media screen and (max-width:1399px){
-    .title_text{
-        padding-right: 3.5%;
-    }
-    .dropdown.rg:hover .dropdown-menu.rg{
-        margin-left: -33%;
-    }
-}
-@media screen and (max-width:1199px){
+
+@media screen and (max-width:1459px){
     .title_text{
         padding-right: 4%;
     }
     .dropdown.rg{
         margin-left: 0;
+        
     }
     #sort_by{
         display:none
