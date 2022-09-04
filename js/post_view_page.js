@@ -105,9 +105,18 @@ function user_view() {
         var createdAt_index_end = time_comment.indexOf('.');
         var createdAt = time_comment.substr(createdAt_index + 1, createdAt_index_end);
 
+        var li_text = "";
+        if (userID == response.comments[i].id) {
+          li_text = `<li><a class="dropdown-item comment_revise" href="#" onclick="javascript:dropdown_revise_comment();">수정하기</a></li>
+          <li><a class="dropdown-item comment_delete" href="#" onclick="javascript:dropdown_delete_comment();">삭제하기</a></li>`;
+        }
+        else {
+          li_text = `<li><a class="dropdown-item disabled comment_revise" href="#" onclick="javascript:dropdown_revise_comment();">수정하기</a></li>
+          <li><a class="dropdown-item disabled comment_delete" href="#" onclick="javascript:dropdown_delete_comment();">삭제하기</a></li>`;
+        }
 
-        var tmpHtml = 
-        `<li class="list-group-item d-flex gap-3 py-3" aria-current="true">
+        var tmpHtml =
+          `<li class="list-group-item d-flex gap-3 py-3" aria-current="true">
             <img src="${response.comments[i].profilePhoto}" width="32" height="32"
               class="rounded-circle flex-shrink-0">
             <div class="d-flex gap-2 w-100 justify-content-between">
@@ -119,13 +128,13 @@ function user_view() {
               <small class="opacity-50 text-nowrap">${createdAt}</small>
               <a class="toggles" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"><img class="icons" id="dots" src="..\\icons\\three-dots-vertical.svg" alt="아이콘"></a>
               <ul class="dropdown-menu dropdown-menu-end comment" id="dropdown_menu"aria-labelledby="dropdownMenuButton2">
-                <li><a class="dropdown-item comment_revise" href="#" onclick="javascript:dropdown_revise_comment();">수정하기</a></li>
-                <li><a class="dropdown-item comment_delete" href="#" onclick="javascript:dropdown_delete_comment();">삭제하기</a></li>
+                ${li_text}
               </ul>
             </div>
             </div>
 
           </li>`
+
         $("#comment_area").append(tmpHtml);
       }
     },
@@ -199,9 +208,10 @@ function not_user_view() {
         var createdAt_index_end = time_comment.indexOf('.');
         var createdAt = time_comment.substr(createdAt_index + 1, createdAt_index_end);
 
+        var li_text = `<li><a class="dropdown-item comment_revise disabled" href="#">로그인이 필요합니다.</a></li>`;
 
-        var tmpHtml = 
-        `<li class="list-group-item d-flex gap-3 py-3" aria-current="true">
+        var tmpHtml =
+          `<li class="list-group-item d-flex gap-3 py-3" aria-current="true">
             <img src="${response.comments[i].profilePhoto}" width="32" height="32"
               class="rounded-circle flex-shrink-0">
             <div class="d-flex gap-2 w-100 justify-content-between">
@@ -213,7 +223,7 @@ function not_user_view() {
               <small class="opacity-50 text-nowrap">${createdAt}</small>
               <a class="toggles" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"><img class="icons" id="dots" src="..\\icons\\three-dots-vertical.svg" alt="아이콘"></a>
               <ul class="dropdown-menu dropdown-menu-end comment" id="dropdown_menu"aria-labelledby="dropdownMenuButton2">
-                <li><a class="dropdown-item comment_revise disabled" href="#">로그인이 필요합니다.</a></li>
+              ${li_text}
               </ul>
             </div>
             </div>
@@ -384,7 +394,7 @@ function dropdown_delete() {
               icon: "success",
             }).then(function () {
               window.location.href = 'posts_list_page.html';
-          });
+            });
 
           },
           error: (log) => { alert(log) }
@@ -415,3 +425,64 @@ function dropdown_report() {
     });
 }
 
+function dropdown_revise_comment() {
+  swal("수정할 댓글 내용을 입력해주세요.", {
+    content: "input",
+  })
+    .then((value) => {
+      var obj = { "context": value };
+      $.ajax({
+        type: "PUT",
+        url: "http://13.209.87.88:8080/comments/" + decodeURI(receivedData),
+        headers: { Authorization: window.sessionStorage.getItem("JWT") },
+        contentType: "application/json",
+        data: JSON.stringify(obj),
+        success: function (response) {
+          console.log(response);
+          swal("수정 완료되었습니다.", {
+            icon: "success",
+          }).then(function () {
+            location.reload();
+          });
+
+        },
+        error: (log) => { alert(log) }
+      });
+
+
+
+    });
+}
+
+function dropdown_delete_comment() {
+  swal({
+    title: "삭제하시겠습니까?",
+    text: "삭제된 댓글은 복구되지 않습니다!",
+    icon: "warning",
+    buttons: true,
+    dangerMode: true,
+  })
+    .then((willDelete) => {
+      if (willDelete) {
+        $.ajax({
+          type: "DELETE",
+          url: "http://13.209.87.88:8080/comments/" + decodeURI(receivedData),
+          headers: { Authorization: window.sessionStorage.getItem("JWT") },
+          data: {},
+          success: function (response) {
+            console.log(response);
+            swal("삭제 완료되었습니다.", {
+              icon: "success",
+            }).then(function () {
+              location.reload();
+            });
+
+          },
+          error: (log) => { alert(log) }
+        });
+      }
+      else {
+        swal("취소하였습니다.");
+      }
+    });
+}
