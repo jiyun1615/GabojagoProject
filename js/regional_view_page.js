@@ -13,7 +13,6 @@ var page = 0;       //불러올 페이지
 // 스크롤 일어나기 전에 있어야 할 데이터들..
 
 function detailPage(num) {
-  console.log("성공!");
   window.location.href = 'hotPlaceDetail.html?spotID=' + num;
 }
 
@@ -54,7 +53,8 @@ function default_filter() {
         $("#exampleArr").append(tmpHtml);
       }
     },
-    error: (log) => { alert("실패" + log) }
+    error: (xhr) => { 
+      alert("서버 요청 상태코드 : " + xhr.status) }
   })
 
   loading = false;    //중복실행여부 확인 변수
@@ -98,7 +98,8 @@ function next_load_default() {
       page++; //페이지 증가
       loading = false;    //실행 가능 상태로 변경
     },
-    error: (log) => { alert("실패" + log) }
+    error: (xhr) => { 
+      alert("서버 요청 상태코드 : " + xhr.status) }
   })
 }
 

@@ -24,6 +24,7 @@
     overflow: auto; 
     margin-bottom: 1vh; 
     margin-top: 1vh;
+    
   }
   textarea{
     resize: none; 
@@ -31,6 +32,7 @@
     margin-right: 1.5vw; 
     border-radius: 10px; 
     outline: none;
+    padding-left: 1%;
   }
 
   .send-btn{
@@ -42,10 +44,7 @@
     padding: 1.5%; 
     border-radius: 15px;
   }
-<<<<<<< HEAD
-=======
 
   .like_area:hover{
     cursor: pointer; 
   }
->>>>>>> a13e4e0ecf7fb28e974412cbd9a87abbcaa72051

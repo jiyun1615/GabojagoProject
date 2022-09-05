@@ -7,13 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
-        integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+
     <link rel="stylesheet" href="..\css\post_revise_page.css">
-
-
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script language="javascript" src="..\js\navbar.js"></script>
-    <script language="javascript" src="..\js\post_revise_page.js"></script>
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Hahmlet:wght@500&display=swap');
@@ -29,10 +25,10 @@
     </div>
 
     <div class="page_contents">
-        <form action="https://www.musi.co.kr/test/test.php" method="POST">
+        <form>
             <div class="contents_titles">
 
-                <div class="row">
+                <div class="row" id="title_row">
                     <p class="label_title">작성자</p>
                     <p class="label_bar"> | </p>
                 </div>
@@ -40,80 +36,94 @@
                 <div class="row">
                     <p class="label_title">제 &nbsp&nbsp목</p>
                     <p class="label_bar"> | </p>
-                    <input type="text" class="textarea_title" name="title" />
+                    <input type="text" id="title" class="textarea_title" name="title" />
                 </div>
             </div>
 
-            <textarea class="textarea_field" style="resize: none;" name="context" placeholder="내용을 입력해주세요."></textarea>
+            <textarea class="textarea_field" id="context" style="resize: none;" name="context"
+                placeholder="내용을 입력해주세요."></textarea>
 
-            <!-- 이미지 넣는 거 -->
-            <input type="file" class="real-upload" accept="image/*" name="files" required multiple>
-            <div class="upload"></div>
+
+            <div class="__add" id="addFile">
+                <li>
+                    <input type="file" id="QnA03" name="file_path" class="files" style="width: 231px; height: 46px;"
+                        required multiple>
+                    <button type="button" class="_add" style="vertical-align: sub">추가</button>
+                </li>
+            </div>
+            <ul class="image-preview"></ul>
+            <div class="__add" id="addFile">
+                <li>
+                    <input type="file" id="QnA03" name="file_path" class="files" style="width: 231px; height: 46px;"
+                        required multiple>
+                    <button type="button" class="_add" style="vertical-align: sub">추가</button>
+                </li>
+            </div>
             <ul class="image-preview"></ul>
 
             <div class="row">
                 <label>
-                    <input type="checkbox" name="tags[]" value="1" />
+                    <input type="checkbox" id="tags" name="tags" value="1" />
                     <div class="icon-box">
                         <span>#야경</span>
                     </div>
                 </label>
                 <label>
-                    <input type="checkbox" name="tags[]" value="2" />
+                    <input type="checkbox" id="tags" name="tags" value="2" />
                     <div class="icon-box">
                         <span>#이색체험</span>
                     </div>
                 </label>
                 <label>
-                    <input type="checkbox" name="tags[]" value="3" />
+                    <input type="checkbox" id="tags" name="tags" value="3" />
                     <div class="icon-box">
                         <span>#피크닉</span>
                     </div>
                 </label>
                 <label>
-                    <input type="checkbox" name="tags[]" value="4" />
+                    <input type="checkbox" id="tags" name="tags" value="4" />
                     <div class="icon-box">
                         <span>#데이트</span>
                     </div>
                 </label>
                 <label>
-                    <input type="checkbox" name="tags[]" value="5" />
+                    <input type="checkbox" id="tags" name="tags" value="5" />
                     <div class="icon-box">
                         <span>#커피맛집</span>
                     </div>
                 </label>
                 <label>
-                    <input type="checkbox" name="tags[]" value="6" />
+                    <input type="checkbox" id="tags" name="tags" value="6" />
                     <div class="icon-box">
                         <span>#디저트맛집</span>
                     </div>
                 </label>
                 <label>
-                    <input type="checkbox" name="tags[]" value="7" />
+                    <input type="checkbox" id="tags" name="tags" value="7" />
                     <div class="icon-box">
                         <span>#분위기있는</span>
                     </div>
                 </label>
                 <label>
-                    <input type="checkbox" name="tags[]" value="8" />
+                    <input type="checkbox" id="tags" name="tags" value="8" />
                     <div class="icon-box">
                         <span>#든든한</span>
                     </div>
                 </label>
                 <label>
-                    <input type="checkbox" name="tags[]" value="9" />
+                    <input type="checkbox" id="tags" name="tags" value="9" />
                     <div class="icon-box">
                         <span>#신나는</span>
                     </div>
                 </label>
                 <label>
-                    <input type="checkbox" name="tags[]" value="10" />
+                    <input type="checkbox" id="tags" name="tags" value="10" />
                     <div class="icon-box">
                         <span>#파릇파릇한</span>
                     </div>
                 </label>
                 <label>
-                    <input type="checkbox" name="tags[]" value="11" />
+                    <input type="checkbox" id="tags" name="tags" value="11" />
                     <div class="icon-box">
                         <span>#기분전환</span>
                     </div>
@@ -127,14 +137,16 @@
         </form>
     </div>
 
-    <script>
-        const realUpload = document.querySelector('.real-upload');
-        const upload = document.querySelector('.upload');
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+        integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 
-        upload.addEventListener('click', () => realUpload.click());
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+        crossorigin="anonymous"></script>
 
-        realUpload.addEventListener('change', getImageFiles);
-    </script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script language="javascript" src="..\js\navbar.js"></script>
+    <script language="javascript" src="..\js\post_revise_page.js"></script>
 </body>
 
 </html>

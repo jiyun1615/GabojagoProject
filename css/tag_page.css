@@ -32,7 +32,6 @@
 }
 
 .tagButton {
-    margin-bottom: 10px;
     margin-left : 2vw;
     margin-right : 8vw;
 }
@@ -47,7 +46,7 @@
     background-color: white;
     color : gray;
     border: 1px gray solid;
-    margin-bottom: 5px;
+    margin-bottom: 2.5vh;
 }
 
 .btn1:focus {
@@ -84,11 +83,17 @@
     -webkit-box-orient: vertical;
     word-wrap:break-word; 
 }
+.pageNum{
+    text-align: center;
+}
+
 
 .pageBtn {
+    display :inline-block;
     border : 0;
     color : gray;
     background-color: white;
+    margin-top : 5px;
     margin-right : 10px;
     margin-bottom : 5px;
 }
@@ -101,13 +106,14 @@
 
 
 .icons{
-    width: 3vh;
+    width: 29px;
+    
 }
 
 .icon_btn{
-    background-color: #00000000; 
-    border-color: #00000000; 
-    width: 3vh;
+    background-color: #00000000;
+    border-color: #00000000;
+
 }
 
 .title_text{
@@ -126,8 +132,8 @@
 }
 
 .dropdown.rg{
-    display: flex;
     margin-left : auto;
+    /* margin-right : 1%; */
 }
 
 
@@ -152,13 +158,31 @@
 .dropdown.rg:hover .dropdown-menu.rg{
     color: #FFFFFF;
     display: block;
-    margin-left: -28.5%;
-    height: 24vh;
+    
+    height: 220px;
     margin-top: -5px;
     background-color: #000000;
     border-top: #FFFFFF00;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
     z-index : 100;
+}
+
+/*브라우저 크기 관련 미디어 쿼리*/
+
+@media screen and (max-width:1459px){
+    .title_text{
+        padding-right: 4%;
+    }
+    .dropdown.rg{
+        margin-left: 0;
+        
+    }
+    #sort_by{
+        display:none
+    }
+    #down_icon{
+        filter: invert(50%) sepia(92%) saturate(438%) hue-rotate(88deg) brightness(96%) contrast(85%);
+    }
 }
 
