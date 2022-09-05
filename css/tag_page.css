@@ -83,11 +83,17 @@
     -webkit-box-orient: vertical;
     word-wrap:break-word; 
 }
+.pageNum{
+    text-align: center;
+}
+
 
 .pageBtn {
+    display :inline-block;
     border : 0;
     color : gray;
     background-color: white;
+    margin-top : 5px;
     margin-right : 10px;
     margin-bottom : 5px;
 }
@@ -179,3 +185,4 @@
         filter: invert(50%) sepia(92%) saturate(438%) hue-rotate(88deg) brightness(96%) contrast(85%);
     }
 }
+

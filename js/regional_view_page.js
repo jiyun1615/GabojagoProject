@@ -13,7 +13,6 @@ var page = 0;       //불러올 페이지
 // 스크롤 일어나기 전에 있어야 할 데이터들..
 
 function detailPage(num) {
-  console.log("성공!");
   window.location.href = 'hotPlaceDetail.html?spotID=' + num;
 }
 

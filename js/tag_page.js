@@ -4,18 +4,18 @@ function btn_onclick(num) {
 }
 
 function dropdown_onclick(num) {
-    switch(num){
-        case 1 : 
-        $("#sort_by").text("태그별");
-        break;
+    switch (num) {
+        case 1:
+            $("#sort_by").text("태그별");
+            break;
 
-        case 20 : 
-        $("#sort_by").text("조회순");
-        break;
+        case 20:
+            $("#sort_by").text("조회순");
+            break;
 
-        case 21 : 
-        $("#sort_by").text("북마크");
-        break;
+        case 21:
+            $("#sort_by").text("북마크");
+            break;
     }
     callApiInfo(num, "1");
     noneTag(num); //태그 안보이게.
@@ -27,6 +27,28 @@ var tagNum = 0;
 
 function pageBtn_onclick(num) {
     callApiInfo(tagNum, num);
+}
+
+function pagination_onclick(str, num) {
+    
+    switch (str) {
+        case "prev":
+            if (num != 0) {
+                console.log(str + num);
+                callApiInfo(tagNum, num);
+                break;
+            }
+            break;
+
+        case "next":
+            if (num <= totalPage) {
+                console.log(str + num);
+                callApiInfo(tagNum, num);
+                break;
+            }
+        
+            break;
+    }
 }
 
 function callApiInfo(num, pageNumber) {
@@ -90,15 +112,51 @@ function callApiInfo(num, pageNumber) {
                             </div>`
                 $("#exampleArr").append(tmpHtml);
             }
-            for (var i = 1; i <= totalPage; i++) {
-                if(i==pageNumber) var tmpHtml1 = `<button type="radio" class="pageBtn" id="pageBtn${i}" onclick="pageBtn_onclick(${i})" style="border-bottom:1px solid gray">${i}</button>`
-                else var tmpHtml1 = `<button type="radio" class="pageBtn" id="pageBtn${i}" onclick="pageBtn_onclick(${i})">${i}</button>`
+
+
+            //여기서 일정 갯수 이상이면 중첩 페이지네이션이 되도록 해야함...
+            if (totalPage < 25) {
+                for (var i = 1; i <= totalPage; i++) {
+                    if (i == pageNumber) var tmpHtml1 = `<button type="radio" class="pageBtn" id="pageBtn${i}" onclick="pageBtn_onclick(${i})" style="border-bottom:1px solid gray">${i}</button>`
+                    else var tmpHtml1 = `<button type="radio" class="pageBtn" id="pageBtn${i}" onclick="pageBtn_onclick(${i})">${i}</button>`
+                    $("#pageNum").append(tmpHtml1);
+                }
+            }
+            else {
+                var current_P = Math.floor(pageNumber / 25);
+                var current_P_e = Math.floor(pageNumber % 25);
+                var limit = 26;
+                var i = 1;
+                if (current_P_e != 0 && current_P != 0) {
+                    i = Math.floor(i + current_P * 25);
+                    limit = Math.floor(limit + current_P * 25);
+                }
+                else if(current_P_e == 0 && current_P != 0) {
+                    i = Math.floor(i + pageNumber - 25);
+                    limit = Math.floor(pageNumber+1);
+                }
+
+
+                var tmpHtml1 = `<button type="radio" class="pageBtn" id="pageBtn${i - 1}" onclick="pagination_onclick('prev',${i-1})">이전</button>`
+
                 $("#pageNum").append(tmpHtml1);
+                for (i; i < limit && i <= totalPage; i++) {
+                    if (i == pageNumber) tmpHtml1 = `<button type="radio" class="pageBtn" id="pageBtn${i}" onclick="pageBtn_onclick(${i})" style="border-bottom:1px solid gray">${i}</button>`
+                    else tmpHtml1 = `<button type="radio" class="pageBtn" id="pageBtn${i}" onclick="pageBtn_onclick(${i})">${i}</button>`
+                    $("#pageNum").append(tmpHtml1);
+
+                };
+                i-=1;
+                tmpHtml1 = `<button type="radio" class="pageBtn" id="pageBtn${i + 1}" style="margin-right : 0px;" onclick="pagination_onclick('next',${i+1})">다음</button>`
+                $("#pageNum").append(tmpHtml1);
+
             }
 
+
         },
-        error: (xhr) => { 
-          alert("서버 요청 상태코드 : " + xhr.status) }
+        error: (xhr) => {
+            alert("서버 요청 상태코드 : " + xhr.status)
+        }
     })
 
 }
@@ -120,26 +178,6 @@ function tagChange(num) {
     btnElement.style.backgroundColor = "gray";
     btnElement.style.color = "white";
 }
-
-
-// 버튼 클릭시 디자인 pageNum
-// 아무래도 이부분은 페이지를 선택하면 ajax로 덮어씌워지는것같아서 아예 ajax 부를때 비교하도록 바꿨어!
-// function pageBtnChange(num) {
-//     console.log("페이지 클릭 pageBtn : " + num);
-//     const btnElement1 = document.getElementById("pageBtn" + num);
-//     btnElement1.style.borderBottom = "1px solid #000000";
-
-//     for (i = 1; i <= totalPage; i++) {
-//         if (i != num) {
-//             console.log("페이지 클릭 pageBtn : " + num + " i는 "+ i);
-//             const btnElement = document.getElementById("pageBtn" + i);
-//             btnElement.style.borderColor = "white";
-//         }
-//     }
-
-
-
-// }
 
 
 function noneTag(num) {
