@@ -31,7 +31,7 @@ $.ajax({
     for (var i = 0; i < response.length; i++) {
       var tmpHtml =
         `<div class="swiper-slide">
-      <div class="container-xxl">
+      <div class="container-xl">
         <div class="row">
           <div class="col-4">
             <img class="item_img" src="" width="100%" height="100%">

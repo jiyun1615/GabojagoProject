@@ -46,11 +46,13 @@ nav{
     color: white;
 }
 .page_title {
+
     margin-right: 16px;
     margin-left: 16px;
     margin-bottom : 20px;
     background-color: black;
-    height: 56px;
+    height: 6vh;
+    /* height: 56px; */
     border-radius: 10px;
     position: relative;
 }
