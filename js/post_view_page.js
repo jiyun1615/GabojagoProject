@@ -253,7 +253,6 @@ function user_like() {
 
     if (like_state == false) {
       //좋아요 api
-      console.log(like_state);
       //false일테니까 하트는 비어있어야함.
       obj.setAttribute('data', "..\\icons\\like_heart_blank.svg");
       const lands = querydoc.querySelectorAll(".heart_blank")
@@ -280,7 +279,6 @@ function user_like() {
 
     else if (like_state == true) {
       //좋아요 삭제 api
-      console.log(like_state);
       //true일테니까 하트는 비어있어야함.
       obj.setAttribute('data', "..\\icons\\like_heart.svg");
       const lands = querydoc.querySelectorAll(".heart_fill")
