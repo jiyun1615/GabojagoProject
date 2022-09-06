@@ -29,7 +29,8 @@
     </div>
 
     <div class="page_contents">
-        <form action="https://www.musi.co.kr/test/test.php" method="POST">
+        <!-- <form id="testForm" name="testForm" action="https://www.musi.co.kr/test/test.php" method="POST"> -->
+        <form>
             <div class="contents_titles">
 
                 <div class="row">
@@ -40,81 +41,90 @@
                 <div class="row">
                     <p class="label_title">제 &nbsp&nbsp목</p>
                     <p class="label_bar"> | </p>
-                    <input type="text" class="textarea_title" name="title" />
+                    <input type="text" id="title" class="textarea_title" name="title" />
                 </div>
             </div>
 
-            <textarea class="textarea_field" style="resize: none;" name="context" placeholder="내용을 입력해주세요."></textarea>
+            <textarea class="textarea_field" id="context" style="resize: none;" name="context"
+                placeholder="내용을 입력해주세요."></textarea>
 
             <!-- 이미지 넣는 거 -->
-            
-            <input type="file" class="real-upload" accept="image/*" name="files" required multiple>
+            <!-- <input type="file" class="real-upload" accept="image/*" name="files" required multiple>
             <div class="upload"></div>
+            <ul class="image-preview"></ul> -->
+
+            <div class="__add" id="addFile">
+                <li>
+                    <input type="file" id="QnA03" name="file_path" class="files" style="width: 231px; height: 46px;"
+                        required multiple>
+                    <button type="button" class="_add" style="vertical-align: sub">추가</button>
+                </li>
+            </div>
             <ul class="image-preview"></ul>
 
             <div class="row">
                 <label>
-                    <input type="checkbox" name="tags[]" value="1" />
+                    <input type="checkbox" id="tags" name="tags" value=1 />
                     <div class="icon-box">
                         <span>#야경</span>
                     </div>
                 </label>
                 <label>
-                    <input type="checkbox" name="tags[]" value="2" />
+                    <input type="checkbox" id="tags" name="tags" value=2 />
                     <div class="icon-box">
                         <span>#이색체험</span>
                     </div>
                 </label>
                 <label>
-                    <input type="checkbox" name="tags[]" value="3" />
+                    <input type="checkbox" id="tags" name="tags" value=3 />
                     <div class="icon-box">
                         <span>#피크닉</span>
                     </div>
                 </label>
                 <label>
-                    <input type="checkbox" name="tags[]" value="4" />
+                    <input type="checkbox" id="tags" name="tags" value=4 />
                     <div class="icon-box">
                         <span>#데이트</span>
                     </div>
                 </label>
                 <label>
-                    <input type="checkbox" name="tags[]" value="5" />
+                    <input type="checkbox" id="tags" name="tags" value=5 />
                     <div class="icon-box">
                         <span>#커피맛집</span>
                     </div>
                 </label>
                 <label>
-                    <input type="checkbox" name="tags[]" value="6" />
+                    <input type="checkbox" id="tags" name="tags" value=6 />
                     <div class="icon-box">
                         <span>#디저트맛집</span>
                     </div>
                 </label>
                 <label>
-                    <input type="checkbox" name="tags[]" value="7" />
+                    <input type="checkbox" id="tags" name="tags" value=7 />
                     <div class="icon-box">
                         <span>#분위기있는</span>
                     </div>
                 </label>
                 <label>
-                    <input type="checkbox" name="tags[]" value="8" />
+                    <input type="checkbox" id="tags" name="tags" value=8 />
                     <div class="icon-box">
                         <span>#든든한</span>
                     </div>
                 </label>
                 <label>
-                    <input type="checkbox" name="tags[]" value="9" />
+                    <input type="checkbox" id="tags" name="tags" value=9 />
                     <div class="icon-box">
                         <span>#신나는</span>
                     </div>
                 </label>
                 <label>
-                    <input type="checkbox" name="tags[]" value="10" />
+                    <input type="checkbox" id="tags" name="tags" value=10 />
                     <div class="icon-box">
                         <span>#파릇파릇한</span>
                     </div>
                 </label>
                 <label>
-                    <input type="checkbox" name="tags[]" value="11" />
+                    <input type="checkbox" id="tags" name="tags" value=11 />
                     <div class="icon-box">
                         <span>#기분전환</span>
                     </div>
@@ -126,13 +136,110 @@
             </div>
 
         </form>
+        <script>
+            var formData = new FormData();
+            var data;
+            var fileInput;
+            var fileList;
+
+
+
+            const filesInput = document.querySelector("input[type=file]");
+            filesInput.addEventListener("change", () => {
+                console.log(filesInput);
+                console.log(filesInput.files);
+
+                fileList = filesInput.files;
+                console.log(`You've selected: ${fileList.length} file(s)`);
+                //아래는..왜안되는지는 모르겠으나 ,,,,
+                // fileInput = $('.files');
+                // console.log("fileInput length : " + fileInput.length);
+
+            });
+
+            $("form").submit(function (event) {
+                var total_cnt = 0;
+                var tagsArr = new Array();
+                $('input:checkbox[name="tags"]').each(function () {
+                    if (this.checked) {
+                        tagsArr[total_cnt] = Number(this.value);
+                        total_cnt++;
+                    }
+                });
+                console.log("tags : " + tagsArr);
+                //기본 전송 데이터
+                data = {
+                    "email": "user@gabojago.com",
+                    "title": $("#title").val(),
+                    "context": $("#context").val(),
+                    "tags": tagsArr
+                }
+
+                console.log("stringify(data) : " + JSON.stringify(data));
+
+                //이미지 넣기
+                // for (var i = 0; i < fileInput.length; i++) {
+                //     if (fileInput[i].files.length > 0) {
+                //         for (var j = 0; j < fileInput[i].files.length; j++) {
+                //             console.log("fileInput[i].files[j] :::" + fileInput[i].files[j]);
+                //             formData.append('file', $('.files')[i].files[j]);
+                //         }
+                //     }
+                // }
+
+                for (var i = 0; i < fileList.length; i++) {
+                    console.log(fileList[i]);
+                    formData.append('file', fileList[i]);
+                }
+
+
+                formData.append('key', new Blob([JSON.stringify(data)], { type: "application/json" }));
+                /* key 확인하기 */
+                for (let key of formData.keys()) {
+                    console.log("============key=============");
+                    console.log(key);
+                    console.log("============================");
+                }
+
+                /* value 확인하기 */
+                for (let value of formData.values()) {
+                    console.log("============value=============");
+                    console.log(value);
+                    console.log("==============================");
+                }
+            });
+
+
+            //이게 맞나.. 실험을 어케해보지
+            $.ajax({
+                url: "http://13.209.87.88:8080:/posts",
+                headers: { Authorization: window.sessionStorage.getItem("JWT") },
+                data: formData,
+                contentType: false,
+                processData: false,
+                enctype: 'multipart/form-data',
+                success: function (data) {
+                    if (result.success == true) {
+                        alert('');
+                    } else {
+                        alert("실패");
+                    }
+                }
+            })
+
+        </script>
     </div>
 
     <script>
-        const realUpload = document.querySelector('.real-upload');
-        const upload = document.querySelector('.upload');
+        // const realUpload = document.querySelector('.real-upload');
+        // const upload = document.querySelector('.upload');
 
-        upload.addEventListener('click', () => realUpload.click());
+        // upload.addEventListener('click', () => realUpload.click());
+
+        // realUpload.addEventListener('change', getImageFiles);
+
+
+        const realUpload = document.querySelector('.files');
 
         realUpload.addEventListener('change', getImageFiles);
     </script>

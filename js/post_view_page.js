@@ -5,6 +5,7 @@ var time_post = 0;
 var time_comment = 0;
 //글 작성자와 댓글 작성자, 이 둘은 본인확인이 필요, 이것은 백엔드에서 해준다고함!
 
+var titleShared;
 var like_state = false;
 var userID = "";
 console.log(window.sessionStorage.getItem("JWT"));
@@ -51,6 +52,7 @@ function user_view() {
 
       $("#createdAt").text(createdAt);
       $("#title").text(response.title);
+      titleShared = response.title;
       $("#viewcnt").text(response.viewCnt);
       $(".text_area").text(response.context);
       $("#likecnt").text("+ " + response.greatCnt);
@@ -164,6 +166,7 @@ function not_user_view() {
 
       $("#createdAt").text(createdAt);
       $("#title").text(response.title);
+      titleShared = response.title;
       $("#viewcnt").text(response.viewCnt);
       $(".text_area").text(response.context);
       $("#likecnt").text("+ " + response.greatCnt);
@@ -245,6 +248,28 @@ function not_user_view() {
   });
 }
 
+var shareUrl = "http://13.209.87.88/post_view_page.html?"+decodeURI(receivedData);
+
+function sendLinkFacebook(){
+  var facebook_share_url = "https://www.facebook.com/sharer/sharer.php?u=" + shareUrl;
+  console.log(facebook_share_url);
+  window.open(facebook_share_url,
+              'Share on Facebook',
+              'scrollbars=no, width=500, height=500');
+            }   
+            function sendLinkTwitter(){
+              window.open("https://twitter.com/share?text="+titleShared+"&url="+shareUrl,
+                          'Share on Twitter',
+                          'scrollbars=no, width=500, height=500');
+            }
+            function sendLinkNaver(){
+              var naver_root_url = "http://share.naver.com/web/shareView.nhn?url="
+              var naver_share_url = naver_root_url+encodeURI(shareUrl)+"&title="+encodeURI(titleShared);
+              window.open(naver_share_url,
+                          'Share on Naver',
+                          'scrollbars=no, width=500, height=500');  
+                        }
+
 function user_like() {
   document.getElementById('heart_obj').onload = e => {
     const obj = document.getElementById('heart_obj');
@@ -268,12 +293,10 @@ function user_like() {
               data: {},
               success: function (response) {
                 console.log(response);
-                location.reload();
               },
               error: (xhr) => { 
                 alert("서버 요청 상태코드 : " + xhr.status) }
             });
-            location.reload();
           }));
     }
 
@@ -295,12 +318,10 @@ function user_like() {
               data: {},
               success: function (response) {
                 console.log(response);
-                location.reload();
               },
               error: (xhr) => { 
                 alert("서버 요청 상태코드 : " + xhr.status) }
             });
-            location.reload();
           }));
     }
 

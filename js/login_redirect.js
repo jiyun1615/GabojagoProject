@@ -21,7 +21,7 @@ window.sessionStorage.setItem("JWT", jwt);
 
 $.ajax({
   type: "POST",
-  url: "http://13.209.87.88:8080/users/kakao/login",
+  url: "http://13.209.87.88:8080/users/kakao/login/test",
   contentType: "application/json",
   data: JSON.stringify(obj),
   success: function(response, status, xhr){

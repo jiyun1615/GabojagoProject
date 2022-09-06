@@ -1,6 +1,7 @@
+var num;
 function callApiInfo(){
     const urlParams = (window.location.search);
-    const num = urlParams.split('=')[1];
+    num = urlParams.split('=')[1];
         console.log(num);
     
     $.ajax({
@@ -61,9 +62,34 @@ function bookmarkBtn_onclick() {
     if ($("#bookmarkBtn").css("color") == "rgb(0, 0, 0)") {
         $("#bookmarkBtn").removeClass("bookmark_btn");
         $("#bookmarkBtn").addClass("bookmark_btn_checked");
+        callBookMarkApi(num);
     } else {
         $("#bookmarkBtn").removeClass("bookmark_btn_checked");
         $("#bookmarkBtn").addClass("bookmark_btn");
+        returnBookMarkApi(num);
+    }
+}
+
+function callBookMarkApi(num) {
+    $.ajax({
+        type : "POST",
+        url : 'http://13.209.87.88:8080/hotplaces/bookmark',
+        headers: { Authorization: window.sessionStorage.getItem("JWT") },
+        data : {"spotId" : num},
+        success : function(data) {
+            console.log("success")
+        }
+    })
     }
     
+function returnBookMarkApi(num) {
+    $.ajax({
+        type : "POST",
+        url : 'http://13.209.87.88:8080/hotplaces/bookmark/' + num,
+        headers: { Authorization: window.sessionStorage.getItem("JWT") },
+        data : {},
+        success : function(data) {
+            console.log("success")
+        }
+    })
 }

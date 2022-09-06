@@ -41,7 +41,6 @@ function Change(num) {
             break;
     }
 
-    console.log("클릭");
 }
 
 function pageChange() {

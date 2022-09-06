@@ -1,50 +1,54 @@
-.page_contents{
-    margin-top: 4% !important;
-    margin-left: 15% !important; 
-    margin-right: 15% !important;
+.page_contents {
+  margin-top: 4% !important;
+  margin-left: 15% !important;
+  margin-right: 15% !important;
 }
 
-.post_info{
-    margin-top: 2%;
+.post_info {
+  margin-top: 2%;
 }
 
 .input_area::-webkit-scrollbar {
-    display: none;
-  }
+  display: none;
+}
 
-  .img_area img{
-    max-width: 100%; 
-    max-height: 100%;
-    margin-bottom: 2vh;
-  }
+.img_area img {
+  max-width: 100%;
+  max-height: 100%;
+  margin-bottom: 2vh;
+}
 
-  .text_area{
-    min-height:30vh; 
-    height: auto; 
-    overflow: auto; 
-    margin-bottom: 1vh; 
-    margin-top: 1vh;
-    
-  }
-  textarea{
-    resize: none; 
-    width: 42.5vw; 
-    margin-right: 1.5vw; 
-    border-radius: 10px; 
-    outline: none;
-    padding-left: 1%;
-  }
+.text_area {
+  min-height: 30vh;
+  height: auto;
+  overflow: auto;
+  margin-bottom: 1vh;
+  margin-top: 1vh;
+}
 
-  .send-btn{
-    border: 0; 
-    outline: none; 
-    background: black; 
-    color: white; 
-    cursor: pointer; 
-    padding: 1.5%; 
-    border-radius: 15px;
-  }
+textarea {
+  resize: none;
+  width: 42.5vw;
+  margin-right: 1.5vw;
+  border-radius: 10px;
+  outline: none;
+  padding-left: 1%;
+}
 
-  .like_area:hover{
-    cursor: pointer; 
-  }
+.send-btn {
+  border: 0;
+  outline: none;
+  background: black;
+  color: white;
+  cursor: pointer;
+  padding: 1.5%;
+  border-radius: 15px;
+}
+
+.like_area:hover {
+  cursor: pointer;
+}
+
+.socialLink {
+  margin-bottom: 20px;
+}
