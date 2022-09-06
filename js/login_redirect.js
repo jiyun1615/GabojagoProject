@@ -13,9 +13,7 @@ showSpinner();
 let code = new URL(window.location.href).searchParams.get('code')
 
 var obj = {"code":code};
-var test = new Object();
-test.code = code;
-console.log(test);
+
 var jwt ="";
 window.sessionStorage.setItem("JWT", jwt);
 
