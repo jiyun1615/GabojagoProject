@@ -52,3 +52,7 @@ textarea {
 .socialLink {
   margin-bottom: 20px;
 }
+
+#heart_obj_fill{
+  display: none;
+}

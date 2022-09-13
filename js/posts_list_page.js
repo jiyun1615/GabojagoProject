@@ -37,10 +37,11 @@ $.ajax({
       alert("서버 요청 상태코드 : " + xhr.status) }
 });
 
-function pageChange(num) {
+function pageChange_post(num) {
     switch (num) {
         case 0:
             if (window.sessionStorage.getItem("JWT") != null) {
+                console.log(num);
                 window.location.href = 'new_post_page.html';
             }
             else if (window.sessionStorage.getItem("JWT") == null) {

@@ -6,14 +6,12 @@ var time_comment = 0;
 //글 작성자와 댓글 작성자, 이 둘은 본인확인이 필요, 이것은 백엔드에서 해준다고함!
 
 var titleShared;
-var like_state = false;
+var like_state;
 var userID = "";
 console.log(window.sessionStorage.getItem("JWT"));
 if (window.sessionStorage.getItem("JWT") != null) {
   //회원일경우
   user_view();
-  user_like();
-  user_make_comment();
 }
 else if (window.sessionStorage.getItem("JWT") == null) {
   not_user_view();
@@ -27,13 +25,15 @@ function user_view() {
     type: "GET",
     url: "http://13.209.87.88:8080/users",
     headers: { Authorization: window.sessionStorage.getItem("JWT") },
+    async:false,
     data: {},
     success: function (response) {
       console.log(response);
       userID = response.id;
     },
-    error: (xhr) => { 
-      alert("서버 요청 상태코드 : " + xhr.status) }
+    error: (xhr) => {
+      alert("서버 요청 상태코드 : " + xhr.status)
+    }
   });
 
   $.ajax({
@@ -41,6 +41,7 @@ function user_view() {
     url: "http://13.209.87.88:8080/posts/" + decodeURI(receivedData),
     headers: { Authorization: window.sessionStorage.getItem("JWT") },
     data: {},
+    async:false,
     success: function (response) {
       console.log(response);
       like_state = response.greatState;
@@ -81,13 +82,16 @@ function user_view() {
         $(".post_report").removeClass('disabled');
       }
 
+      
 
     },
-    error: (xhr) => { 
-      alert("서버 요청 상태코드 : " + xhr.status) }
-
-  })
-
+    error: (xhr) => {
+      alert("서버 요청 상태코드 : " + xhr.status)
+    }
+      
+  });
+    user_like();
+      user_make_comment();
 
 
 
@@ -142,8 +146,9 @@ function user_view() {
         $("#comment_area").append(tmpHtml);
       }
     },
-    error: (xhr) => { 
-      alert("서버 요청 상태코드 : " + xhr.status) }
+    error: (xhr) => {
+      alert("서버 요청 상태코드 : " + xhr.status)
+    }
 
 
 
@@ -187,8 +192,9 @@ function not_user_view() {
 
 
     },
-    error: (xhr) => { 
-      alert("서버 요청 상태코드 : " + xhr.status) }
+    error: (xhr) => {
+      alert("서버 요청 상태코드 : " + xhr.status)
+    }
   });
 
   $(".post_revise").addClass('disabled');
@@ -240,46 +246,55 @@ function not_user_view() {
         $("#comment_area").append(tmpHtml);
       }
     },
-    error: (xhr) => { 
-      alert("서버 요청 상태코드 : " + xhr.status); }
+    error: (xhr) => {
+      alert("서버 요청 상태코드 : " + xhr.status);
+    }
 
 
 
   });
 }
 
-var shareUrl = "http://13.209.87.88/post_view_page.html?"+decodeURI(receivedData);
+var shareUrl = "http://13.209.87.88/post_view_page.html?" + decodeURI(receivedData);
 
-function sendLinkFacebook(){
+function sendLinkFacebook() {
   var facebook_share_url = "https://www.facebook.com/sharer/sharer.php?u=" + shareUrl;
   console.log(facebook_share_url);
   window.open(facebook_share_url,
-              'Share on Facebook',
-              'scrollbars=no, width=500, height=500');
-            }   
-            function sendLinkTwitter(){
-              window.open("https://twitter.com/share?text="+titleShared+"&url="+shareUrl,
-                          'Share on Twitter',
-                          'scrollbars=no, width=500, height=500');
-            }
-            function sendLinkNaver(){
-              var naver_root_url = "http://share.naver.com/web/shareView.nhn?url="
-              var naver_share_url = naver_root_url+encodeURI(shareUrl)+"&title="+encodeURI(titleShared);
-              window.open(naver_share_url,
-                          'Share on Naver',
-                          'scrollbars=no, width=500, height=500');  
-                        }
+    'Share on Facebook',
+    'scrollbars=no, width=500, height=500');
+}
+function sendLinkTwitter() {
+  window.open("https://twitter.com/share?text=" + titleShared + "&url=" + shareUrl,
+    'Share on Twitter',
+    'scrollbars=no, width=500, height=500');
+}
+function sendLinkNaver() {
+  var naver_root_url = "http://share.naver.com/web/shareView.nhn?url="
+  var naver_share_url = naver_root_url + encodeURI(shareUrl) + "&title=" + encodeURI(titleShared);
+  window.open(naver_share_url,
+    'Share on Naver',
+    'scrollbars=no, width=500, height=500');
+}
 
 function user_like() {
-  document.getElementById('heart_obj').onload = e => {
-    const obj = document.getElementById('heart_obj');
-    const query = document.querySelector('#heart_obj');
-    const querydoc = query.contentDocument;
 
-    if (like_state == false) {
-      //좋아요 api
-      //false일테니까 하트는 비어있어야함.
-      obj.setAttribute('data', "..\\icons\\like_heart_blank.svg");
+
+  if (like_state == false) {
+    //좋아요 api
+    //false일테니까 하트는 비어있어야함.
+    console.log("false");
+    document.getElementById('heart_obj_fill').onload = e => {
+      const obj = document.getElementById('heart_obj');
+      console.log("display none");
+      obj.style.display = 'none';
+    }
+
+    document.getElementById('heart_obj').onload = e => {
+      console.log("obj load");
+      const obj = document.getElementById('heart_obj');
+      const query = document.querySelector('#heart_obj');
+      const querydoc = query.contentDocument;
       const lands = querydoc.querySelectorAll(".heart_blank")
         .forEach((element) =>
           element.addEventListener("click", function () {
@@ -293,24 +308,38 @@ function user_like() {
               data: {},
               success: function (response) {
                 console.log(response);
+                location.reload();
               },
-              error: (xhr) => { 
-                alert("서버 요청 상태코드 : " + xhr.status) }
+              error: (xhr) => {
+                alert("서버 요청 상태코드 : " + xhr.status)
+              }
             });
           }));
-    }
+    };
+  }
 
-    else if (like_state == true) {
-      //좋아요 삭제 api
-      //true일테니까 하트는 비어있어야함.
-      obj.setAttribute('data', "..\\icons\\like_heart.svg");
+  else if (like_state == true) {
+    //좋아요 삭제 api
+    //true일테니까 하트는 채워있어야함.
+    console.log("true");
+    document.getElementById('heart_obj_fill').onload = e => {
+      const obj = document.getElementById('heart_obj');
+      obj.style.display = 'block';
+    }
+    document.getElementById('heart_obj').onload = e => {
+      const obj = document.getElementById('heart_obj');
+      obj.style.display = 'none';
+    }
+    document.getElementById('heart_obj').onload = e => {
+      const obj = document.getElementById('heart_obj');
+      const query = document.querySelector('#heart_obj');
+      const querydoc = query.contentDocument;
       const lands = querydoc.querySelectorAll(".heart_fill")
         .forEach((element) =>
           element.addEventListener("click", function () {
             console.log("클릭했습니다 - heart_fill");
             //비운다
             obj.setAttribute('data', "..\\icons\\like_heart_blank.svg");
-
             $.ajax({
               type: "DELETE",
               url: "http://13.209.87.88:8080/posts/great/" + decodeURI(receivedData),
@@ -319,14 +348,15 @@ function user_like() {
               success: function (response) {
                 console.log(response);
               },
-              error: (xhr) => { 
-                alert("서버 요청 상태코드 : " + xhr.status) }
+              error: (xhr) => {
+                alert("서버 요청 상태코드 : " + xhr.status)
+              }
             });
           }));
-    }
+    };
+  }
 
 
-  };
 }
 
 function not_user_like() {
@@ -372,8 +402,9 @@ function user_make_comment() {
         success: function (response) {
           console.log(response);
         },
-        error: (xhr) => { 
-          alert("서버 요청 상태코드 : " + xhr.status) }
+        error: (xhr) => {
+          alert("서버 요청 상태코드 : " + xhr.status)
+        }
       });
     }
 
@@ -424,8 +455,9 @@ function dropdown_delete() {
             });
 
           },
-          error: (xhr) => { 
-            alert("서버 요청 상태코드 : " + xhr.status) }
+          error: (xhr) => {
+            alert("서버 요청 상태코드 : " + xhr.status)
+          }
         });
       }
       else {
@@ -474,8 +506,9 @@ function dropdown_revise_comment() {
           });
 
         },
-        error: (xhr) => { 
-          alert("서버 요청 상태코드 : " + xhr.status) }
+        error: (xhr) => {
+          alert("서버 요청 상태코드 : " + xhr.status)
+        }
       });
 
 
@@ -507,8 +540,9 @@ function dropdown_delete_comment() {
             });
 
           },
-          error: (xhr) => { 
-            alert("서버 요청 상태코드 : " + xhr.status) }
+          error: (xhr) => {
+            alert("서버 요청 상태코드 : " + xhr.status)
+          }
         });
       }
       else {
