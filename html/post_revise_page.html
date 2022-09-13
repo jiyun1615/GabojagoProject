@@ -28,9 +28,9 @@
         <form>
             <div class="contents_titles">
 
-                <div class="row" id="title_row">
+                <div class="row">
                     <p class="label_title">작성자</p>
-                    <p class="label_bar"> | </p>
+                    <p class="label_bar author"> | </p>
                 </div>
 
                 <div class="row">
@@ -43,87 +43,79 @@
             <textarea class="textarea_field" id="context" style="resize: none;" name="context"
                 placeholder="내용을 입력해주세요."></textarea>
 
-
             <div class="__add" id="addFile">
                 <li>
-                    <input type="file" id="QnA03" name="file_path" class="files" style="width: 231px; height: 46px;"
+                    <input type="file" id="QnA03" name="file_path" class="files" style="width: 231px; height: 46px; margin-top: 6px;"
                         required multiple>
-                    <button type="button" class="_add" style="vertical-align: sub">추가</button>
                 </li>
             </div>
+            
             <ul class="image-preview"></ul>
-            <div class="__add" id="addFile">
-                <li>
-                    <input type="file" id="QnA03" name="file_path" class="files" style="width: 231px; height: 46px;"
-                        required multiple>
-                    <button type="button" class="_add" style="vertical-align: sub">추가</button>
-                </li>
-            </div>
-            <ul class="image-preview"></ul>
+            <ul class="ex-image-preview"></ul>
 
             <div class="row">
                 <label>
-                    <input type="checkbox" id="tags" name="tags" value="1" />
+                    <input type="checkbox" id="tags" name="tags" value=1 />
                     <div class="icon-box">
                         <span>#야경</span>
                     </div>
                 </label>
                 <label>
-                    <input type="checkbox" id="tags" name="tags" value="2" />
+                    <input type="checkbox" id="tags" name="tags" value=2 />
                     <div class="icon-box">
                         <span>#이색체험</span>
                     </div>
                 </label>
                 <label>
-                    <input type="checkbox" id="tags" name="tags" value="3" />
+                    <input type="checkbox" id="tags" name="tags" value=3 />
                     <div class="icon-box">
                         <span>#피크닉</span>
                     </div>
                 </label>
                 <label>
-                    <input type="checkbox" id="tags" name="tags" value="4" />
+                    <input type="checkbox" id="tags" name="tags" value=4 />
                     <div class="icon-box">
                         <span>#데이트</span>
                     </div>
                 </label>
                 <label>
-                    <input type="checkbox" id="tags" name="tags" value="5" />
+                    <input type="checkbox" id="tags" name="tags" value=5 />
                     <div class="icon-box">
                         <span>#커피맛집</span>
                     </div>
                 </label>
                 <label>
-                    <input type="checkbox" id="tags" name="tags" value="6" />
+                    <input type="checkbox" id="tags" name="tags" value=6 />
                     <div class="icon-box">
                         <span>#디저트맛집</span>
                     </div>
                 </label>
                 <label>
-                    <input type="checkbox" id="tags" name="tags" value="7" />
+                    <input type="checkbox" id="tags" name="tags" value=7 />
                     <div class="icon-box">
                         <span>#분위기있는</span>
                     </div>
                 </label>
                 <label>
-                    <input type="checkbox" id="tags" name="tags" value="8" />
+                    <input type="checkbox" id="tags" name="tags" value=8 />
                     <div class="icon-box">
                         <span>#든든한</span>
                     </div>
                 </label>
                 <label>
-                    <input type="checkbox" id="tags" name="tags" value="9" />
+                    <input type="checkbox" id="tags" name="tags" value=9 />
                     <div class="icon-box">
                         <span>#신나는</span>
                     </div>
                 </label>
                 <label>
-                    <input type="checkbox" id="tags" name="tags" value="10" />
+                    <input type="checkbox" id="tags" name="tags" value=10 />
                     <div class="icon-box">
                         <span>#파릇파릇한</span>
                     </div>
                 </label>
                 <label>
-                    <input type="checkbox" id="tags" name="tags" value="11" />
+                    <input type="checkbox" id="tags" name="tags" value=11 />
                     <div class="icon-box">
                         <span>#기분전환</span>
                     </div>
@@ -131,10 +123,11 @@
             </div>
 
             <div class="btn_upload">
-                <input type="submit" value="게시" class="btn btn-outline-dark">
+                <input type="submit" value="게시" class="btn btn-outline-dark submitbtn">
             </div>
 
         </form>
+
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"

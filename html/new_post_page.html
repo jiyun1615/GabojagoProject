@@ -30,13 +30,12 @@
     </div>
 
     <div class="page_contents">
-        <!-- <form id="testForm" name="testForm" action="https://www.musi.co.kr/test/test.php" method="POST"> -->
         <form>
             <div class="contents_titles">
 
                 <div class="row">
                     <p class="label_title">작성자</p>
-                    <p class="label_bar"> | </p>
+                    <p class="label_bar author"></p>
                 </div>
 
                 <div class="row">
@@ -49,14 +48,9 @@
             <textarea class="textarea_field" id="context" style="resize: none;" name="context"
                 placeholder="내용을 입력해주세요."></textarea>
 
-            <!-- 이미지 넣는 거 -->
-            <!-- <input type="file" class="real-upload" accept="image/*" name="files" required multiple>
-            <div class="upload"></div>
-            <ul class="image-preview"></ul> -->
-
             <div class="__add" id="addFile">
                 <li>
-                    <input type="file" id="QnA03" name="file_path" class="files" style="width: 231px; height: 46px;"
+                    <input type="file" id="QnA03" name="file_path" class="files" style="width: 231px; height: 46px; margin-top: 6px;"
                         required multiple>
                 </li>
             </div>
@@ -140,6 +134,24 @@
     </div>
 
     <script>
+        var username;
+        $(function () {
+            $.ajax({
+                type: "GET",
+                url: "http://13.209.87.88:8080/users",
+                headers: { Authorization: window.sessionStorage.getItem("JWT") },
+                data: {},
+                success: function (response) {
+                    console.log(response);
+                    username = response.name;
+                    $(".author").text(" | " + username);
+                },
+                error: (xhr) => {
+                    alert("서버 요청 상태코드 : " + xhr.status)
+                }
+            });
+
+        });
         var formData = new FormData();
         var data;
         var fileInput;
@@ -170,19 +182,6 @@
                 formData.append('files', fileList[i]);
             }
             formData.append('request', new Blob([JSON.stringify(data)], { type: "application/json" }));
-            /* key 확인하기 */
-            for (let key of formData.keys()) {
-                console.log("============key=============");
-                console.log(key);
-                console.log("============================");
-            }
-
-            /* value 확인하기 */
-            for (let value of formData.values()) {
-                console.log("============value=============");
-                console.log(value);
-                console.log("==============================");
-            }
 
             callAjax();
             return false;
@@ -202,6 +201,7 @@
                 data: formData,
                 success: function (response) {
                     console.log("success");
+                    window.location.replace("../html/posts_list_page.html");
                 }, error: (xhr) => {
                     alert("서버 요청 상태코드 : " + xhr.status)
                 }
@@ -209,10 +209,6 @@
         }
     </script>
     <script>
-        // const realUpload = document.querySelector('.real-upload');
-        // const upload = document.querySelector('.upload');
-        // upload.addEventListener('click', () => realUpload.click());
-        // realUpload.addEventListener('change', getImageFiles);
         const realUpload = document.querySelector('.files');
 
         realUpload.addEventListener('change', getImageFiles);

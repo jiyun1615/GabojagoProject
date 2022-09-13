@@ -11,7 +11,8 @@ $.ajax({
             else var context = response.postResponses[j].context;
 
             //여기!!!!!!!! 사진이 없는 경우 어떻게 할지 바꿀것!!!!!!!!!!!
-            if (response.postResponses[j].files == "None");
+            if (response.postResponses[j].files == "None" ||response.postResponses[j].files == "none"||response.postResponses[j].files == null ||response.postResponses[j].files == undefined) var src = "..\\sampleimages\\sample_img.png";
+            else if (response.postResponses[j].files[0].filePath == undefined) var src = "..\\sampleimages\\sample_img.png";
             else var src = response.postResponses[j].files[0].filePath;
             var str = response.postResponses[j].createdAt;
             var createdAt_index = str.indexOf('T');

@@ -1,93 +1,73 @@
 const receivedData = location.href.split('?')[1];
-console.log(decodeURI(receivedData));
-var userID;
-var userNAME;
-var ex_title;
-var ex_context;
 
-console.log(window.sessionStorage.getItem("JWT"));
-if (window.sessionStorage.getItem("JWT") != null) {
+$(function () {
     $.ajax({
         type: "GET",
-        url: "http://13.209.87.88:8080/users",
+        url: "http://13.209.87.88:8080/posts/" + decodeURI(receivedData),
         headers: { Authorization: window.sessionStorage.getItem("JWT") },
         data: {},
         success: function (response) {
             console.log(response);
-            userID = response.id;
-            $.ajax({
-                type: "GET",
-                url: "http://13.209.87.88:8080/posts/" + decodeURI(receivedData),
-                headers: { Authorization: window.sessionStorage.getItem("JWT") },
-                data: {},
-                success: function (response) {
-                    console.log(response);
-                    if (userID == response.user.userId) { //백엔드에서 검사해서 필요 없을수도 있지만 혹시나 하는 유저검증.... 나중에 한번 없애고 테스트해보고싶다
+            $(".author").text(" | " + response.user.name);
+            $('input[name=title]').attr('value', response.title);
+            $("#context").val(response.context);
 
-                        userNAME = response.user.name;
-                        var tmpHtml = `<p class="username">${userNAME}</p>`
-                        $("#title_row").append(tmpHtml);
+            for (var i = 0; i < response.postTags.length; i++) {
 
-                        ex_title = response.title;
-                        $('input[name=title]').attr('value', ex_title);
-                        
-                        ex_context = response.context;
-                        $('#context').val(ex_context);
+                $(`input:checkbox[value=${response.postTags[i].tagId}]`).prop("checked", true);
+            }
 
-                        //응답의 태그 갯수만큼 반복하는 for문을 돌면서, value가 응답의 태그 아이디랑 일치하는 체크박스를 체크
-                        for (var i = 0; i < response.postTags.length; i++) {
-                            $(`input[value=${response.postTags[i].tagId}][id*=tags]`).prop("checked", true);
-                        }
+            if (response.files.length == 0) {
+                const li_tag = document.createElement('li');
+                const info_span = document.createElement('span');
+                span.textContent = "기존 이미지가 없습니다."
+                li_tag.appendChild(info_span);
+                const eximagePreview = document.querySelector('.ex-image-preview');
+                eximagePreview.appendChild(li_tag);
+            }
+            else {
+                const eximagePreview = document.querySelector('.ex-image-preview');
+                for (var i = 0; i < response.files.length; i++) {
 
-                        // 이미지를 어떻게 넣어야할까..?
-                        // if (response.files.length == 0) img_area[0].style.display = "none";
-                        // else {
-                        //     for (var i = 0; i < response.files.length; i++) {
-                        //         var tmpHtml = `<img src="${response.files[i].filePath}">`
-                        //         $(".img_area").append(tmpHtml);
-                        //     }
-                        // }
-                    }
-
-                    else {
-                        swal("잘못된 접근입니다.", "메인 화면으로 이동합니다.", "error").then(function () {
-                            window.location.href = 'index.html';
-                        });
-                    }
-
-
-                },
-                error: (xhr) => {
-                    alert("글 불러오기 서버 요청 상태코드 : " + xhr.status)
+                    const preview = createElements(response, i);
+                    console.log(preview);
+                    eximagePreview.appendChild(preview);
                 }
 
-            })
+            }
         },
         error: (xhr) => {
-            alert("유저 확인 서버 요청 상태코드 : " + xhr.status)
+            alert("서버 요청 상태코드 : " + xhr.status)
         }
-    })
-}
-else if (window.sessionStorage.getItem("JWT") == null) {
-    swal("로그인이 필요한 서비스입니다.", "로그인 페이지로 이동합니다.", "error").then(function () {
-        window.location.href = 'login_page.html';
+
     });
+
+});
+
+//현재 상황 : 기존 글 내용들을 불러오는것 까지 함.
+//기존 파일을 삭제할것인지랑, 새로 파일을 추가하는것 처리, 그리고 태그 기존에있는거랑 새로추가할부분 처리,
+//제목과 글 내용을 수정했다면 그 내용을 가져오는것 처리까지.
+function createElements(response, i) {
+    const li_tag = document.createElement('li');
+    const img = document.createElement('img');
+    img.setAttribute('src', response.files[i].filePath);
+    li_tag.appendChild(img);
+
+    return li_tag;
 }
+
+
+
+
+//insertfile과 deletefile을 신경써줘야함.tag랑.
 
 var formData = new FormData();
 var data;
 var fileInput;
 var fileList;
-
-
-
 const filesInput = document.querySelector("input[type=file]");
 filesInput.addEventListener("change", () => {
-    console.log(filesInput);
-    console.log(filesInput.files);
-
     fileList = filesInput.files;
-    console.log(`You've selected: ${fileList.length} file(s)`);
 });
 
 $("form").submit(function (event) {
@@ -95,48 +75,92 @@ $("form").submit(function (event) {
     var tagsArr = new Array();
     $('input:checkbox[name="tags"]').each(function () {
         if (this.checked) {
-            tagsArr[total_cnt] = this.value;
+            tagsArr[total_cnt] = Number(this.value);
             total_cnt++;
         }
     });
-    console.log("tags : " + tagsArr);
-
-    //기본 전송 데이터
     data = {
         "email": "user@gabojago.com",
         "title": $("#title").val(),
         "context": $("#context").val(),
         "tags": tagsArr
-    }
-    console.log("stringify(data) : " + JSON.stringify(data));
-
+    };
     for (var i = 0; i < fileList.length; i++) {
         console.log(fileList[i]);
-        formData.append('file', fileList[i]);
+        console.log(fileList[i].type);
+        formData.append('files', fileList[i]);
     }
+    formData.append('request', new Blob([JSON.stringify(data)], { type: "application/json" }));
 
-
-    formData.append('key', new Blob([JSON.stringify(data)], { type: "application/json" }));
-    /* key 확인하기 */
-    for (let key of formData.keys()) {
-        console.log("============key=============");
-        console.log(key);
-        console.log("============================");
-    }
-
-    /* value 확인하기 */
-    for (let value of formData.values()) {
-        console.log("============value=============");
-        console.log(value);
-        console.log("==============================");
-    }
+    callAjax();
+    return false;
 });
-// const realUpload = document.querySelector('.real-upload');
-// const upload = document.querySelector('.upload');
 
-// upload.addEventListener('click', () => realUpload.click());
 
-// realUpload.addEventListener('change', getImageFiles);
+function callAjax() {
+
+
+    $.ajax({
+        type: "PUT",
+        url: "http://13.209.87.88:8080/posts/" + decodeURI(receivedData),
+        headers: { Authorization: window.sessionStorage.getItem("JWT") },
+        contentType: false,
+        processData: false,
+        enctype: 'multipart/form-data',
+        data: formData,
+        success: function (response) {
+            console.log("success");
+            window.location.replace("../html/posts_list_page.html");
+        }, error: (xhr) => {
+            alert("서버 요청 상태코드 : " + xhr.status)
+        }
+    })
+}
+
+var maxAppend = 1;
+
+function addDel(a) {
+    $(a).closest('li').remove();
+    maxAppend--;
+}
+
+function getImageFiles(e) {
+    console.log("getImageFiles function works");
+
+
+    const uploadFiles = [];
+    const files = e.currentTarget.files;
+    const imagePreview = document.querySelector('.image-preview');
+    $(".image-preview").html("");
+
+    if ([...files].length > 3) {
+        alert("파일 업로드 최대 개수는 3개 입니다.");
+        return;
+    }
+
+    [...files].forEach(file => {
+        uploadFiles.push(file);
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            const preview = createElement(e, file);
+            imagePreview.appendChild(preview);
+        };
+        reader.readAsDataURL(file);
+    });
+
+}
+
+
+
+function createElement(e, file) {
+    const li = document.createElement('li');
+    const img = document.createElement('img');
+    img.setAttribute('src', e.target.result);
+    img.setAttribute('data-file', file.name);
+    li.appendChild(img);
+
+    return li;
+}
 
 
 const realUpload = document.querySelector('.files');

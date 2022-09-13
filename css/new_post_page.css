@@ -12,6 +12,7 @@
     font-size: 18px;
 }
 
+
 .form-label{
     font-size : 2vh;
 }
@@ -133,3 +134,6 @@ img {
     font-size: 18px;
   }
   
+.submitbtn{
+  margin-bottom: 3.5vh;
+}
