@@ -44,14 +44,34 @@
 .btn1 {
     all:unset;
     background-color: white;
-    color : gray;
-    border: 1px gray solid;
+    color : #48464f;
+    font-family: 'Hahmlet', serif;
+    border: 1px #48464f solid;
     margin-bottom: 2.5vh;
 }
 
 .btn1:focus {
     border : none;
     outline : none;
+}
+
+.btn2 {
+    all:unset;
+    background-color: white;
+    color : #726e7c;
+    font-family: 'Hahmlet', serif;
+    border: 1px #726e7c solid;
+    margin-bottom: 2.5vh;
+}
+
+.btn2:focus {
+    border : none;
+    outline : none;
+}
+
+.btn2:hover {
+    background-color : #726e7c;
+    color : white;
 }
 
 .card {

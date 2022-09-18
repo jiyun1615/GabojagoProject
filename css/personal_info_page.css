@@ -13,17 +13,18 @@
 
 .content1{
     padding : 2vh;
-    padding-left : 2vw;
+    padding-left : 5vw;
     border: 1px solid;
     border-radius: 10px;
     border-color:black;
     width : 100%;
-    height : 30vh;
+    height : 35vh;
     margin-bottom : 20px;
 }
 
 .row1 {
     display : flex;
+    margin-bottom : 20px;
 }
 
 .profile_image {
@@ -34,13 +35,21 @@
 }
 
 .profile_info {
-    margin-left : 4vw;
+    margin-left : 6vw;
     font-size : 20px;
     width : 68%;
+    margin-top : 10vh;
+}
+
+.profile_nameChange {
+  visibility: hidden;
+}
+
+.visible {
+  visibility: visible;
 }
 
 .profile_name {
-    margin-top : 8vh;
     margin-bottom : 3vh;
 }
 .profile_intro {
