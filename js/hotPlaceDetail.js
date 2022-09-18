@@ -1,56 +1,54 @@
 var num;
-function callApiInfo(){
+function callApiInfo() {
     const urlParams = (window.location.search);
     num = urlParams.split('=')[1];
-        console.log(num);
-    
+    console.log(num);
+
     $.ajax({
         url: "http://13.209.87.88:8080/hotplaces/id/" + num,
-            type: "GET",
-            data: "json", 
-            success: function (data) {
-                var spotName = data.spotName;
-                var address = data.address;
-                address = noneCheck(address);
-                var detail = data.detail;
-                detail = noneCheck(detail);
-                var tel = data.tel;
-                tel = noneCheck(tel);
-                var spotImage = data.spotImage;
-                var viewCnt = data.viewCnt;
-                
-                $("#hotPlaceTitle").empty();
-                $("#hotPlaceTitle").append(spotName);
-                $("#address").empty();
-                $("#address").append(address);    
-                $("#number").empty();
-                $("#number").append(tel);
-                $("#detail").empty();
-                $("#detail").append(detail);  
-                $("#spotImg").empty();
-                $("#spotImg").attr("src", spotImage);  
-                $("#viewCnt").empty();
-                $("#viewCnt").append("조회수 : " + viewCnt);  
-                  
+        type: "GET",
+        data: "json",
+        success: function (data) {
+            var spotName = data.spotName;
+            var address = data.address;
+            address = noneCheck(address);
+            var detail = data.detail;
+            detail = noneCheck(detail);
+            var tel = data.tel;
+            tel = noneCheck(tel);
+            var spotImage = data.spotImage;
+            var viewCnt = data.viewCnt;
 
-                for(var i=0; i<data.spotTags.length; i++)
-                {
-                    for(var j=0; j<11; j++)
+            $("#hotPlaceTitle").empty();
+            $("#hotPlaceTitle").append(spotName);
+            $("#address").empty();
+            $("#address").append(address);
+            $("#number").empty();
+            $("#number").append(tel);
+            $("#detail").empty();
+            $("#detail").append(detail);
+            $("#spotImg").empty();
+            $("#spotImg").attr("src", spotImage);
+            $("#viewCnt").empty();
+            $("#viewCnt").append("조회수 : " + viewCnt);
+
+
+            for (var i = 0; i < data.spotTags.length; i++) {
+                for (var j = 0; j < 11; j++)
                     if ($($(".tags")[j]).html() == ("#" + data.spotTags[i].value)) {
                         $($(".tags")[j]).css("font-weight", "bold")
                             .css("color", "black");
                     }
-                }
-                  
-            },
-            error: (log) => { alert("실패" + log) }
+            }
+
+        },
+        error: (log) => { alert("실패" + log) }
     })
-    
+
 }
 
 function noneCheck(str) {
-    if (str == "None")
-    {
+    if (str == "None") {
         str = "상세정보가 없습니다.";
     }
     return str;
@@ -71,30 +69,33 @@ function bookmarkBtn_onclick() {
 }
 
 function callBookMarkApi(num) {
-    var bookMarkData = {"spotId" : Number(num)};
+    var bookMarkData = { "spotId": Number(num) };
     console.log("bookMarkData = " + bookMarkData);
     $.ajax({
-        type : "POST",
-        url : 'http://13.209.87.88:8080/hotplaces/bookmark',
-        contentType : "application/json",
+        type: "POST",
+        url: 'http://13.209.87.88:8080/hotplaces/bookmark',
+        contentType: "application/json",
         headers: { Authorization: window.sessionStorage.getItem("JWT") },
-        data : JSON.stringify(bookMarkData),
-        success : function(data) {
+        data: JSON.stringify(bookMarkData),
+        success: function (data) {
             console.log("success")
         }
     })
-    
-    }
-    
+
+}
+
 function returnBookMarkApi(num) {
     $.ajax({
-        type : "DELETE",
-        url : 'http://13.209.87.88:8080/hotplaces/bookmark/' + num,
-        contentType : "application/json",
+        type: "DELETE",
+        url: 'http://13.209.87.88:8080/hotplaces/bookmark/' + num,
+        contentType: "application/json",
         headers: { Authorization: window.sessionStorage.getItem("JWT") },
-        data : {},
-        success : function(data) {
+        data: {},
+        success: function (data) {
             console.log("delete success")
         }
     })
 }
+
+
+
