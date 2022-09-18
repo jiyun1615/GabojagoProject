@@ -7,6 +7,10 @@
     margin-left: 20px;
 }
 
+.title_text {
+    font-weight: bold;
+}
+
 .hotplaceImg {
     max-height: 35vh;
     max-width: 60vw;
@@ -20,6 +24,9 @@
 
 .cardText{
     margin-top: 1vh;
+    font-family : 'Hahmlet', serif;
+    /* font-weight :300; */
+    word-break: keep-all;
 }
 
 .tagGroup{
@@ -31,6 +38,7 @@
 .details {
     margin-right: 30px;
     margin-left: 20px;
+    font-family : 'Hahmlet', serif;
 }
 
 .detailsTitle {

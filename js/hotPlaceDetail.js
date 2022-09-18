@@ -71,25 +71,30 @@ function bookmarkBtn_onclick() {
 }
 
 function callBookMarkApi(num) {
+    var bookMarkData = {"spotId" : Number(num)};
+    console.log("bookMarkData = " + bookMarkData);
     $.ajax({
         type : "POST",
         url : 'http://13.209.87.88:8080/hotplaces/bookmark',
+        contentType : "application/json",
         headers: { Authorization: window.sessionStorage.getItem("JWT") },
-        data : {"spotId" : num},
+        data : JSON.stringify(bookMarkData),
         success : function(data) {
             console.log("success")
         }
     })
+    
     }
     
 function returnBookMarkApi(num) {
     $.ajax({
-        type : "POST",
+        type : "DELETE",
         url : 'http://13.209.87.88:8080/hotplaces/bookmark/' + num,
+        contentType : "application/json",
         headers: { Authorization: window.sessionStorage.getItem("JWT") },
         data : {},
         success : function(data) {
-            console.log("success")
+            console.log("delete success")
         }
     })
 }

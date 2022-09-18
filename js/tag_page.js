@@ -101,7 +101,7 @@ function callApiInfo(num, pageNumber) {
                                         <p class="card-title" id="spotName2">${name}</p> 
                                         <p class="card-text" id="detail2">${details}</p> 
                                             <div class="d-flex justify-content-between align-items-center">  
-                                                <button type="button" class="btn btn-sm btn-outline-secondary" id="detailBtn1" onclick="detailPage(${spotID})">이동하기</button> 
+                                                <button type="button" class="btn2 btn-sm" id="detailBtn1" onclick="detailPage(${spotID})">이동하기</button> 
                                                 <small class="text-muted">조회수 : ${viewCnt}</small>
                                             </div> 
                                         
@@ -171,11 +171,11 @@ function tagChange(num) {
     for (i = 1; i <= 11; i++) {
         const btnElement1 = document.getElementById("btn" + i);
         btnElement1.style.backgroundColor = "white";
-        btnElement1.style.color = "gray";
+        btnElement1.style.color = "#48464f";
     }
 
     const btnElement = document.getElementById("btn" + num);
-    btnElement.style.backgroundColor = "gray";
+    btnElement.style.backgroundColor = "#48464f";
     btnElement.style.color = "white";
 }
 
