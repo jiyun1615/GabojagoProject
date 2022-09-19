@@ -100,6 +100,7 @@
             console.log(fileList[0]);
             formData.append('profilePhoto', fileList[0]);
             console.log(formData);
+            cntImage=0;
             $.ajax({
                 type: "PUT",
                 url: "http://13.209.87.88:8080/users/profile",
@@ -109,11 +110,13 @@
                 enctype: 'multipart/form-data',
                 data: formData,
                 success: function (response) {
-                    cntImage=0;
                     console.log("success");
-                    window.location.replace("../html/personal_info_page.html");
+                    alert("성공적으로 변경되었습니다.");
+                    window.location.reload();
+                    // window.location.replace("../html/personal_info_page.html");
                 }, error: (xhr) => {
                     alert("서버 요청 상태코드 : " + xhr.status)
+                    window.location.reload();
                 }
             })
         }
