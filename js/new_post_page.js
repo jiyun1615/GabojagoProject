@@ -34,6 +34,12 @@
 
 var maxAppend = 1;
 
+//spotID 존재하는 글쓰기인지 확인 
+const urlParams = (window.location.search);
+if (urlParams.split('=')[1] != null) {
+    var num = urlParams.split('=')[1];
+    console.log("spotId = " + num);
+}
 // $('.__add ._add').on('click',function(){ 
 //    if(maxAppend >= 3){
 //       alert("파일 업로드 최대 개수는 3개 입니다.");
@@ -43,7 +49,7 @@ var maxAppend = 1;
 //        maxAppend ++;
 //    }
 //  });
- 
+
 // $('.__add ._add').on('click',function(){ //왠지 모르겠는데 작동 XX
 //     const imagePreview = document.querySelector('.image-preview');
 //     $(".image-preview").html("");
@@ -62,43 +68,43 @@ var maxAppend = 1;
 //         });
 //   });
 
- function addDel(a){ 
-    $(a).closest('li').remove(); 
-    maxAppend --;
- }
+function addDel(a) {
+    $(a).closest('li').remove();
+    maxAppend--;
+}
 
 
- 
 
 
- function getImageFiles(e) {
+
+function getImageFiles(e) {
     console.log("getImageFiles function works");
 
 
-     const uploadFiles = [];
-     const files = e.currentTarget.files;
-     const imagePreview = document.querySelector('.image-preview');
-     $(".image-preview").html("");
+    const uploadFiles = [];
+    const files = e.currentTarget.files;
+    const imagePreview = document.querySelector('.image-preview');
+    $(".image-preview").html("");
 
-     if([...files].length > 3){
+    if ([...files].length > 3) {
         alert("파일 업로드 최대 개수는 3개 입니다.");
         return;
-     }
+    }
 
-     [...files].forEach(file => {
+    [...files].forEach(file => {
         // if([...files].length <= 3){
         // var tmp = '<li><input type="file"name="file_path" class="files"><button type="button" class="_add" onclick="addDel(this);">삭제</button></li>';
         // $("#addFile").append(tmp); 
         // }
         uploadFiles.push(file);
         const reader = new FileReader();
-            reader.onload = (e) => {
-                const preview = createElement(e, file);
-                imagePreview.appendChild(preview);
-            };
-            reader.readAsDataURL(file);
-        }); 
-        
+        reader.onload = (e) => {
+            const preview = createElement(e, file);
+            imagePreview.appendChild(preview);
+        };
+        reader.readAsDataURL(file);
+    });
+
 }
 
 
@@ -138,9 +144,9 @@ function createElement(e, file) {
 
 //     var result = JSON.stringify(object);
 
-//     console.log(result);        
+//     console.log(result);
 
-//     return false;               //페이지 새로고침 방지 
+//     return false;               //페이지 새로고침 방지
 // });
 
 
