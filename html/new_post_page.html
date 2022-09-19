@@ -204,6 +204,7 @@
                     window.location.replace("../html/posts_list_page.html");
                 }, error: (xhr) => {
                     alert("서버 요청 상태코드 : " + xhr.status)
+                    window.location.reload();
                 }
             })
         }
