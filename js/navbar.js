@@ -20,9 +20,16 @@ window.addEventListener('load', function () {
 function Change(num) {
     switch (num) {
         case 0:
-            if (window.sessionStorage.getItem("JWT") != null) {
-                console.log("if");
+            if (window.sessionStorage.getItem("JWT") != null && Date.now() < window.sessionStorage.getItem("expire")) {
+                console.log("로그인 상태입니다.");
                 $("#log_in_out_btn").html('Logout');
+            }
+            else if(window.sessionStorage.getItem("JWT") != null && Date.now() > window.sessionStorage.getItem("expire")){
+                console.log("로그인 JWT 만료")
+                window.sessionStorage.removeItem("JWT");
+                swal("로그인이 만료되었습니다.", "재로그인이 필요합니다.", "error").then(function () {
+                    location.reload();
+                });
             }
             else if (window.sessionStorage.getItem("JWT") == null) {
                 console.log("elif");
@@ -32,10 +39,27 @@ function Change(num) {
 
         case 1:
             if ($("#log_in_out_btn").text() == "Logout") {
-                console.log("로그아웃 하세요!");
+                swal({
+                    title: "로그아웃 하시겠습니까?",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                  })
+                    .then((willDelete) => {
+                      if (willDelete) {
+                        window.sessionStorage.removeItem("JWT");
+                        swal("로그아웃 완료되었습니다.", {
+                          icon: "success",
+                        }).then(function () {
+                            location.reload();
+                          });
+                      } else {
+                        swal("취소되었습니다.");
+                      }
+                    });
+                
             }
             else if ($("#log_in_out_btn").text() == "Login & Sign-up") {
-                console.log("로그인합니다");
                 window.location.href = 'login_page.html';
             }
             break;

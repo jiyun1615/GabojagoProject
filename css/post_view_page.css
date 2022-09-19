@@ -2,6 +2,7 @@
   margin-top: 4% !important;
   margin-left: 15% !important;
   margin-right: 15% !important;
+  font-family: 'Hahmlet', serif;
 }
 
 .post_info {
@@ -55,4 +56,27 @@ textarea {
 
 #heart_obj_fill{
   display: none;
+}
+.dropdown-item.post_:hover {
+  background-color: #a39caf;
+}
+.dropdown-item.post_:focus {
+  background-color: #a39caf;
+  color: white;
+}
+.dropdown-item.post_:active {
+  background-color: #a39caf;
+  color: white;
+}
+
+.dropdown-item.comment_:hover {
+  background-color: #a39caf;
+}
+.dropdown-item.comment_:focus {
+  background-color: #a39caf;
+  color: white;
+}
+.dropdown-item.comment_:active {
+  background-color: #a39caf;
+  color: white;
 }

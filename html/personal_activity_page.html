@@ -32,20 +32,21 @@
 
     <div class="row ml-0 mr-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 info">
 
-      <div class="col-3 p_photo">
+      <div class="col col-xxl-3 p_photo">
         <div class="img_container">
           <img class="profile_image" src="..\sampleimages\jjal.jpg">
         </div>
       </div>
 
-      <div class="col-9 align-self-center p_name">
+      <div class="col col-sm-9 align-self-center p_name">
         <div>
           <span class="username">전지현</span>
         </div>
 
+        <!-- 한줄소개
         <div>
           <span class="userinfo">저는 지현이라고 합니다~ 잘 부탁드려요 ^^ 좋은 하루~</span>
-        </div>
+        </div> -->
       </div>
 
     </div>
@@ -55,23 +56,26 @@
       <div class="col-4 p_post" id="tmpBtn" onclick="javascript:callApiInfo(0);" style="cursor:pointer;">
         <p>게시글</p>
         <hr>
-        <span>4</span>
+        <span class="postCnt">4</span>
       </div>
 
       <div class="col-4 p_comment" onclick="javascript:callApiInfo(1);" style="cursor:pointer;">
         <p>댓글</p>
         <hr>
-        <span>4</span>
+        <span class="commentCnt">4</span>
       </div>
 
       <div class="col-4 p_bookmark" onclick="javascript:callApiInfo(2);" style="cursor:pointer;">
         <p>북마크</p>
         <hr>
-        <span>3</span>
+        <span class="bookmarkCnt">3</span>
       </div>
     </div>
 
-    <div class="row p_content" id="exampleArr">
+    <div class="row p_content" >
+      <div class="col" id="exampleArr">
+
+      </div>
 
     </div>
 

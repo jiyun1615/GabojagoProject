@@ -5,13 +5,19 @@ var time_post = 0;
 var time_comment = 0;
 //글 작성자와 댓글 작성자, 이 둘은 본인확인이 필요, 이것은 백엔드에서 해준다고함!
 
-var titleShared;
-var like_state;
 var userID = "";
+var commentID = "";
+var share_file_path = "";
+
+var share_likecnt = 0,share_viewcnt = 0,like_state,titleShared;
 console.log(window.sessionStorage.getItem("JWT"));
-if (window.sessionStorage.getItem("JWT") != null) {
+if (window.sessionStorage.getItem("JWT") != null && Date.now() < window.sessionStorage.getItem("expire")) {
   //회원일경우
   user_view();
+}
+if (window.sessionStorage.getItem("JWT") != null && Date.now() > window.sessionStorage.getItem("expire")) {
+  //회원인데 만료?
+  location.reload();
 }
 else if (window.sessionStorage.getItem("JWT") == null) {
   not_user_view();
@@ -25,11 +31,11 @@ function user_view() {
     type: "GET",
     url: "http://13.209.87.88:8080/users",
     headers: { Authorization: window.sessionStorage.getItem("JWT") },
-    async:false,
+    async: false,
     data: {},
     success: function (response) {
       console.log(response);
-      userID = response.id;
+      userID = response.userId;
     },
     error: (xhr) => {
       alert("서버 요청 상태코드 : " + xhr.status)
@@ -41,22 +47,26 @@ function user_view() {
     url: "http://13.209.87.88:8080/posts/" + decodeURI(receivedData),
     headers: { Authorization: window.sessionStorage.getItem("JWT") },
     data: {},
-    async:false,
+    async: false,
     success: function (response) {
       console.log(response);
       like_state = response.greatState;
       $("#Author").text(response.user.name);
       console.log("게시글 시간 : " + response.createdAt);
-      time_post = response.createdAt;
-      var createdAt_index = time_post.indexOf('T');
-      var createdAt = time_post.substr(0, createdAt_index);
 
-      $("#createdAt").text(createdAt);
+      var date = response.createdAt.split('T')[0];
+      var tmp = response.createdAt.split('T')[1];
+      var time = tmp.split(':')[0] + ":" + tmp.split(':')[1];
+
+
+      $("#createdAt").text(date + " " + time);
       $("#title").text(response.title);
       titleShared = response.title;
       $("#viewcnt").text(response.viewCnt);
       $(".text_area").text(response.context);
       $("#likecnt").text("+ " + response.greatCnt);
+      share_likecnt = response.greatCnt;
+      share_viewcnt = response.viewCnt;
       var tags = "";
       for (var i = 0; i < response.postTags.length; i++) {
         tags = tags + "#" + response.postTags[i].value + " ";
@@ -69,8 +79,9 @@ function user_view() {
           var tmpHtml = `<img src="${response.files[i].filePath}">`
           $(".img_area").append(tmpHtml);
         }
+        share_file_path = response.files[0].filePath;
       }
-
+      
       if (userID == response.user.userId) {
         $(".post_report").addClass('disabled');
         $(".post_revise").removeClass('disabled');
@@ -82,24 +93,23 @@ function user_view() {
         $(".post_report").removeClass('disabled');
       }
 
-      
+
 
     },
     error: (xhr) => {
       alert("서버 요청 상태코드 : " + xhr.status)
     }
-      
+
   });
-    user_like();
-      user_make_comment();
-
-
+  user_like();
+  user_make_comment();
 
   //댓글. 헤더에 토큰 필요 없음
   $.ajax({
     type: "GET",
     url: "http://13.209.87.88:8080/comments/post/" + decodeURI(receivedData) + "?page=1&size=10",
     data: {},
+    async: false,
     success: function (response) {
       console.log(response)
 
@@ -112,24 +122,22 @@ function user_view() {
         var createdAt_index = time_comment.indexOf('T');
         var createdAt_index_end = time_comment.indexOf('.');
         var createdAt = time_comment.substr(createdAt_index + 1, createdAt_index_end);
-
         var li_text = "";
-        if (userID == response.comments[i].id) {
-          li_text = `<li><a class="dropdown-item comment_revise" href="#" onclick="javascript:dropdown_revise_comment();">수정하기</a></li>
-          <li><a class="dropdown-item comment_delete" href="#" onclick="javascript:dropdown_delete_comment();">삭제하기</a></li>`;
+        if (userID == response.comments[i].user.userId) {
+          li_text = `<li><a class="dropdown-item comment_" href="#" onclick="javascript:dropdown_revise_comment(${response.comments[i].commentId});">수정하기</a></li>
+          <li><a class="dropdown-item comment_" href="#" onclick="javascript:dropdown_delete_comment(${response.comments[i].commentId});">삭제하기</a></li>`;
         }
         else {
-          li_text = `<li><a class="dropdown-item disabled comment_revise" href="#" onclick="javascript:dropdown_revise_comment();">수정하기</a></li>
-          <li><a class="dropdown-item disabled comment_delete" href="#" onclick="javascript:dropdown_delete_comment();">삭제하기</a></li>`;
+          li_text = `<li><a class="dropdown-item disabled comment_" href="#" onclick="javascript:dropdown_revise_comment(0);">수정하기</a></li>
+          <li><a class="dropdown-item disabled comment_" href="#" onclick="javascript:dropdown_delete_comment(0);">삭제하기</a></li>`;
         }
-
         var tmpHtml =
           `<li class="list-group-item d-flex gap-3 py-3" aria-current="true">
-            <img src="${response.comments[i].profilePhoto}" width="32" height="32"
+            <img src="${response.comments[i].user.profilePhoto}" width="48" height="48"
               class="rounded-circle flex-shrink-0">
             <div class="d-flex gap-2 w-100 justify-content-between">
               <div>
-                <h6 class="mb-0">${response.comments[i].userName}</h6>
+                <h6 class="mb-0">${response.comments[i].user.name}</h6>
                 <p class="mb-0 opacity-75">${response.comments[i].context}</p>
               </div>
               <div class="dropdown comment">
@@ -175,6 +183,8 @@ function not_user_view() {
       $("#viewcnt").text(response.viewCnt);
       $(".text_area").text(response.context);
       $("#likecnt").text("+ " + response.greatCnt);
+      share_likecnt = response.greatCnt;
+      share_viewcnt = response.viewCnt;
 
       var tags = "";
       for (var i = 0; i < response.postTags.length; i++) {
@@ -188,6 +198,7 @@ function not_user_view() {
           var tmpHtml = `<img src="${response.files[i].filePath}">`
           $(".img_area").append(tmpHtml);
         }
+        share_file_path = response.files[0].filePath;
       }
 
 
@@ -221,11 +232,12 @@ function not_user_view() {
         var createdAt_index_end = time_comment.indexOf('.');
         var createdAt = time_comment.substr(createdAt_index + 1, createdAt_index_end);
 
-        var li_text = `<li><a class="dropdown-item comment_revise disabled" href="#">로그인이 필요합니다.</a></li>`;
+        var li_text = `<li><a class="dropdown-item comment_ disabled" href="#">로그인이 필요합니다.</a></li>`;
 
+        const rata = response.comments[i].profilePhoto.split('/images/')[1];
         var tmpHtml =
           `<li class="list-group-item d-flex gap-3 py-3" aria-current="true">
-            <img src="${response.comments[i].profilePhoto}" width="32" height="32"
+            <img src="${rata}" width="48" height="48"
               class="rounded-circle flex-shrink-0">
             <div class="d-flex gap-2 w-100 justify-content-between">
               <div>
@@ -254,8 +266,8 @@ function not_user_view() {
 
   });
 }
-
-var shareUrl = "http://13.209.87.88/post_view_page.html?" + decodeURI(receivedData);
+// 여기!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 로컬로되어있음
+var shareUrl = "http://127.0.0.1:5501/html/post_view_page.html?" + decodeURI(receivedData);
 
 function sendLinkFacebook() {
   var facebook_share_url = "https://www.facebook.com/sharer/sharer.php?u=" + shareUrl;
@@ -276,23 +288,50 @@ function sendLinkNaver() {
     'Share on Naver',
     'scrollbars=no, width=500, height=500');
 }
+async function sendLinkKakao() {
+
+  let share = await import('./kakao_share.js');
+  console.log(share.KAKAO_JS);
+  Kakao.init(share.KAKAO_JS);
+
+  Kakao.Link.sendDefault({
+    objectType: 'feed',
+    content: {
+      title: titleShared,
+      description: '#가보자고에서 작성된 핫플레이스 후기입니다.',
+      imageUrl: share_file_path,
+      link: {
+        webUrl: shareUrl,
+      },
+    },
+    social: {
+      likeCount: share_likecnt,
+      viewCount: share_viewcnt,
+    },
+    buttons: [
+      {
+        title: '자세히 보기(PC 최적화)',
+        link: {
+          webUrl: shareUrl,
+        },
+      },],
+  });
+
+}
+
 
 function user_like() {
-
+  const obj_fill = document.getElementById('heart_obj_fill');
+  const obj_blank = document.getElementById('heart_obj');
 
   if (like_state == false) {
     //좋아요 api
     //false일테니까 하트는 비어있어야함.
     console.log("false");
-    document.getElementById('heart_obj_fill').onload = e => {
-      const obj = document.getElementById('heart_obj');
-      console.log("display none");
-      obj.style.display = 'none';
-    }
+    obj_fill.style.display = 'none';
 
-    document.getElementById('heart_obj').onload = e => {
-      console.log("obj load");
-      const obj = document.getElementById('heart_obj');
+    $(obj_blank).ready(function () {
+      console.log("obj_blank load");
       const query = document.querySelector('#heart_obj');
       const querydoc = query.contentDocument;
       const lands = querydoc.querySelectorAll(".heart_blank")
@@ -300,7 +339,7 @@ function user_like() {
           element.addEventListener("click", function () {
             console.log("클릭했습니다 - heart_blank");
             //채워준다.
-            obj.setAttribute('data', "..\\icons\\like_heart.svg")
+            obj_blank.setAttribute('data', "..\\icons\\like_heart.svg")
             $.ajax({
               type: "POST",
               url: "http://13.209.87.88:8080/posts/great/" + decodeURI(receivedData),
@@ -309,37 +348,34 @@ function user_like() {
               success: function (response) {
                 console.log(response);
                 location.reload();
+
               },
               error: (xhr) => {
                 alert("서버 요청 상태코드 : " + xhr.status)
               }
             });
           }));
-    };
+    });
+
+
   }
 
   else if (like_state == true) {
     //좋아요 삭제 api
-    //true일테니까 하트는 채워있어야함.
+    //true일테니까 하트는 채워있어야함. obj 두개쓰기때문에 .........갈아엎자
     console.log("true");
-    document.getElementById('heart_obj_fill').onload = e => {
-      const obj = document.getElementById('heart_obj');
-      obj.style.display = 'block';
-    }
-    document.getElementById('heart_obj').onload = e => {
-      const obj = document.getElementById('heart_obj');
-      obj.style.display = 'none';
-    }
-    document.getElementById('heart_obj').onload = e => {
-      const obj = document.getElementById('heart_obj');
-      const query = document.querySelector('#heart_obj');
+    obj_fill.style.display = 'inline';
+    obj_blank.style.display = 'none';
+
+    obj_fill.onload = e => {
+      const query = document.querySelector('#heart_obj_fill');
       const querydoc = query.contentDocument;
       const lands = querydoc.querySelectorAll(".heart_fill")
         .forEach((element) =>
           element.addEventListener("click", function () {
             console.log("클릭했습니다 - heart_fill");
             //비운다
-            obj.setAttribute('data', "..\\icons\\like_heart_blank.svg");
+            obj_fill.setAttribute('data', "..\\icons\\like_heart_blank.svg");
             $.ajax({
               type: "DELETE",
               url: "http://13.209.87.88:8080/posts/great/" + decodeURI(receivedData),
@@ -347,6 +383,7 @@ function user_like() {
               data: {},
               success: function (response) {
                 console.log(response);
+                location.reload();
               },
               error: (xhr) => {
                 alert("서버 요청 상태코드 : " + xhr.status)
@@ -379,13 +416,12 @@ function not_user_like() {
 }
 
 function user_make_comment() {
-  $(".input_area").attr('readonly', 'false');
 
   $(".send-btn").click(function () {
 
     var text = $(".input_area").val();
 
-    if (text == null || text.replaxe(/\s|/gi, "").length == 0) {
+    if (text == null || text.replace(/\s|/gi, "").length == 0) {
       swal("내용이 없어요!", "내용을 입력해주세요.", "error");
       $(".input_area").focus();
     }
@@ -401,6 +437,7 @@ function user_make_comment() {
         data: JSON.stringify(obj),
         success: function (response) {
           console.log(response);
+          location.reload();
         },
         error: (xhr) => {
           alert("서버 요청 상태코드 : " + xhr.status)
@@ -485,15 +522,15 @@ function dropdown_report() {
     });
 }
 
-function dropdown_revise_comment() {
+function dropdown_revise_comment(commentid) {
   swal("수정할 댓글 내용을 입력해주세요.", {
     content: "input",
   })
     .then((value) => {
-      var obj = { "context": value };
+      var obj = { "context": value + " (수정됨)" };
       $.ajax({
         type: "PUT",
-        url: "http://13.209.87.88:8080/comments/" + decodeURI(receivedData),
+        url: "http://13.209.87.88:8080/comments/" + commentid,
         headers: { Authorization: window.sessionStorage.getItem("JWT") },
         contentType: "application/json",
         data: JSON.stringify(obj),
@@ -516,7 +553,7 @@ function dropdown_revise_comment() {
     });
 }
 
-function dropdown_delete_comment() {
+function dropdown_delete_comment(commentid) {
   swal({
     title: "삭제하시겠습니까?",
     text: "삭제된 댓글은 복구되지 않습니다!",
@@ -528,7 +565,7 @@ function dropdown_delete_comment() {
       if (willDelete) {
         $.ajax({
           type: "DELETE",
-          url: "http://13.209.87.88:8080/comments/" + decodeURI(receivedData),
+          url: "http://13.209.87.88:8080/comments/" + commentid,
           headers: { Authorization: window.sessionStorage.getItem("JWT") },
           data: {},
           success: function (response) {
