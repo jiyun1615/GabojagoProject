@@ -1,0 +1,1 @@
+export const KAKAO_JS = `92a50b24f8a2ed6ef482d82347e26f2c`;

@@ -26,11 +26,16 @@ $.ajax({
     console.log(response);
     console.log(xhr.getResponseHeader("Access-Token"));
     jwt = xhr.getResponseHeader("Access-Token");
-    window.sessionStorage.setItem("JWT", jwt);
+    setJWT(jwt);
     window.location.replace("../html/index.html");
   },
   error: (xhr) => { 
     alert("서버 요청 상태코드 : " + xhr.status) }
 });
 
-
+function setJWT(jwt){
+  tts = 3600000;
+  // tts = 60000;
+  window.sessionStorage.setItem("JWT", jwt);
+  window.sessionStorage.setItem("expire", Date.now() + tts);
+}

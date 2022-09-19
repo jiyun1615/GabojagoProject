@@ -41,9 +41,12 @@ $.ajax({
 function pageChange_post(num) {
     switch (num) {
         case 0:
-            if (window.sessionStorage.getItem("JWT") != null) {
+            if (window.sessionStorage.getItem("JWT") != null && Date.now() < window.sessionStorage.getItem("expire")) {
                 console.log(num);
                 window.location.href = 'new_post_page.html';
+            }
+            else if (window.sessionStorage.getItem("JWT") != null && Date.now() > window.sessionStorage.getItem("expire")) {
+                location.reload();
             }
             else if (window.sessionStorage.getItem("JWT") == null) {
                 swal("로그인이 필요한 서비스입니다.", "로그인 페이지로 이동합니다.", "error").then(function() {
@@ -52,8 +55,12 @@ function pageChange_post(num) {
             }
             break;
         case 1:
-            if (window.sessionStorage.getItem("JWT") != null) {
+            if (window.sessionStorage.getItem("JWT") != null && Date.now() < window.sessionStorage.getItem("expire")) {
                 window.location.href = 'personal_activity_page.html';
+            }
+            
+            else if (window.sessionStorage.getItem("JWT") != null && Date.now() > window.sessionStorage.getItem("expire")) {
+                location.reload();
             }
             else if (window.sessionStorage.getItem("JWT") == null) {
                 swal("로그인이 필요한 서비스입니다.", "로그인 페이지로 이동합니다.", "error").then(function() {

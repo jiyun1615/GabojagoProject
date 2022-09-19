@@ -14,9 +14,6 @@ document.getElementById('obj_regions').onload = e => {
   console.log(sigg);
   var region_data = '';
 
-  // 그 object에 임포트된 svg doc을 가져오는 것은, 라이브 서버에서만 구동이 됨.... 확장프로그램 필요함.
-  // (ctrl shift x를 눌러 live server 서치 후 오른쪽아래 작업표시줄 아이콘 키고, 디버그)
-  // 수정 후 재 디버깅하는 경우, alt L O
   const querydoc = query.contentDocument;
   console.log(querydoc);
 
