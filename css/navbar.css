@@ -22,7 +22,7 @@ nav{
 .dropdown.nav-class:hover .dropdown-menu.nav-class{
     display: block;
     margin-left: -1vw;
-    height: 24vh;
+    height: 28vh;
     margin-top: -5px;
     background-color: #FFFFFF;
     border-top: #FFFFFF00;

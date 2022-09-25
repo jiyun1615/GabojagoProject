@@ -1,0 +1,51 @@
+.page_contents {
+    padding-bottom: 3vh;
+    word-break: keep-all;
+}
+
+.user_text {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
+
+.tags {
+    font-size: 1.1vw;
+    margin-bottom: 2vh;
+    color: silver;
+    
+}
+
+.card-title {
+    font-weight: bold;
+    overflow: hidden;
+    /* 길이 넘어가면 숨김 */
+    text-overflow: ellipsis;
+    /* 말줄임표 설정 */
+    white-space: nowrap;
+}
+
+#detail2{
+    font-size:15px
+}
+.card-text {
+    word-break: keep-all;
+    height: 24px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    /* 라인수 */
+    -webkit-box-orient: vertical;
+    word-wrap:
+        break-word;
+}
