@@ -86,6 +86,7 @@ function callBookMarkApi(num) {
         data: JSON.stringify(bookMarkData),
         success: function (data) {
             console.log("success")
+            location.reload();
         }
     })
 
@@ -100,6 +101,7 @@ function returnBookMarkApi(num) {
         data: {},
         success: function (data) {
             console.log("delete success")
+            location.reload();
         }
     })
 }

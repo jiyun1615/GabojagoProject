@@ -83,6 +83,7 @@ function user_view() {
       }
       
       if (userID == response.user.userId) {
+        console.log("달라요")
         $(".post_report").addClass('disabled');
         $(".post_revise").removeClass('disabled');
         $(".post_delete").removeClass('disabled');
@@ -266,8 +267,11 @@ function not_user_view() {
 
   });
 }
-// 여기!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 로컬로되어있음
-var shareUrl = "http://127.0.0.1:5501/html/post_view_page.html?" + decodeURI(receivedData);
+
+// var shareUrl = "http://127.0.0.1:5501/html/post_view_page.html?" + decodeURI(receivedData);
+
+// 배포시 아래 부분을 주석 해제한다
+var shareUrl = "http://13.209.87.88/html/post_view_page.html?" + decodeURI(receivedData);
 
 function sendLinkFacebook() {
   var facebook_share_url = "https://www.facebook.com/sharer/sharer.php?u=" + shareUrl;
@@ -316,6 +320,7 @@ async function sendLinkKakao() {
         },
       },],
   });
+  location.reload();
 
 }
 

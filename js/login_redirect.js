@@ -17,9 +17,10 @@ var obj = {"code":code};
 var jwt ="";
 window.sessionStorage.setItem("JWT", jwt);
 
+//배포시 이부분을 주석해제한다.
 $.ajax({
   type: "POST",
-  url: "http://13.209.87.88:8080/users/kakao/login/test",
+  url: "http://13.209.87.88:8080/users/kakao/login",
   contentType: "application/json",
   data: JSON.stringify(obj),
   success: function(response, status, xhr){
@@ -32,6 +33,23 @@ $.ajax({
   error: (xhr) => { 
     alert("서버 요청 상태코드 : " + xhr.status) }
 });
+
+
+// $.ajax({
+//   type: "POST",
+//   url: "http://13.209.87.88:8080/users/kakao/login/test",
+//   contentType: "application/json",
+//   data: JSON.stringify(obj),
+//   success: function(response, status, xhr){
+//     console.log(response);
+//     console.log(xhr.getResponseHeader("Access-Token"));
+//     jwt = xhr.getResponseHeader("Access-Token");
+//     setJWT(jwt);
+//     window.location.replace("../html/index.html");
+//   },
+//   error: (xhr) => { 
+//     alert("서버 요청 상태코드 : " + xhr.status) }
+// });
 
 function setJWT(jwt){
   tts = 3600000;

@@ -41,7 +41,7 @@ function user_rec() {
                 var tmpHtml = `
             <div class="col">
                 <div class="card shadow-sm">
-                    <img class="card_image" id="img2" src=${img1} height="160" style="object-fit:cover;">
+                    <img class="card_image" id="img2" src=${img1} height="210" style="object-fit:cover;">
                     <div class="card-body">
                         <p class="card-title" id="spotName2">${response[i].spotName}</p>
                         <p class="card-text" id="detail2">${details}</p>
@@ -52,14 +52,6 @@ function user_rec() {
                 </div>
             </div>`
                 $("#exampleArr").append(tmpHtml);
-
-                for (var j = 0; j < response[i].spotTags.length; j++) {
-                    for (var k = 0; k < 11; k++) {
-                        if ($(".num_" + [k] + "_tag_detail").html() == ("#" + response[i].spotTags[j].value)) {
-                            $(".num_" + [k] + "_tag_detail").css("font-weight", "bold").css("color", "black");
-                        }
-                    }
-                }
             }
 
 
