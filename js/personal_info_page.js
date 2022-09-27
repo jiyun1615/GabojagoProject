@@ -55,6 +55,7 @@ function getImageFiles(e) {
 
     [...files].forEach(file => {
         console.log("foreach");
+        const uploadFiles = [];
         uploadFiles.push(file);
         const reader = new FileReader();
         reader.onload = (e) => {
