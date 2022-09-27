@@ -60,6 +60,7 @@
     font-family : 'Hahmlet', serif;
     transition: 0.5s;
     display: grid;
+    margin-bottom : 10px;
 }
 
 .bookmark_btn:focus {
@@ -73,5 +74,17 @@
     border-radius: 3px;
     font-family : 'Hahmlet', serif;
     transition: 0.5s;
-    display: grid
+    display: grid;
+    margin-bottom : 10px;
+}
+
+
+.postBySpotID {
+    border : 1px solid lightgray;
+    border-radius: 3px;
+    background-color: white;
+    color : black;
+    font-family : 'Hahmlet', serif;
+    transition: 0.5s;
+    display: grid;
 }
