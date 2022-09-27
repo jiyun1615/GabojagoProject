@@ -47,6 +47,7 @@ function Change(num) {
                   })
                     .then((willDelete) => {
                       if (willDelete) {
+                        window.sessionStorage.removeItem("expire");
                         window.sessionStorage.removeItem("JWT");
                         swal("로그아웃 완료되었습니다.", {
                           icon: "success",
