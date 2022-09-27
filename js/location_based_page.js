@@ -3,7 +3,7 @@ var locationBtnHtml = document.getElementById('my_location_btn');
 
 var map;
 var maxX, maxY, minX, minY;
-let markers = new Array();
+var markers = [];
 let arrX = new Array();
 var arrY = new Array();
 let spotIDs = new Array();
@@ -30,21 +30,6 @@ function Make_map(lat, lon, zoom) {
     // console.log("makemap2");
 
     map = new naver.maps.Map('map', mapOptions);
-    // console.log(map.getBounds());
-
-    // locationBtnHtml[0].addEventListener("click", function () {
-    //     if (navigator.geolocation) {
-    //         // GeoLocation을 이용해서 접속 위치를 얻어옵니다
-    //         navigator.geolocation.getCurrentPosition(function (position) {
-    //             var lat = position.coords.latitude, // 위도
-    //                 lon = position.coords.longitude; // 경도
-    //             map.setCenter(new naver.maps.LatLng(lat, lon));
-    //         });
-
-    //     } else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
-    //         alert("지오로케이션 시스템 사용이 불가능합니다.");
-    //     }
-    // });
     console.log("makemap3");
 
 }
@@ -85,19 +70,28 @@ function listReset_btn_onclick() {
     maxY=map.getBounds()._max.x;
     minX=map.getBounds()._min.y;
     minY=map.getBounds()._min.x;
-    
+    markers = [];   //전역변수라 호출시마다 초기화해줘야됌
     callApiInfo(maxX,maxY,minX,minY);
 
 }
 
-
 function getClickHandler(i) {
-    spotIDs[i];
-    $(spotIDs[i] + "_onclick").addClass("marker_bold");
-    
+    return function(e){
+        console.log(i + " works");
+        //spotIDs[i];
+        console.log(spotIDs[i] + '_onclick');
+        const element = document.getElementById(spotIDs[i] + '_onclick');
+        element.classList.add('marker_bold');
+        element.scrollIntoView({behavior:"smooth", block: "center", inline:"nearest"});
+        for(var j=0; j<markers.length; j++)
+        {
+            if(j!=i){
+                const element = document.getElementById(spotIDs[j] + '_onclick');
+                element.classList.remove('marker_bold');
+            }
+        }
+    }   
 }
-
-
 
 
 function callApiInfo(maxX,maxY,minX,minY) {
@@ -134,12 +128,11 @@ function callApiInfo(maxX,maxY,minX,minY) {
 
                 var marker = new naver.maps.Marker({
                     position: new naver.maps.LatLng(spotX, spotY),
-                    map: map
+                    map: map,
                 });
-
-                var marker = new naver.maps.Marker(spotX, spotY);
                 marker.setMap(map);
-                markers[i]=marker;
+                markers.push(marker);
+                // var marker = new naver.maps.Marker(spotX, spotY);
 
                 naver.maps.Event.addListener(map, 'click', function(e){
                     marker.setPosition(e.latlng);
@@ -162,12 +155,15 @@ function callApiInfo(maxX,maxY,minX,minY) {
                                     </div>
                                 </div>`   
                 $("#arrayContents").append(tmpHtml);
-            }
 
-            for (var i=0; i<=markers.length; i++) {
                 console.log(markers[i] , getClickHandler(i));
                 naver.maps.Event.addListener(markers[i], 'click', getClickHandler(i)); // 클릭한 마커 핸들러
             }
+
+            // for (var i=0; i<=markers.length; i++) {
+            //     console.log(markers[i] , getClickHandler(i));
+            //     naver.maps.Event.addListener(markers[i], 'click', getClickHandler(i)); // 클릭한 마커 핸들러
+            // }
         },
         error: (log) => { alert("url: " + url) }
     })
@@ -175,7 +171,7 @@ function callApiInfo(maxX,maxY,minX,minY) {
 }
 
 naver.maps.Event.addListener(map, 'idle', function()   {
-    highlightCard(map, markers);
+    //highlightCard();
 });
 
 

@@ -115,8 +115,8 @@ section{
 
 .row1 {
     display : flex;
-    margin-left : 10px;
-    /* margin-right : 10px; */
+    margin-left : 6px;
+    margin-right : 5px;
     margin-top : 10px;
     margin-bottom : 10px;
     border : 1px #ddd solid;
@@ -183,5 +183,6 @@ section{
 }
 
 .marker_bold {
-    border : 3px;
+    border : 2px #a39caf solid;
+    border-radius : 5px;
 }
