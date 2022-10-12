@@ -1,4 +1,6 @@
 const receivedData = location.href.split('?')[1];
+var pic_index;
+var pic_indexarr = new Array();
 
 $(function () {
     $.ajax({
@@ -28,7 +30,6 @@ $(function () {
             else {
                 const eximagePreview = document.querySelector('.ex-image-preview');
                 for (var i = 0; i < response.files.length; i++) {
-
                     const preview = createElements(response, i);
                     console.log(preview);
                     eximagePreview.appendChild(preview);
@@ -44,27 +45,36 @@ $(function () {
 
 });
 
-//현재 상황 : 기존 글 내용들을 불러오는것 까지 함.
-//기존 파일을 삭제할것인지랑, 새로 파일을 추가하는것 처리, 그리고 태그 기존에있는거랑 새로추가할부분 처리,
-//제목과 글 내용을 수정했다면 그 내용을 가져오는것 처리까지.
 function createElements(response, i) {
+    console.log(i);
     const li_tag = document.createElement('li');
-    const img = document.createElement('img');
-    img.setAttribute('src', response.files[i].filePath);
-    li_tag.appendChild(img);
-
+    const atag = document.createElement('a');
+    $(atag).html(`<img src="${response.files[i].filePath}">
+    <img id="delete_pic" src="..\\icons\\x-square-fill.svg" style="cursor:pointer; width:24px; height:24px; margin-bottom:176px;"onclick="deleteon(${i}, ${response.files[i].fileId})">`);
+    li_tag.appendChild(atag);
+    pic_index = i + 1;
+    console.log(pic_index)
     return li_tag;
 }
 
+function deleteon(i, id) {
+    alert((i + 1) + "번째 사진을 삭제합니다");
+    pic_indexarr.push(id);
+    const eximagePreview = document.querySelector('.ex-image-preview');
+    const items = eximagePreview.getElementsByTagName('li');
+    pic_index -= 1;
+    // 3. <li> 목록 중 첫번째 item 삭제
+    if (items.length > 0) {
+        items[i].remove();
+    }
 
-
-
-//insertfile과 deletefile을 신경써줘야함.tag랑.
+}
 
 var formData = new FormData();
 var data;
 var fileInput;
 var fileList;
+var deleteFiles;
 const filesInput = document.querySelector("input[type=file]");
 filesInput.addEventListener("change", () => {
     fileList = filesInput.files;
@@ -83,7 +93,8 @@ $("form").submit(function (event) {
         "email": "user@gabojago.com",
         "title": $("#title").val(),
         "context": $("#context").val(),
-        "tags": tagsArr
+        "tags": tagsArr,
+        "deleteFiles": pic_indexarr
     };
     for (var i = 0; i < fileList.length; i++) {
         console.log(fileList[i]);
@@ -91,15 +102,13 @@ $("form").submit(function (event) {
         formData.append('files', fileList[i]);
     }
     formData.append('request', new Blob([JSON.stringify(data)], { type: "application/json" }));
-
+    console.log(formData.get("files"));
     callAjax();
     return false;
 });
 
 
 function callAjax() {
-
-
     $.ajax({
         type: "PUT",
         url: "http://13.209.87.88:8080/posts/" + decodeURI(receivedData),
@@ -126,14 +135,17 @@ function addDel(a) {
 
 function getImageFiles(e) {
     console.log("getImageFiles function works");
-
+    if (pic_index == 3) {
+        alert("파일 업로드 최대 개수는 3개 입니다.");
+        return;
+    }
 
     const uploadFiles = [];
     const files = e.currentTarget.files;
     const imagePreview = document.querySelector('.image-preview');
     $(".image-preview").html("");
 
-    if ([...files].length > 3) {
+    if ([...files].length + pic_index > 3 || [...files].length > 3) {
         alert("파일 업로드 최대 개수는 3개 입니다.");
         return;
     }
