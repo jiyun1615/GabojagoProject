@@ -16,6 +16,29 @@ function getUserInfo() {
     });
 }
 
+function quitBtn() {
+    var result = confirm("탈퇴하시겠습니까?");
+    if (result) {
+        $.ajax({
+            type: "DELETE",
+            url: 'http://13.209.87.88:8080/users/withdrawal',
+            contentType: "application/json",
+            headers: { Authorization: window.sessionStorage.getItem("JWT") },
+            data: {},
+            success: function (data) {
+                console.log("delete success")
+                location.reload();
+                alert("탈퇴되었습니다.");
+                window.sessionStorage.removeItem("expire");
+                window.sessionStorage.removeItem("JWT");
+                window.location.href = 'index.html';
+            }
+        })
+    }
+    else {
+    }
+}
+
 
 // var cntName = 0;
 // var cntImage = 0;

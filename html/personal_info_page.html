@@ -50,14 +50,22 @@
 
         <div class="content1" id="content1">
             <div class="row1">
-                <img class="profile_image" id="profile_image" src="..\sampleimages\cafe1.jpg">
-                <div class="profile_info">
+                <div class="col col-xxl-3 p_photo">
+                    <div class="img_container">
+                        <img class="profile_image" id = "profile_image" src="..\sampleimages\jjal.jpg">
+                    </div>
+                </div>
+                <div class="col col-sm-9 align-self-center p_name">
+                    <div>
+                        <span class="profile_name" id = "profile_name">사용자이름</span>
+                    </div>
+
+                </div>
+                <!-- <img class="profile_image" id="profile_image" src="..\sampleimages\cafe1.jpg"> -->
+                <!-- <div class="profile_info">
                     <div class="profile_name" id="profile_name" onclick="nameChange()">Name</div>
                     <input id="profile_nameChange" class="profile_nameChange" />
-                    <!-- 한 줄 소개글 글자수 제한 : 화면 줄였을 경우 밖으로 나오지 않도록
-                    <input type="text" class="profile_intro" placeholder="한 줄 소개를 입력해주세요"></input> -->
-                </div>
-                <!-- <button type="button" class="submit_button" id="submit">저장</button> -->
+                </div> -->
             </div>
             <div class="__add" id="addFile">
                 <label for="input-file" class="profileImageChange">프로필 사진 변경</label>
@@ -67,6 +75,12 @@
         </div>
 
     </div>
+
+    <footer>
+        <div class="footer1">
+            <p onclick="quitBtn()">회원탈퇴</p>
+        </div>
+    </footer>
     <script>
 
         var cntName = 0;
@@ -84,7 +98,7 @@
         function infoChangeButton() {
             console.log(cntName);
             console.log(cntImage);
-            
+
             if (cntName != 0) {
                 callApiNameChange();
             }
@@ -100,7 +114,7 @@
             console.log(fileList[0]);
             formData.append('profilePhoto', fileList[0]);
             console.log(formData);
-            cntImage=0;
+            cntImage = 0;
             $.ajax({
                 type: "PUT",
                 url: "http://13.209.87.88:8080/users/profile",
