@@ -135,6 +135,13 @@
 
     <script>
         var username;
+        const receivedData = location.href.split('?')[1];
+        var spotId = null;
+        if(receivedData!=undefined){
+            spotId = decodeURI(receivedData);
+        }
+        console.log(spotId);
+       
         $(function () {
             $.ajax({
                 type: "GET",
@@ -170,11 +177,13 @@
                     total_cnt++;
                 }
             });
+
             data = {
                 "email": "user@gabojago.com",
                 "title": $("#title").val(),
                 "context": $("#context").val(),
-                "tags": tagsArr
+                "tags": tagsArr,
+                "spotId" : spotId
             };
             for (var i = 0; i < fileList.length; i++) {
                 console.log(fileList[i]);
