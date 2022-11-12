@@ -52,7 +52,8 @@ function Change(num) {
                         swal("로그아웃 완료되었습니다.", {
                           icon: "success",
                         }).then(function () {
-                            location.reload();
+                            window.location.href = 'index.html';
+                            // location.reload();
                           });
                       } else {
                         swal("취소되었습니다.");
@@ -68,9 +69,16 @@ function Change(num) {
 
 }
 
-function pageChange() {
+function pageChange(num) {
+
     if (window.sessionStorage.getItem("JWT") != null) {
-        window.location.href = 'personal_activity_page.html';
+        if(num == 1)
+        {
+            window.location.href = 'personal_activity_page.html';
+        }
+        else {
+            window.location.href = 'personal_info_page.html';
+        }
     }
     else if (window.sessionStorage.getItem("JWT") == null) {
         swal("로그인이 필요한 서비스입니다.", "로그인 페이지로 이동합니다.", "error").then(function () {
@@ -78,4 +86,3 @@ function pageChange() {
         });
     }
 }
-

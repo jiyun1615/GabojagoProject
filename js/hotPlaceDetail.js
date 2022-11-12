@@ -108,6 +108,24 @@ function noneCheck(str) {
 }
 
 
+function checkBookMark() {
+    $.ajax({
+        type: "GET",
+        url: 'http://13.209.87.88:8080/hotplaces/bookmark/' + num,
+        contentType: "application/json",
+        headers: { Authorization: window.sessionStorage.getItem("JWT") },
+        data: {},
+        success: function (data) {
+            if (data == true)
+            {
+                $("#bookmarkBtn").removeClass("bookmark_btn");
+                $("#bookmarkBtn").addClass("bookmark_btn_checked");
+                $("#bookmarkBtn").html("북마크 완료");
+            }
+        }
+    })
+}
+
 function bookmarkBtn_onclick() {
     login_check();
     if ($("#bookmarkBtn").css("color") == "rgb(0, 0, 0)") {
