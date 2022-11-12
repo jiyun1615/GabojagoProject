@@ -99,6 +99,7 @@ function user_view() {
     },
     error: (xhr) => {
       alert("서버 요청 상태코드 : " + xhr.status)
+      window.history.back();
     }
 
   });
@@ -206,6 +207,7 @@ function not_user_view() {
     },
     error: (xhr) => {
       alert("서버 요청 상태코드 : " + xhr.status)
+      window.history.back();
     }
   });
 

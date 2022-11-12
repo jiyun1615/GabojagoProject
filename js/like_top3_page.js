@@ -29,7 +29,7 @@ $.ajax({
   success: function (response) {
     console.log(response);
     for (var i = 0; i < 3; i++) {
-      var img_src = response[i].files[0].filePath;
+
       var author = response[i].user.name;
       var time_post = response[i].createdAt;
       var createdAt_index = time_post.indexOf('T');
@@ -38,6 +38,9 @@ $.ajax({
 
       var title = response[i].title;
       var context = response[i].context;
+
+      if (response[i].files[0].filePath == "None" || response[i].files[0].filePath == "none" || response[i].files[0].filePath == null) var img_src = "..\\sampleimages\\sample_img.png"
+      else var img_src = response[i].files[0].filePath;
 
       var tmpHtml =
         `<div class="swiper-slide">
@@ -61,6 +64,7 @@ $.ajax({
       $("#exampleArr").append(tmpHtml);
     }
   },
-  error: (xhr) => { 
-    alert("서버 요청 상태코드 : " + xhr.status) }
+  error: (xhr) => {
+    alert("서버 요청 상태코드 : " + xhr.status)
+     }
 });
