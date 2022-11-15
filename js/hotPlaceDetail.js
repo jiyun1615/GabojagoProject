@@ -5,25 +5,38 @@ function callApiInfo() {
     num = urlParams.split('=')[1];
     console.log(num);
 
-    $.ajax({
-        url: "http://13.209.87.88:8080/hotplaces/bookmark/" + num,
-        type: "GET",
-        headers: { Authorization: window.sessionStorage.getItem("JWT") },
-        success: function (data) {
-            console.log(data)
-            if (data) {
-                $("#bookmarkBtn").removeClass("bookmark_btn");
-                $("#bookmarkBtn").addClass("bookmark_btn_checked");
-                $("#bookmarkBtn").html("북마크 완료");
-            }
-            else {
-                $("#bookmarkBtn").removeClass("bookmark_btn_checked");
-                $("#bookmarkBtn").addClass("bookmark_btn");
-                $("#bookmarkBtn").html("북마크 하기");
-            }
-        },
-        error: (log) => { alert("실패" + log) }
-    })
+    if (window.sessionStorage.getItem("JWT") != null && Date.now() < window.sessionStorage.getItem("expire")) {
+        //회원일경우
+        $.ajax({
+            url: "http://13.209.87.88:8080/hotplaces/bookmark/" + num,
+            type: "GET",
+            headers: { Authorization: window.sessionStorage.getItem("JWT") },
+            success: function (data) {
+                console.log(data)
+                if (data) {
+                    $("#bookmarkBtn").removeClass("bookmark_btn");
+                    $("#bookmarkBtn").addClass("bookmark_btn_checked");
+                    $("#bookmarkBtn").html("북마크 완료");
+                }
+                else {
+                    $("#bookmarkBtn").removeClass("bookmark_btn_checked");
+                    $("#bookmarkBtn").addClass("bookmark_btn");
+                    $("#bookmarkBtn").html("북마크 하기");
+                }
+            },
+            error: (log) => { alert("실패" + log) }
+        })
+      }
+      if (window.sessionStorage.getItem("JWT") != null && Date.now() > window.sessionStorage.getItem("expire")) {
+        //회원인데 만료?
+        location.reload();
+      }
+      else if (window.sessionStorage.getItem("JWT") == null) {
+        $("#bookmarkBtn").removeClass("bookmark_btn_checked");
+        $("#bookmarkBtn").addClass("bookmark_btn");
+        $("#bookmarkBtn").html("북마크 하기");
+      }
+
 
 
 
